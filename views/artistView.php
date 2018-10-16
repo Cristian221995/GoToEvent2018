@@ -9,7 +9,7 @@
     <body class="d-flex align-items-center justify-content-center">
 
 
-        <form id="login-form" class="m-2" action="Artist/retride" method="POST">
+        <form id="login-form" class="m-2" action="EventPlace/retride" method="POST">
             <div class="text-center mb-4">
                 <strong>Cargar Artista</strong>
             </div>
@@ -24,7 +24,11 @@
                 <div class="form-group">
                     <label for="">Nombre Artista:</label>
                     <input type="name" name="name" value="" class="form-control">
-                </div>
+                <!--</div>
+                <div class="form-group">
+                    <label for="">Capacidad</label>
+                    <input type="text" name="capacity" value="" class="form-control">
+                </div>-->
             </fieldset>
             <button type="submit" name="button" class="btn btn-primary btn-block">Crear artista</button>
         </form>

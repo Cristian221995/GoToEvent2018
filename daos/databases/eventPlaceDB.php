@@ -1,39 +1,39 @@
 <?php
+
 namespace daos\databases;
 use interfaces\IDao as IDao;
 use daos\SingletonDao as SingletonDao;
 use daos\databases\Connection as Connection;
-use models\Artist as Artist;
+use models\EventPlace as EventPlace;
 
-class ArtistDB extends SingletonDao implements IDao
-{
-    
-    public function __construct()
-    {
+class EventPlaceDB extends SingletonDao implements IDao{
+
+    public function __construct(){
 
     }
 
-    public function insert($artist){
+    public function insert($eventPlace){
 
-        $query = 'INSERT INTO artists (artist_name) VALUES (:name)';
+        $query = 'INSERT INTO event_places (place_name, capacity) VALUES (:name, :capacity)';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $artistName = $artist->getNombre();
-        $command->bindParam(':name',$artistName);
+        $eventName = $eventPlace -> getName();
+        $eventCapacity = $eventPlace -> getCapacity();
+        $command->bindParam(':name',$eventName);
+        $command->bindParam(':capacity',$eventCapacity);
         $command->execute();
 
         //return $pdo->lastInsertId();/**/
     }
 
-    public function delete($artist){
+    public function delete($name){
         
-        $query = 'DELETE FROM artists WHERE artist_name = :name';
+        $query = 'DELETE FROM event_places WHERE place_name = :name';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $artistName = $artist->getNombre();
-        $command->bindParam(':name',$artistName);
+        $command->bindParam(':name',$name);
         $resultDelete = $command->execute();
 
         return $resultDelete;
@@ -41,7 +41,7 @@ class ArtistDB extends SingletonDao implements IDao
 
     public function update($dato, $datoNuevo){
 
-        $query = 'UPDATE artists SET name = $datoNuevo WHERE name = $dato';
+        $query = 'UPDATE event_places SET name = $datoNuevo WHERE name = $dato';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();
@@ -55,9 +55,9 @@ class ArtistDB extends SingletonDao implements IDao
 
     public function retride(){
 
-        $artistList = array();
+        $eventList = array();
 
-        $query = 'SELECT * FROM artists';
+        $query = 'SELECT * FROM event_places';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();
@@ -66,10 +66,16 @@ class ArtistDB extends SingletonDao implements IDao
 
         while($result = $command->fetch()){
             
-            array_push($artistList,$result['artist_name']);
-            var_dump($artistList);
+            $event = array();
+            array_push($event,$result['place_name']);
+            array_push($event,$result['capacity']);
+            array_push($eventList,$event);
+            unset($event);
+            
         }
-        return $artistList;
+        var_dump($eventList);
+        return $eventList;
     }
-
 }
+
+?>

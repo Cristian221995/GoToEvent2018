@@ -20,12 +20,13 @@ class ArtistController
     public function store($nombre)
     {
         $artist = new Artist($nombre);
-        $this->dao->insert($artist->getNombre());
+        $this->dao->insert($artist);
     }
 
-    public function delete($nombre){
+    public function delete($nombre)
+    {
         $artist = new Artist($nombre);
-        $this->dao->delete($artist->getNombre());
+        $this->dao->delete($artist);
     }
 
     public function update($nombre, $nuevoDato)
