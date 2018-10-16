@@ -9,7 +9,7 @@
     <body class="d-flex align-items-center justify-content-center">
 
 
-        <form id="login-form" class="m-2" action="EventPlace/retride" method="POST">
+        <form id="login-form" class="m-2" action="Event/store" method="POST">
             <div class="text-center mb-4">
                 <strong>Cargar Artista</strong>
             </div>

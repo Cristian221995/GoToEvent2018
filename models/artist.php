@@ -2,16 +2,16 @@
 namespace models;
 class Artist
 {
-    private $nombre;
-    public function __construct($nombre)
+    private $name;
+    public function __construct($name)
     {
-            $this->nombre=$nombre;
+            $this->name=$name;
     }
-    public function getNombre(){
-        return $this->nombre;
+    public function getName(){
+        return $this->name;
     }
-    public function setNombre($nombre){
-        $this->nombre=$nombre;
+    public function setName($name){
+        $this->name=$name;
     }
 }
 ?>

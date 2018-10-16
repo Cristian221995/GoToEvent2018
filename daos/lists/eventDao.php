@@ -3,7 +3,7 @@ namespace daos\lists;
 use interfaces\IDao as IDao;
 use daos\SingletonDao as SingletonDao;
 
-class ArtistDao extends SingletonDao implements IDao
+class EventDao extends SingletonDao implements IDao
 {
     private $list;
     public function __construct()
@@ -14,20 +14,20 @@ class ArtistDao extends SingletonDao implements IDao
     /*getSessionArtist(): Consulta si la sesión esta creada, si lo está, retorna la lista de artistas
     guardada en la sesión. De lo contrario guarda un array vacio en la sesión, y por último lo retorna*/
 
-    public function getSessionArtist()
+    public function getSessionEvent()
     {
-        if (!isset($_SESSION['ArtistList'])) {
-            $_SESSION['ArtistList'] = array();
+        if (!isset($_SESSION['EventList'])) {
+            $_SESSION['EventList'] = array();
         }
-        return $_SESSION['ArtistList'];
+        return $_SESSION['EventList'];
     }
 
     /*setSessionArtist($value): Sirve para actualizar la lista de la sesión.
      Parametros: $value= la lista actualizada.*/
 
-    public function setSessionArtist($value)
+    public function setSessionEvent($value)
     {
-        $_SESSION['ArtistList'] = $value;
+        $_SESSION['EventList'] = $value;
     }
 
     /*insert($dato): Guarda en la variable $list el array de artistas retornado en getSessionArtist()
@@ -37,10 +37,10 @@ class ArtistDao extends SingletonDao implements IDao
 
     public function insert($dato)
     {
-        $this->list=$this->getSessionArtist();
+        $this->list=$this->getSessionEvent();
         if(!in_array($dato,$this->list)){
             array_push($this->list, $dato);
-            $this->setSessionArtist($this->list);
+            $this->setSessionEvent($this->list);
         }
         else{
             echo "El artista ya existe<br>";
@@ -48,7 +48,7 @@ class ArtistDao extends SingletonDao implements IDao
     }
 
     public function delete($dato){
-        $this->list=$this->getSessionArtist();
+        $this->list=$this->getSessionEvent();
         if(!in_array($dato,$this->list)){
             echo "El artista no existe<br>";
         }
@@ -56,19 +56,19 @@ class ArtistDao extends SingletonDao implements IDao
             foreach ($this->list as $key => $value) {
                 if($value===$dato){
                     unset($this->list[$key]);
-                    $this->setSessionArtist($this->list);
+                    $this->setSessionEvent($this->list);
                 }
             }
         }
     }
 
     public function update($dato, $datoNuevo){
-        $this->list=$this->getSessionArtist();
+        $this->list=$this->getSessionEvent();
         if(in_array($dato,$this->list)){
             foreach ($this->list as $key => $value) {
                 if($value->getName()===$dato->getName()){
                     $value->setName($datoNuevo);
-                    $this->setSessionArtist($this->list);
+                    $this->setSessionEvent($this->list);
                     return;
                 }
             }
@@ -79,7 +79,7 @@ class ArtistDao extends SingletonDao implements IDao
     }
 
     public function retride(){
-        $this->list=$this->getSessionArtist();
+        $this->list=$this->getSessionEvent();
         foreach ($this->list as $key => $value) {
             echo $value->getName() . "<br>";
         }
