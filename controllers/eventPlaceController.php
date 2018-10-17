@@ -22,7 +22,8 @@ class EventPlaceController{
 
    public function store($nombre, $capacidad)
     {
-        $eventPlace = new EventPlace($nombre, $capacidad);
+        $eventPlace = new EventPlace($nombre);
+        $eventPlace->setCapacity($capacidad);
         $this->dao->insert($eventPlace);
     }
 

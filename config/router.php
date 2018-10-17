@@ -15,6 +15,7 @@ namespace config;
         {
 
             $controlador = $request->getControladora()."Controller";
+
             $metodo = $request->getMetodo();
 
 

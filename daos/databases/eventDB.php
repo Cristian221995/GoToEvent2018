@@ -18,12 +18,17 @@ class EventDB extends SingletonDao implements IDao{
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $eventList = $event->getName();
-        $category = $event->getCategory();
-        $eventPlace = $event->getEventPlace();
-        $command->bindParam(':name',$eventList);
-        $command->bindParam(':category',$category);
-        $command->bindParam(':eventPlace',$eventPlace);
+        $eventName = $event->getName();
+        $category = $event->getCategory()->getName();
+        $eventPlace = $event->getEventPlace()->getName();
+
+        $idCategory = $this->getIdByName("categories", "category", $category);
+        $idEventPlace = $this->getIdByName("event_places", "event_place", $eventPlace);
+
+        
+        $command->bindParam(':name',$eventName);
+        $command->bindParam(':category',$idCategory);
+        $command->bindParam(':eventPlace',$idEventPlace);
         $command->execute();
 
         //return $pdo->lastInsertId();/**/
@@ -35,7 +40,7 @@ class EventDB extends SingletonDao implements IDao{
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $eventList = $artist->getName();
+        $eventList = $event->getName();
         $command->bindParam(':name',$eventList);
         $resultDelete = $command->execute();
 
@@ -73,6 +78,23 @@ class EventDB extends SingletonDao implements IDao{
             var_dump($eventList);
         }
         return $eventList;
+    }
+
+    public function getIdByName($dbName, $rowName, $name){
+
+        $query = 'SELECT * FROM '. $dbName .' WHERE '. $rowName .'_name = (:name)';
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->bindParam(':name',$name);
+        $command->execute();
+
+        if($result = $command->fetch()){
+            return $result['id_'.$rowName];
+        }
+        else{
+            return null;
+        }
     }
 }
 

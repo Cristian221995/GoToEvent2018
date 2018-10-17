@@ -18,7 +18,7 @@ create table categories(
 
 create table event_places(
     id_event_place int auto_increment,
-    place_name varchar(50),
+    event_place_name varchar(50),
     capacity varchar(50),
     constraint pk_id_event_place primary key (id_event_place),
     constraint unq_place_name unique (place_name)

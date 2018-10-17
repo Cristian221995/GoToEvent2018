@@ -9,9 +9,9 @@
     <body class="d-flex align-items-center justify-content-center">
 
 
-        <form id="login-form" class="m-2" action="Event/store" method="POST">
+        <form id="login-form" class="m-2" action="Event/retride" method="POST">
             <div class="text-center mb-4">
-                <strong>Cargar Artista</strong>
+                <strong>Cargar Evento</strong>
             </div>
 
             <?php if(isset($alert)) { ?>
@@ -22,15 +22,23 @@
 
             <fieldset>
                 <div class="form-group">
-                    <label for="">Nombre Artista:</label>
+                    <label for="">Nombre Evento:</label>
                     <input type="name" name="name" value="" class="form-control">
-                <!--</div>
+                </div>
+                <div class="form-group">
+                    <label for="">Categoria</label>
+                    <input type="text" name="category" value="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Lugar de evento</label>
+                    <input type="text" name="event_place" value="" class="form-control">
+                </div>
                 <div class="form-group">
                     <label for="">Capacidad</label>
                     <input type="text" name="capacity" value="" class="form-control">
-                </div>-->
+                </div>
             </fieldset>
-            <button type="submit" name="button" class="btn btn-primary btn-block">Crear artista</button>
+            <button type="submit" name="button" class="btn btn-primary btn-block">Crear Evento</button>
         </form>
 
 

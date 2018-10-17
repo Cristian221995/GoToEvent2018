@@ -7,10 +7,9 @@ class EventPlace{
     private $name;
     private $capacity;
 
-    public function __construct($name, $capacity){
+    public function __construct($name){
 
         $this->name = $name;
-        $this->capacity = $capacity;
     }
 
     public function setName($name){

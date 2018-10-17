@@ -27,13 +27,14 @@ class EventPlaceDB extends SingletonDao implements IDao{
         //return $pdo->lastInsertId();/**/
     }
 
-    public function delete($name){
+    public function delete($eventPlace){
         
         $query = 'DELETE FROM event_places WHERE place_name = :name';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $command->bindParam(':name',$name);
+        $eventName = $eventPlace->getName();
+        $command->bindParam(':name',$eventName);
         $resultDelete = $command->execute();
 
         return $resultDelete;
@@ -75,6 +76,23 @@ class EventPlaceDB extends SingletonDao implements IDao{
         }
         var_dump($eventList);
         return $eventList;
+    }
+
+    public function getIdByName($name){
+
+        $query = "SELECT * FROM event_places WHERE place_name = :name";
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->bindParam(':name',$name);
+        $command->execute();
+
+        if($result = $command->fetch()){
+            return $result['id_event_place'];
+        }
+        else{
+            return null;
+        }
     }
 }
 

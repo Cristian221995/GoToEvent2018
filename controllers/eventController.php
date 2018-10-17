@@ -2,6 +2,7 @@
 
 namespace controllers;
 use daos\databases\eventDB as eventDB;
+//use daos\lists\eventDao as eventDB;
 use models\Event as Event;
 
 
@@ -20,9 +21,15 @@ class EventController{
     //include ROOT. views/noseque.php
    }
 
-   public function store($nombre)
+   public function store($nombre, $category, $eventPlace, $capacity)
     {
+        echo "Nombre: ".$nombre."<br>";
+        echo "Categoria: ".$category."<br>";
+        echo "Lugar evento: ".$eventPlace."<br>";
+        echo "Capacidad: ".$capacity."<br>";
         $event = new Event($nombre);
+        $event->setCategory($category);
+        $event->setEventPlace($eventPlace, $capacity);
         $this->dao->insert($event);
     }
 

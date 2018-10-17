@@ -31,7 +31,7 @@ class CategoryDB extends SingletonDao implements IDao{
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $categoryName = $artist->getName();
+        $categoryName = $category->getName();
         $command->bindParam(':name',$categoryName);
         $resultDelete = $command->execute();
 
@@ -69,6 +69,23 @@ class CategoryDB extends SingletonDao implements IDao{
             var_dump($categoryList);
         }
         return $categoryList;
+    }
+
+    public function getIdByName($name){
+
+        $query = "SELECT * FROM categories WHERE category_name = :name";
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->bindParam(':name',$name);
+        $command->execute();
+
+        if($result = $command->fetch()){
+            return $result['id_category'];
+        }
+        else{
+            return null;
+        }
     }
 }
 

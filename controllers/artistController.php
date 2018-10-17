@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
 use daos\databases\ArtistDB as Artista;
-//use daos\databases\ArtistDao as Artista;
+//use daos\lists\ArtistDao as Artista;
 use models\Artist as Artist;
 
 class ArtistController
@@ -39,4 +39,9 @@ class ArtistController
         $list=$this->dao->retride();
         //var_dump($list);
     }
+
+    public function getIdByName($nombre){
+        $id = $this->dao->getIdByName($nombre);
+    }
+    
 }

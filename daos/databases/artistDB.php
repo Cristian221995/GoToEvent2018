@@ -72,4 +72,23 @@ class ArtistDB extends SingletonDao implements IDao
         return $artistList;
     }
 
+    public function getIdByName($name){
+
+        $query = "SELECT * FROM artists WHERE artist_name = :name";
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->bindParam(':name',$name);
+        $command->execute();
+
+        if($result = $command->fetch()){
+            return $result['id_artist'];
+        }
+        else{
+            return null;
+        }
+    }
+
+
+
 }

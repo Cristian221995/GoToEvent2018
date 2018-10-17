@@ -1,6 +1,8 @@
 <?php
 
 namespace models;
+use models\Category as Category;
+use models\EventPlace as EventPlace;
 
 class Event{
 
@@ -18,14 +20,14 @@ class Event{
         $this->name = $name;
     }
 
-    public function setCategory($category){
+    public function setCategory($categoryName){
 
-        $this->category = $category;
+        $this->category = new Category($categoryName);
     }
 
-    public function setEventPlace($eventPlace){
+    public function setEventPlace($eventPlace, $capacity){
 
-        $this->eventPlace = $eventPlace;
+        $this->eventPlace = new EventPlace($eventPlace,$capacity);
     }
 
     public function getName(){
