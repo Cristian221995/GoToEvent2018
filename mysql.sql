@@ -21,7 +21,7 @@ create table event_places(
     event_place_name varchar(50),
     capacity varchar(50),
     constraint pk_id_event_place primary key (id_event_place),
-    constraint unq_place_name unique (place_name)
+    constraint unq_place_name unique (event_place_name)
 );
 
 create table events(

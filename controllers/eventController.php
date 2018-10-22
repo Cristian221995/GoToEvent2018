@@ -23,10 +23,6 @@ class EventController{
 
    public function store($nombre, $category, $eventPlace, $capacity)
     {
-        echo "Nombre: ".$nombre."<br>";
-        echo "Categoria: ".$category."<br>";
-        echo "Lugar evento: ".$eventPlace."<br>";
-        echo "Capacidad: ".$capacity."<br>";
         $event = new Event($nombre);
         $event->setCategory($category);
         $event->setEventPlace($eventPlace, $capacity);

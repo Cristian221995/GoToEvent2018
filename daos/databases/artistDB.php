@@ -21,9 +21,15 @@ class ArtistDB extends SingletonDao implements IDao
         $command = $connection->prepare($query);
         $artistName = $artist->getName();
         $command->bindParam(':name',$artistName);
-        $command->execute();
+        if(!$this->searchByName($artistName)){
 
-        //return $pdo->lastInsertId();/**/
+            $command->execute();
+            $lastId = $connection->lastInsertId();
+            return $lastId;
+        }
+        else{
+            return null;            
+        }
     }
 
     public function delete($artist){
@@ -67,7 +73,6 @@ class ArtistDB extends SingletonDao implements IDao
         while($result = $command->fetch()){
             
             array_push($artistList,$result['artist_name']);
-            var_dump($artistList);
         }
         return $artistList;
     }
@@ -87,6 +92,18 @@ class ArtistDB extends SingletonDao implements IDao
         else{
             return null;
         }
+    }
+
+    public function searchByName($name){
+
+        $list = $this->retride();
+        $flag = false;
+        foreach ($list as $key => $value) {
+            if($name === $value){
+                $flag = true;
+            }
+        }
+        return $flag;
     }
 
 

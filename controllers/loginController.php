@@ -1,6 +1,6 @@
 <?php
 namespace controllers;
-class HomeController
+class LoginController
 {
 
     public function __construct()

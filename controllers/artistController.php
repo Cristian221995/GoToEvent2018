@@ -14,7 +14,7 @@ class ArtistController
 
     public function index()
     {
-        include(ROOT. "views/artistView.php");
+        include(ROOT. "views/artistForm.php");
     }
   
     public function store($nombre)

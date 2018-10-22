@@ -24,6 +24,7 @@ class CategoryController{
     {
         $category = new Category($nombre);
         $this->dao->insert($category);
+        include ROOT . "views/artistForm.php";
     }
 
     public function delete($nombre)
