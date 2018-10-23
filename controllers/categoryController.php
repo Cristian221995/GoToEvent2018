@@ -41,7 +41,7 @@ class CategoryController{
 
     public function retride(){
         $list=$this->dao->retride();
-        //var_dump($list);
+        return $list;
     }
 
 }

@@ -65,7 +65,7 @@ class EventDB extends SingletonDao implements IDao{
 
         $eventList = array();
 
-        $query = 'SELECT * FROM events';
+        $query = 'SELECT * FROM events order by id_event';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();

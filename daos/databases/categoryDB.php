@@ -56,7 +56,7 @@ class CategoryDB extends SingletonDao implements IDao{
 
         $categoryList = array();
 
-        $query = 'SELECT * FROM categories';
+        $query = 'SELECT * FROM categories order by id_category';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();

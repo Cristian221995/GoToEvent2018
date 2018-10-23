@@ -63,7 +63,7 @@ class ArtistDB extends SingletonDao implements IDao
 
         $artistList = array();
 
-        $query = 'SELECT * FROM artists';
+        $query = 'SELECT * FROM artists order by id_artist';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();

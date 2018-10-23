@@ -58,7 +58,7 @@ class EventPlaceDB extends SingletonDao implements IDao{
 
         $eventList = array();
 
-        $query = 'SELECT * FROM event_places';
+        $query = 'SELECT * FROM event_places order by id_event_place';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();
@@ -68,13 +68,11 @@ class EventPlaceDB extends SingletonDao implements IDao{
         while($result = $command->fetch()){
             
             $event = array();
-            array_push($event,$result['place_name']);
+            array_push($event,$result['event_place_name']);
             array_push($event,$result['capacity']);
             array_push($eventList,$event);
             unset($event);
-            
         }
-        var_dump($eventList);
         return $eventList;
     }
 

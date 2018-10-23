@@ -1,31 +1,41 @@
 <?php 
 
 namespace models;
-use models\Event as Event;
 
 class Calendar{
 
     private $eventDate;
-    //private $event;
-    private $artist;
+    private $event;
+    private $artistList;
+    private $eventPlace;
 
-    function __construct($eventDate, $artistName){
+    function __construct($eventDate, $event, $eventPlace){
 
         $this->eventDate = $eventDate;
-        //$this->event = new Event($eventName, $categoryName, $eventPlace, $capacity);
-        $this->artist = new Artist($artistName);
+        $this->event = $event;
+        $this->artistList = array();
+        $this->eventPlace = $eventPlace;
+    }
+
+    public function setArtistList($artist){
+
+        array_push($this->artistList, $artist);
     }
 
     public function getEventDate(){
         return $this->eventDate;
     }
 
-    /*public function getEvent(){
+    public function getEvent(){
         return $this->event;
-    }*/
+    }
 
-    public function getArtist(){
-        return $this->getArtist;
+    public function getArtistList(){
+        return $this->artistList;
+    }
+
+    public function getEventPlace(){
+        return $this->eventPlace;
     }
 
 }
