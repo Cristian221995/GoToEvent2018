@@ -29,7 +29,7 @@ use controllers\eventPlaceController as EventPlaceController;
                     </div>
 
                     <div class="form-group">
-                            <select class="form-control" name="category">
+                             <select class="custom-select my-1 mr-sm-2" name="category">
                                 <option disabled selected>Elige una categoría: </option>
                                 <?php
                                 $list = new CategoryController();
@@ -56,7 +56,7 @@ use controllers\eventPlaceController as EventPlaceController;
                     </div>
 
                     <div class="form-group">
-                            <select class="form-control" name="eventPlace">
+                            <select class="custom-select my-1 mr-sm-2" name="eventPlace">
                                 <option disabled selected>Elige el lugar de evento: </option>
                                 <?php
                                 $listEventPlace = new EventPlaceController();
@@ -74,10 +74,10 @@ use controllers\eventPlaceController as EventPlaceController;
 
                     <div class="form-group">
                         <label> Ingresar una imagen para el evento: </label>
-                        <input type="file" name="eventIMG">
+                        <input type="file" class="form-control-file" name="eventIMG">
                     </div>
 
-                    <button type="submit" name="button" class="btn btn-primary">Crear Evento</button>
+                    <button type="submit" name="button" class="btn btn-primary">Siguiente</button>
 
                 </form>
             </div>

@@ -23,9 +23,7 @@ class EventController{
 
    public function store($nombre, $category, $eventPlace, $capacity)
     {
-        $event = new Event($nombre);
-        $event->setCategory($category);
-        $event->setEventPlace($eventPlace, $capacity);
+        $event = new Event($nombre, $category);
         $this->dao->insert($event);
     }
 

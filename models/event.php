@@ -13,7 +13,7 @@ class Event{
     public function __construct($name, $category){
 
         $this->name = $name;
-        $this->category = $category;
+        $this->category = new Category($category);
         $this->calendar = array();
     }
 
