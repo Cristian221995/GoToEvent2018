@@ -37,7 +37,7 @@ class ArtistController
 
     public function retride(){
         $list=$this->dao->retride();
-        //var_dump($list);
+        return $list;
     }
 
     public function getIdByName($nombre){

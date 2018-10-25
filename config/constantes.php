@@ -3,6 +3,8 @@ namespace config;
 
 define('ROOT', str_replace('\\','/',dirname(__DIR__) . "/"));
 
+define('FRONT_ROOT', '/GoToEvent2018/');
+
 $base=explode($_SERVER['DOCUMENT_ROOT'],ROOT);
   define("BASE",$base[1]);
 
