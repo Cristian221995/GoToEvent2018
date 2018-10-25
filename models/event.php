@@ -27,9 +27,9 @@ class Event{
         $this->category = new Category($categoryName);
     }
 
-    public function setCalendar($eventDate, $artistName){
+    public function setCalendar($eventDate, $artistList){
 
-        $calendario = new Calendar($eventDate, $artistName);
+        $calendario = new Calendar($eventDate, $this->name, $artistList);
         array_push($this->calendar, $calendario);
     }
 

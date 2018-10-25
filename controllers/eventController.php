@@ -17,9 +17,44 @@ class EventController{
 
    public function index(){
 
-    include(ROOT. "views/artistView.php");
-    //include ROOT. views/noseque.php
+    include(ROOT. "views/createEventForm.php");
    }
+
+   public function getEventData(){
+
+    if($_POST){
+
+        $arrayPost = $_POST;
+        return $arrayPost;
+    }
+   }
+
+   public function getCalendarData($eventDataParam){
+
+        $eventData = $eventDataParam;
+        include "views/artistsPerDay.php";
+    }
+
+    public function getAllData(){
+
+        $parametersEvent = $this->getEventData();
+        $this->getCalendarData($parametersEvent);
+
+        /*if($_POST){
+            $parametersCalendar = $_POST;
+        }*/
+    }
+
+    public function prueba2(){
+        include "views/artistsPerDay.php";
+    }
+
+    public function prueba(){
+        if($_POST){
+            var_dump($_POST);
+            var_dump($_SESSION['eventData']);
+        }
+    }
 
    public function store($nombre, $category, $eventPlace, $capacity)
     {

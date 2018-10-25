@@ -34,3 +34,7 @@ create table events(
     constraint fk_id_event_place foreign key (id_event_place) references event_places (id_event_place)
 );
 
+insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaqueño Palavecino'),('Paulo Londra'),('Ed Sheeran');
+insert into categories (category_name) values ('Obra teatral'),('Recital'),('Festival'),('Deportivo'),('Entretenimiento General'),('Lectura'),('Informatica'),('Gastronomica');
+insert into event_places (event_place_name, capacity) values ('Gran Rex', '3262'),('Luna Park', '9290'),('Jose Amalfitani', '49540'),('La rural','950'),('Teatro Opera','2500');
+

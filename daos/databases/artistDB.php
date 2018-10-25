@@ -73,7 +73,7 @@ class ArtistDB extends SingletonDao implements IDao
         while($result = $command->fetch()){
             
             array_push($artistList,$result['artist_name']);
-        }
+        
         return $artistList;
     }
 

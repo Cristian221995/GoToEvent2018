@@ -22,7 +22,7 @@ use controllers\eventPlaceController as EventPlaceController;
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
-                <form action="Event/store" method="POST">
+                <form action="Event/prueba2" method="POST">
 
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Nombre del evento:">
@@ -36,7 +36,7 @@ use controllers\eventPlaceController as EventPlaceController;
                                 echo $list->retride();
                                 if($list->retride()){
                                     foreach ($list->retride() as $key => $value) { ?>
-                                        <option value="<?php $value; ?>"><?php echo $value; ?></option>
+                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                     <?php }  
                                 }
                                 else{
@@ -63,7 +63,7 @@ use controllers\eventPlaceController as EventPlaceController;
 
                                 if($listEventPlace->retride()){
                                     foreach ($listEventPlace->retride() as $key => $value) { ?>
-                                        <option value="<?php $value[0]; ?>"><?php echo $value[0]; ?></option>
+                                        <option value="<?php echo $value[0]; ?>"><?php echo $value[0] . " / Capacidad: " . $value[1]; ?></option>
                                     <?php }  
                                 }
                                 else{
