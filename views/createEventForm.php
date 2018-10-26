@@ -77,7 +77,7 @@ use controllers\eventPlaceController as EventPlaceController;
                         <input type="file" class="form-control-file" name="eventIMG">
                     </div>
 
-                    <button type="submit" name="button" class="btn btn-primary">Siguiente</button>
+                    <button type="submit" class="btn btn-primary">Siguiente</button>
 
                 </form>
             </div>

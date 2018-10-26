@@ -1,6 +1,6 @@
 <?php
-    $_SESSION['eventData'] = $_POST;
     use controllers\artistController as ArtistController;
+    $_SESSION['eventData'] = $_POST;
 ?>
 
 <!DOCTYPE html>
@@ -22,20 +22,29 @@
                 <div class="panel">
                     <h2>Artistas por día</h2>
                 </div>
-                <form action="Event/prueba2" method="POST">
+                <form action="store" method="POST">
 
                     <?php
                         $dateStart = new DateTime($_SESSION['eventData']['eventDateStart']);
                         $dateFinish = new DateTime($_SESSION['eventData']['eventDateFinish']);
                         $dayCounter = $dateStart->diff($dateFinish);
                         $dayCounter = $dayCounter->format('%a');
+                        $_SESSION['eventData']['eventDates'] = array();
+                        array_push($_SESSION['eventData']['eventDates'], $dateStart->format('Y-m-d'));
 
-                        $contador = 0;
+                        $contador = 1;
 
-                        while($contador <= $dayCounter){ ?>
+                        while($contador <= $dayCounter+1){ 
+                            
+                            if(($dateStart->modify('+1 day') <= $dateFinish)){
+                                $aux = $dateStart;
+                                array_push($_SESSION['eventData']['eventDates'], $aux->format('Y-m-d'));
+                            }
+                            ?>
                                 
                             <div class="form-group">
-                                <select class="custom-select my-1 mr-sm-2" name="days" multiple>
+                            <h2><?php echo "Día " . $contador ?></h2>
+                                <select class="custom-select my-1 mr-sm-2" multiple name="dia<?php echo $contador?>[]">
                                     <option disabled selected>Elige uno o mas artistas: </option>
                                     <?php
                                     $list = new ArtistController();
@@ -44,11 +53,11 @@
                                             <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php }  
                                     } ?>
-                                    </select>
+                                </select>
                             </div>
                     <?php $contador++; } ?>
 
-                   <button type="submit" name="button" class="btn btn-primary">Crear Evento</button>
+                   <button type="submit" class="btn btn-primary">Crear Evento</button>
                     
 
                 </form>

@@ -17,9 +17,11 @@ class Calendar{
         $this->eventPlace = $eventPlace;
     }
 
-    public function setArtistList($artist){
+    public function setArtistList($artistList){
 
-        array_push($this->artistList, $artist);
+        foreach ($artistList as $key => $value) {
+            array_push($this->artistList, $value);
+        }
     }
 
     public function getEventDate(){

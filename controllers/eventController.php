@@ -56,10 +56,19 @@ class EventController{
         }
     }
 
-   public function store($nombre, $category, $eventPlace, $capacity)
+   public function store()
     {
-        $event = new Event($nombre, $category);
-        $this->dao->insert($event);
+        if($_POST){
+            $counter = 0;
+            $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category']);
+            foreach ($_POST as $key => $value) {
+                $eventDate = $_SESSION['eventData']['eventDates'][$counter];
+                $eventPlace = $_SESSION['eventData']['eventPlace'];
+                $event->setCalendar($eventDate, $eventPlace, $value);
+                $counter++;
+            }
+            $this->dao->insert($event);
+        }
     }
 
     public function delete($nombre)
