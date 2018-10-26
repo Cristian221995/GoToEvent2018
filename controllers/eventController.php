@@ -4,6 +4,7 @@ namespace controllers;
 use daos\databases\eventDB as eventDB;
 //use daos\lists\eventDao as eventDB;
 use models\Event as Event;
+use controllers\CalendarController as CalendarController;
 
 
 class EventController{
@@ -45,16 +46,16 @@ class EventController{
         }*/
     }
 
-    public function prueba2(){
+    public function index2(){
         include "views/artistsPerDay.php";
     }
 
-    public function prueba(){
+    /*public function prueba(){
         if($_POST){
             var_dump($_POST);
             var_dump($_SESSION['eventData']);
         }
-    }
+    }*/
 
    public function store()
     {
@@ -68,6 +69,8 @@ class EventController{
                 $counter++;
             }
             $this->dao->insert($event);
+            $calendarControl = new CalendarController();
+            $calendarControl->store($event);
         }
     }
 

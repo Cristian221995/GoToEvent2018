@@ -22,7 +22,7 @@ use controllers\eventPlaceController as EventPlaceController;
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
-                <form action="Event/prueba2" method="POST">
+                <form action="Event/index2" method="POST">
 
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Nombre del evento:">

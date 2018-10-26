@@ -1,33 +1,52 @@
 <?php
-
 namespace daos\databases;
 use interfaces\IDao as IDao;
 use daos\SingletonDao as SingletonDao;
 use daos\databases\Connection as Connection;
-use models\Event as Event;
+use models\Calendar as Calendar;
 
-class EventDB extends SingletonDao implements IDao{
+class CalendarDB extends SingletonDao implements IDao{
 
-    public function __construct(){
+    public function __construct()
+    {
 
     }
 
-    public function insert($event){
+    public function insert($calendar){
 
-        $query = 'INSERT INTO events (event_name, id_category) VALUES (:name, :category)';
+        $query = 'INSERT INTO calendars (calendar_name, id_event) VALUES (:eventDate, :id_event)';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
-        $eventName = $event->getName();
-        $category = $event->getCategory()->getName();
+        $eventDate = $calendar->getEventDate();
+        $eventName = $calendar->getEvent();
 
-        $idCategory = $this->getIdByName("categories", "category", $category);
+        $idEvent = $this->getIdByName("events", "event", $eventName);
         
-        $command->bindParam(':name',$eventName);
-        $command->bindParam(':category',$idCategory);
+        $command->bindParam(':eventDate',$eventDate);
+        $command->bindParam(':id_event',$idEvent);
         $command->execute();
 
-        //return $pdo->lastInsertId();/**/
+        //AHORA PARA ARTISTAS X CALENDARIO
+
+        $artistList = $calendar->getArtistList();
+        foreach ($artistList as $key => $value) {
+            $query = 'INSERT INTO artists_x_calendar (id_artist, id_calendar) VALUES (:id_artist, :id_calendar)';
+            //La conexion se hace solo 1 vez
+            //$pdo = new Connection();
+            //$connection = $pdo->Connect();
+            $command = $connection->prepare($query);
+            $artistName = $value;
+
+            $idArtist = $this->getIdByName("artists", "artist", $artistName);
+            $idCalendar = $this->getIdByName("calendars", "calendar", $eventDate);
+            
+            $command->bindParam(':id_artist',$idArtist);
+            $command->bindParam(':id_calendar',$idCalendar);
+            $command->execute();
+
+            //return $pdo->lastInsertId();/**/
+        }
     }
 
     public function delete($event){
@@ -92,6 +111,24 @@ class EventDB extends SingletonDao implements IDao{
             return null;
         }
     }
+
+    public function getIdById($dbName, $rowName, $id){
+
+        $query = 'SELECT * FROM '. $dbName .' WHERE id_' . $rowName . '= (:id)';
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->bindParam(':id',$id);
+        $command->execute();
+
+        if($result = $command->fetch()){
+            return $result['id_'.$rowName];
+        }
+        else{
+            return null;
+        }
+    }
+
 }
 
 ?>
