@@ -25,39 +25,39 @@ use controllers\eventPlaceController as EventPlaceController;
                 <form action="Event/index2" method="POST">
 
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Nombre del evento:">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre del evento:" required>
                     </div>
 
                     <div class="form-group">
-                             <select class="custom-select my-1 mr-sm-2" name="category">
-                                <option disabled selected>Elige una categoría: </option>
-                                <?php
-                                $list = new CategoryController();
-                                echo $list->retride();
-                                if($list->retride()){
-                                    foreach ($list->retride() as $key => $value) { ?>
-                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                                    <?php }  
-                                }
-                                else{
-                                    echo "No hay nada";
-                                } ?>
-                            </select>
+                        <select class="custom-select my-1 mr-sm-2" name="category" required>
+                            <option disabled selected value="">Elige una categoría: </option>
+                            <?php
+                            $list = new CategoryController();
+                            echo $list->retride();
+                            if($list->retride()){
+                                foreach ($list->retride() as $key => $value) { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php }  
+                            }
+                            else{
+                                echo "No hay nada";
+                            } ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label> Fecha de comienzo del evento </label>
-                        <input type="date" name="eventDateStart" class="form-control">
+                        <input type="date" name="eventDateStart" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label> Fecha de final del evento </label>
-                        <input type="date" name="eventDateFinish" class="form-control">
+                        <input type="date" name="eventDateFinish" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                            <select class="custom-select my-1 mr-sm-2" name="eventPlace">
-                                <option disabled selected>Elige el lugar de evento: </option>
+                            <select class="custom-select my-1 mr-sm-2" name="eventPlace" required>
+                                <option disabled selected value="">Elige el lugar de evento: </option>
                                 <?php
                                 $listEventPlace = new EventPlaceController();
 

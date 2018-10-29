@@ -55,7 +55,7 @@ class EventController{
 
    public function store()
     {
-        $flag = $this->searchInDatabase($nombre);
+        $flag = $this->searchInDatabase($_SESSION['eventData']['name']);
         if(!$flag){
             if($_POST){
                 $counter = 0;

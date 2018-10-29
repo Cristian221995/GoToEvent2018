@@ -21,7 +21,7 @@
                 <form action="Category/store" method="POST">
 
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Nombre de la categoria">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre de la categoria" required>
                     </div>
 
                     <button type="submit" name="button" class="btn btn-primary">Crear Categoría</button>

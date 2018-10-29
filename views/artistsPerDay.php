@@ -44,8 +44,8 @@
                                 
                             <div class="form-group">
                             <h2><?php echo "Día " . $contador ?></h2>
-                                <select class="custom-select my-1 mr-sm-2" multiple name="dia<?php echo $contador?>[]">
-                                    <option disabled selected>Elige uno o mas artistas: </option>
+                                <select class="custom-select my-1 mr-sm-2" multiple name="dia<?php echo $contador?>[]" required>
+                                    <option disabled selected value="">Elige uno o mas artistas: </option>
                                     <?php
                                     $list = new ArtistController();
                                     if($list->retride()){
