@@ -22,26 +22,61 @@ class CategoryController{
 
    public function store($nombre)
     {
-        $category = new Category($nombre);
-        $this->dao->insert($category);
-        include ROOT . "views/artistForm.php";
+        $flag = $this->searchInDatabase($nombre);
+        if(!flag){
+            $category = new Category($nombre);
+            $this->dao->insert($category);
+            include ROOT . "views/artistForm.php";
+        }
+        else{
+            throw new \Exception ('La categoría ya existe');
+        }
     }
 
     public function delete($nombre)
     {
-        $category = new Category($nombre);
-        $this->dao->delete($category);
+        $flag = $this->searchInDatabase($nombre);
+        if($flag){
+            $category = new Category($nombre);
+            $this->dao->delete($category);
+        }
+        else{
+            throw new \Exception ('Ha ocurrido un error'); 
+        }
     }
 
     public function update($nombre, $nuevoDato)
     {
-        $category = new Category($nombre);
-        $this->dao->update($category, $nuevoDato);
+        $flag = $this->searchInDatabase($nombre);
+        if($flag){
+            $category = new Category($nombre);
+            $this->dao->update($category, $nuevoDato);
+        }
+        else{
+            throw new \Exception ('Ha ocurrido un error'); 
+        }
     }
 
     public function retride(){
         $list=$this->dao->retride();
         return $list;
+    }
+
+    public function getIdByName($nombre){
+        $id = $this->dao->getIdByName($nombre);
+    }
+    
+    public function searchInDatabase($nombre){
+        $list = $this->retride();
+        $flag = false;
+        if($list){
+            foreach ($list as $key => $value) {
+                if($value === $nombre){
+                    $flag = true;
+                }
+            }
+        }
+        return $flag;
     }
 
 }

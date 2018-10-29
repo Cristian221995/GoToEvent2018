@@ -66,7 +66,6 @@ class CategoryDB extends SingletonDao implements IDao{
         while($result = $command->fetch()){
             
             array_push($categoryList,$result['category_name']);
-            var_dump($categoryList);
         }
         return $categoryList;
     }
