@@ -57,7 +57,7 @@
                             </div>
                     <?php $contador++; } ?>
 
-                   <button type="submit" class="btn btn-primary">Crear Evento</button>
+                   <button type="submit" class="btn btn-primary btn-block">Crear Evento</button>
                     
 
                 </form>
