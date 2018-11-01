@@ -26,7 +26,7 @@
             <fieldset>
                 <div class="form-group">
                     <label for="">Nombre Artista:</label>
-                    <input type="name" name="name" value="" class="form-control">
+                    <input type="name" name="name" class="form-control" required>
                 </div>
             </fieldset>
             <button type="submit" name="button" class="btn btn-primary btn-block">Crear Artista</button>

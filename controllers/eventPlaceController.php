@@ -22,26 +22,61 @@ class EventPlaceController{
 
    public function store($nombre, $capacidad)
     {
-        $eventPlace = new EventPlace($nombre);
-        $eventPlace->setCapacity($capacidad);
-        $this->dao->insert($eventPlace);
+        $flag = $this->searchInDatabase($nombre);
+        if(!$flag){
+            $eventPlace = new EventPlace($nombre);
+            $eventPlace->setCapacity($capacidad);
+            $this->dao->insert($eventPlace);
+        }
+        else{
+            throw new \Exception ('El lugar de evento ya existe');
+        }
     }
 
     public function delete($nombre)
     {
-        $eventPlace = new EventPlace($nombre);
-        $this->dao->delete($eventPlace);
+        $flag = $this->searchInDatabase($nombre);
+        if($flag){
+            $eventPlace = new EventPlace($nombre);
+            $this->dao->delete($eventPlace);
+        }
+        else{
+            throw new \Exception ('Ha ocurrido un error'); 
+        }
     }
 
     public function update($nombre, $nuevoDato)
     {
-        $category = new EventPlace($nombre);
-        $this->dao->update($eventPlace, $nuevoDato);
+        $flag = $this->searchInDatabase($nombre);
+        if($flag){
+            $category = new EventPlace($nombre);
+            $this->dao->update($eventPlace, $nuevoDato);
+        }
+        else{
+            throw new \Exception ('Ha ocurrido un error'); 
+        }
     }
 
     public function retride(){
         $list=$this->dao->retride();
         return $list;
+    }
+
+    public function getIdByName($nombre){
+        $id = $this->dao->getIdByName($nombre);
+    }
+
+    public function searchInDatabase($nombre){
+        $list = $this->retride();
+        $flag = false;
+        if($list){
+            foreach ($list as $key => $value) {
+                if($value === $nombre){
+                    $flag = true;
+                }
+            }
+        }
+        return $flag;
     }
 
 }

@@ -18,5 +18,5 @@
 	Autoload::start();
 	session_start();
 	Router::direccionar(new Request());
-
+	
 ?>
