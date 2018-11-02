@@ -15,17 +15,20 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                    <h2>Nuevo Artista</h2><br>
+                    <h2>Nuevo Lugar de Evento</h2><br>
                     
                 </div>
                 <form action="" method="POST">
                     
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Nombre del Artista" required>
+                        <input type="text" name="name" class="form-control" placeholder="Nombre del lugar" required>
                     </div>
-                   
+                    <div class="form-group">
 
-                    <button type="submit" name="button" class="btn btn-primary">Crear Artista</button>
+                        <input type="text" name="capacity" class="form-control" placeholder="Capacidad" required>
+                    </div>
+
+                    <button type="submit" name="button" class="btn btn-primary">Crear lugar de Evento</button>
 
                 </form>
             </div>
