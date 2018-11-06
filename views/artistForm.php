@@ -21,18 +21,18 @@
                 <div class="alert alert-danger text-center">
                     <?= $alert ?>
                 </div>
-            <?php } ?>
+                <form action="" method="POST">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre del Artista" required>
+                    </div>
+                   
 
-            <fieldset>
-                <div class="form-group">
-                    <label for="">Nombre Artista:</label>
-                    <input type="name" name="name" class="form-control" required>
-                </div>
-            </fieldset>
-            <button type="submit" name="button" class="btn btn-primary btn-block">Crear Artista</button>
-        </form>
+                    <button type="submit" name="button" class="btn btn-primary">Crear Artista</button>
 
-
+                </form>
+           
         
-    </body>
+    
+        </body>
 </html>
