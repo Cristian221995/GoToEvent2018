@@ -69,6 +69,7 @@ class EventController{
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
+                include "views/printEvent.php";
             }
         }
         else{

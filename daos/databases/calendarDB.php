@@ -90,7 +90,7 @@ class CalendarDB extends SingletonDao implements IDao{
         while($result = $command->fetch()){
             
             array_push($eventList,$result['event_name']);
-            var_dump($eventList);
+            //var_dump($eventList);
         }
         return $eventList;
     }

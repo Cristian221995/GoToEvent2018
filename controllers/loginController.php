@@ -10,8 +10,10 @@ class LoginController
 
     public function index()
     {
-        include(ROOT.'views/login.php');
+        include(ROOT.'views/login.html');
     }
+
+    
 
 }
 ?>

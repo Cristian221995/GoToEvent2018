@@ -29,6 +29,7 @@
                     </div>
 
                     <button type="submit" name="button" class="btn btn-primary">Crear lugar de Evento</button>
+                    <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
 
                 </form>
             </div>

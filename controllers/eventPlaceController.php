@@ -16,8 +16,7 @@ class EventPlaceController{
 
    public function index(){
 
-    include(ROOT. "views/artistView.php");
-    //include ROOT. views/noseque.php
+    include(ROOT. "views/createEventPlaceForm.php");
    }
 
    public function store($nombre, $capacidad)

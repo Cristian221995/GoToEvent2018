@@ -16,8 +16,7 @@ class CategoryController{
 
    public function index(){
 
-    include(ROOT. "views/artistView.php");
-    //include ROOT. views/noseque.php
+    include(ROOT. "views/createCategoryForm.php");
    }
 
    public function store($nombre)

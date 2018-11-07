@@ -32,7 +32,6 @@ class Event{
         $calendario = new Calendar($eventDate, $this->name, $eventPlace);
         $calendario->setArtistList($artistList);
         array_push($this->calendar, $calendario);
-        var_dump($this->calendar);
     }
 
     public function getName(){

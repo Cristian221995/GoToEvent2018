@@ -79,7 +79,7 @@ use controllers\eventPlaceController as EventPlaceController;
 
                     <button type="submit" class="btn btn-primary">Siguiente</button>
 
-                    <a href="views/login.php" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
+                    <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
                     
                     <!--<button type="button" class="btn btn-outline-danger btn-lg btn-block">Volver</button>-->
 
