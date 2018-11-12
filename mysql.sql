@@ -49,6 +49,17 @@ create table artists_x_calendar(
     constraint fk_id_calendar foreign key (id_calendar) references calendars (id_calendar)
 );
 
+create table users(
+    id_user int auto_increment,
+    user_email varchar(50),
+    user_name varchar(50),
+    user_pass varchar(50),
+    user_role varchar(50),
+    constraint pk_id_user primary key (id_user),
+    constraint unq_user_email unique (user_email),
+    constraint unq_user_name unique (user_name)
+);
+
 insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');
 insert into categories (category_name) values ('Obra Teatral'),('Recital'),('Festival'),('Deportivo'),('Entretenimiento General'),('Lectura'),('Informatica'),('Gastronomica');
 insert into event_places (event_place_name, capacity) values ('Gran Rex', '3262'),('Luna Park', '9290'),('Jose Amalfitani', '49540'),('La Rural','950'),('Teatro Opera','2500');
