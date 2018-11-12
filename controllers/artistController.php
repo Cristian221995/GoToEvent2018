@@ -17,8 +17,9 @@ class ArtistController
         include(ROOT. "views/artistForm.php");
     }
   
-    public function store($nombre)
+    public function store()
     {
+        $nombre = $_POST['name'];
         $flag = $this->searchInDatabase($nombre);
         if(!$flag){
             $artist = new Artist($nombre);
