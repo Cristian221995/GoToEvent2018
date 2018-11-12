@@ -12,7 +12,7 @@ class LoginController
 
     public function index()
     {
-        include(ROOT.'views/login.html');
+        include(ROOT.'views/login.php');
     }
 
     public function login(){
