@@ -50,9 +50,6 @@
 					</div>
 					
 					<div class="text-right p-t-8 p-b-31">
-						<a href="#">
-							Olvidaste tu contraseña?
-						</a>
 					</div>
 					
 					<div class="container-login100-form-btn">
@@ -60,6 +57,17 @@
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
 								Ingresar
+							</button>
+						</div>
+					</div>
+
+					<div class="text-right p-t-8 p-b-31"></div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								<a href="User" class="login100-form-btn" role="button" aria-pressed="true">Registrate Aquí</a>
 							</button>
 						</div>
 					</div>
@@ -77,13 +85,17 @@
 						</a>
 					</div>
 
-					<div class="flex-col-c p-t-155">
-						<a href="User" class="txt2">
-							Registrate aqui!
-						</a>
+					<div class="text-right p-t-8 p-b-31"></div>
+					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								<a href="<?= FRONT_ROOT ?>index" class="login100-form-btn" role="button" aria-pressed="true">Volver al menú principal</a>
+							</button>
+						</div>
 					</div>
 
-					<a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
 				</form>
 			</div>
 		</div>
