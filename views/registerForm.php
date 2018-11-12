@@ -45,7 +45,7 @@
                     
                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Campo obligatorio">
 						<span class="label-input100">Nombre de usuario:</span>
-						<input class="input100" type="text" name="userName" placeholder="Ingresa tu email">
+						<input class="input100" type="text" name="userName" placeholder="Ingresa tu usuario">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
