@@ -17,7 +17,6 @@ class EventController{
    }
 
    public function index(){
-
     include(ROOT. "views/createEventForm.php");
    }
 

@@ -15,6 +15,13 @@ use controllers\eventPlaceController as EventPlaceController;
     <link rel="stylesheet" href="css/form.css">
     <title>Crear evento</title>
 </head>
+<header>
+<div id="logo" class="pull-left">
+      <!-- Uncomment below if you prefer to use a text logo -->
+      <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+      <a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="img/logo3.png" alt="GoToEvent" title=""></a>
+    </div>
+</header>
 <body id="LoginForm">
     <div class="container">
         <div class="login-form">
