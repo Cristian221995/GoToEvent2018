@@ -16,7 +16,7 @@ class LoginController
     }
 
     public function login(){
-
+        $flag = false;
         $userName = $_POST['userName'];
         $pass = $_POST['pass'];
         $userController = new UserController();
@@ -24,6 +24,7 @@ class LoginController
         foreach ($list as $key => $value) {
             if($value[1] === $userName && $value[2] === $pass){
                 $_SESSION['userName'] = $userName;
+                $flag = true;
                 header("Location:" . HOME);
             }
         }
