@@ -24,6 +24,7 @@ class LoginController
         foreach ($list as $key => $value) {
             if($value[1] === $userName && $value[2] === $pass){
                 $_SESSION['userName'] = $userName;
+                $_SESSION['userRole'] = $value[4];
                 $flag = true;
                 header("Location:" . HOME);
             }

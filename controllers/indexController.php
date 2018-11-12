@@ -11,6 +11,7 @@ class IndexController{
 
     public function index(){
 
+        include (ROOT . "views/headerAdmin.php");
         include (ROOT . "views/mainMenu.php");
     }
 }
