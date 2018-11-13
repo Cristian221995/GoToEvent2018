@@ -23,6 +23,11 @@ use controllers\eventPlaceController as EventPlaceController;
     </div>
 </header>
 <body id="LoginForm">
+        <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="<?= FRONT_ROOT ?>img/logo3.png" alt="GoToEvent" title=""></a>
+        </div>
     <div class="container">
         <div class="login-form">
             <div class="main-div">

@@ -18,6 +18,7 @@
 </head>
 
 <body id="LoginForm">
+<<<<<<< HEAD
 <header>
 <div id="logo" class="pull-left">
       <!-- Uncomment below if you prefer to use a text logo -->
@@ -25,6 +26,13 @@
       <a class="scrollto"><img src="<?= FRONT_ROOT ?>img/logo3.png" alt="GoToEvent" title=""></a>
     </div>
 </header>
+=======
+<div id="logo" class="pull-left">
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+            <a class="scrollto"><img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent" title=""></a>
+        </div class="btn-group">
+>>>>>>> d1100ba17a54a9a636567f81ce32c0f6c2de8d78
     <div class="container">
         <div class="login-form">
             <div class="main-div">

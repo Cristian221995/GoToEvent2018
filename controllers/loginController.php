@@ -1,6 +1,7 @@
 <?php
 namespace controllers;
 use controllers\UserController as UserController;
+use controllers\IndexController as IndexController;
 
 class LoginController
 {
@@ -24,14 +25,26 @@ class LoginController
         foreach ($list as $key => $value) {
             if($value[1] === $userName && $value[2] === $pass){
                 $_SESSION['userName'] = $userName;
-                $_SESSION['userRole'] = $value[4];
+                $_SESSION['userRole'] = $value[3];
                 $flag = true;
-                header("Location:" . HOME);
+                $indexController = new IndexController();
+                $indexController->index();
             }
         }
         if($flag===false)
         {
             header("Location:" . HOME . "Login");
+        }
+    }
+
+    public function logout(){
+
+        if(isset($_SESSION["userName"])){
+
+            session_unset();
+            session_destroy();
+            session_start();
+            header("Location:" . HOME);
         }
     }
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/form.css">
     <title>Crear categoria</title>
 </head>
+<<<<<<< HEAD
 <body id="LoginForm">
     <header>
     <div id="logo" class="pull-left">
@@ -18,6 +19,14 @@
         <a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="img/logo3.png" alt="GoToEvent" title=""></a>
         </div>
     </header>
+=======
+    <body id="LoginForm">
+        <div id="logo" class="pull-left">
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+            <a href="Index" class="scrollto"><img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent" title=""></a>
+        </div class="btn-group">
+>>>>>>> d1100ba17a54a9a636567f81ce32c0f6c2de8d78
     <div class="container">
         <div class="login-form">
             <div class="main-div">

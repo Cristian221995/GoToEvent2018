@@ -36,8 +36,10 @@ create table calendars(
     id_calendar int auto_increment,
     calendar_name date,
     id_event int,
+    id_event_place int,
     constraint pk_id_calendar primary key (id_calendar),
-    constraint fk_id_event foreign key (id_event) references events (id_event)
+    constraint fk_id_event foreign key (id_event) references events (id_event),
+    constraint fk_id_event_place foreign key (id_event_place) references event_places (id_event_place)
 );
 
 create table artists_x_calendar(
@@ -58,6 +60,12 @@ create table users(
     constraint pk_id_user primary key (id_user),
     constraint unq_user_email unique (user_email),
     constraint unq_user_name unique (user_name)
+);
+
+create table place_types(
+    id_place_type int auto_increment,
+    place_type_description varchar(50),
+    constraint pk_id_place_type primary key (id_place_type)
 );
 
 insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');

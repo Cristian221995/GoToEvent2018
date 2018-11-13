@@ -23,7 +23,10 @@
             <div class="main-div">
                 <div class="panel">
                     <h2>Your Event</h2><br>
+<<<<<<< HEAD
                     
+=======
+>>>>>>> d1100ba17a54a9a636567f81ce32c0f6c2de8d78
                 </div>
                 <div>
                 <p>Nombre del evento: <?php echo $_SESSION['eventData']['name'] ?></p>
@@ -43,11 +46,17 @@
                         <?php }
                         }
                 }?>
+<<<<<<< HEAD
                 </div>
                 
 
 
 
+=======
+
+                <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
+                </div>
+>>>>>>> d1100ba17a54a9a636567f81ce32c0f6c2de8d78
             </div>
         </div>
     </div>
