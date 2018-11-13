@@ -14,17 +14,19 @@ class CalendarDB extends SingletonDao implements IDao{
 
     public function insert($calendar){
 
-        $query = 'INSERT INTO calendars (calendar_name, id_event) VALUES (:eventDate, :id_event)';
+        $query = 'INSERT INTO calendars (calendar_name, id_event, id_event_place) VALUES (:eventDate, :id_event, :id_event_place)';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
         $eventDate = $calendar->getEventDate();
         $eventName = $calendar->getEvent();
-
+        $eventPlace = $calendar->getEventPlace();
         $idEvent = $this->getIdByName("events", "event", $eventName);
+        $idEventPlace = $this->getIdByName("event_places", "event_place", $eventPlace);
         
         $command->bindParam(':eventDate',$eventDate);
         $command->bindParam(':id_event',$idEvent);
+        $command->bindParam(':id_event_place',$idEventPlace);
         $command->execute();
 
         //AHORA PARA ARTISTAS X CALENDARIO
@@ -32,9 +34,6 @@ class CalendarDB extends SingletonDao implements IDao{
         $artistList = $calendar->getArtistList();
         foreach ($artistList as $key => $value) {
             $query = 'INSERT INTO artists_x_calendar (id_artist, id_calendar) VALUES (:id_artist, :id_calendar)';
-            //La conexion se hace solo 1 vez
-            //$pdo = new Connection();
-            //$connection = $pdo->Connect();
             $command = $connection->prepare($query);
             $artistName = $value;
 

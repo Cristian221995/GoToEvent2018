@@ -9,56 +9,27 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="images/icons/favicon.ico" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?=FRONT_ROOT?>images/icons/favicon.ico" rel="icon">
+  <link href="<?=FRONT_ROOT?>img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/venobox/venobox.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>lib/animate/animate.min.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>lib/venobox/venobox.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-
-  <!--==========================
-    Header
-  ============================-->
-  <header id="header">
-    <div class="container">
-
-      <div id="logo" class="pull-left">
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-        <a href="#intro" class="scrollto"><img src="img/logo3.png" alt="GoToEvent" title=""></a>
-      </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">Teatro</a></li>
-          <li><a href="#speakers">Musica</a></li>
-          <li><a href="#schedule">Deportes</a></li>
-          <li><a href="#venue">Stand Up</a></li>
-          <li><a href="#hotels">Especiales</a></li>
-          <!--<li><a href="#gallery"></a></li>
-          <li><a href="#sponsors">Sponsors</a></li>
-          <li><a href="#contact">Contact</a></li>-->
-          <li class="buy-tickets"><a href="Login">Login</a></li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
 
   <!--==========================
     Intro Section
@@ -69,7 +40,7 @@
       <p class="mb-4 pb-0">29,30,31 de marzo, Hipodromo de San Isidro, Buenos Aires</p>
       <a href="https://www.youtube.com/watch?v=MeM6UZ4Y_wY" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a>
-      <a href="#about" class="about-btn scrollto">About The Event</a>
+      <a href="#about" class="about-btn scrollto">Sobre el evento</a>
     </div>
   </section>
 
@@ -82,17 +53,15 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h2>About The Event</h2>
-            <p>Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut
-              accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in
-              est ut optio sequi unde.</p>
+            <h2>Sobre el evento:</h2>
+            <p>Lollapalooza​ es un festival musical de los Estados Unidos que originalmente ofrecía bandas de rock alternativo, indie y punk rock; también hay actuaciones cómicas y de danza. Concebido en 1991 por Perry Farrell, cantante de Jane's Addiction, Lollapalooza se realizó anualmente hasta 1997 y fue revivido en 2003. </p>
           </div>
           <div class="col-lg-3">
-            <h3>Where</h3>
+            <h3>Donde:</h3>
             <p>Downtown Conference Center, New York</p>
           </div>
           <div class="col-lg-3">
-            <h3>When</h3>
+            <h3>Fechas:</h3>
             <p>Monday to Wednesday<br>10-12 December</p>
           </div>
         </div>
@@ -112,7 +81,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/1.jpg" alt="Speaker 1" class="img-fluid">
+              <img src="<?=FRONT_ROOT?>img/speakers/1.jpg" alt="Speaker 1" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">Brenden Legros</a></h3>
                 <p>Quas alias incidunt</p>
@@ -127,7 +96,7 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
+              <img src="<?=FRONT_ROOT?>img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">Hubert Hirthe</a></h3>
                 <p>Consequuntur odio aut</p>
@@ -142,7 +111,7 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/3.jpg" alt="Speaker 3" class="img-fluid">
+              <img src="<?=FRONT_ROOT?>img/speakers/3.jpg" alt="Speaker 3" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">Cole Emmerich</a></h3>
                 <p>Fugiat laborum et</p>
@@ -157,7 +126,7 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/4.jpg" alt="Speaker 4" class="img-fluid">
+              <img src="<?=FRONT_ROOT?>img/speakers/4.jpg" alt="Speaker 4" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">Jack Christiansen</a></h3>
                 <p>Debitis iure vero</p>
@@ -172,7 +141,7 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/5.jpg" alt="Speaker 5" class="img-fluid">
+              <img src="<?=FRONT_ROOT?>img/speakers/5.jpg" alt="Speaker 5" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">Alejandrin Littel</a></h3>
                 <p>Qui molestiae natus</p>
@@ -187,7 +156,7 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/6.jpg" alt="Speaker 6" class="img-fluid">
+              <img src="<?=FRONT_ROOT?>img/speakers/6.jpg" alt="Speaker 6" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">Willow Trantow</a></h3>
                 <p>Non autem dicta</p>
@@ -491,313 +460,6 @@
 
       </div>
 
-      <div class="container-fluid venue-gallery-container">
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/1.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/1.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/2.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/2.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/3.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/3.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/4.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/4.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/5.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/5.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/6.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/6.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/7.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/7.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="venue-gallery">
-              <a href="img/venue-gallery/8.jpg" class="venobox" data-gall="venue-gallery">
-                <img src="img/venue-gallery/8.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </section>
-
-    <!--==========================
-      Hotels Section
-    ============================-->
-    <section id="hotels" class="section-with-bg wow fadeInUp">
-
-      <div class="container">
-        <div class="section-header">
-          <h2>Hotels</h2>
-          <p>Her are some nearby hotels</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="img/hotels/1.jpg" alt="Hotel 1" class="img-fluid">
-              </div>
-              <h3><a href="#">Hotel 1</a></h3>
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>0.4 Mile from the Venue</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="img/hotels/2.jpg" alt="Hotel 2" class="img-fluid">
-              </div>
-              <h3><a href="#">Hotel 2</a></h3>
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-full"></i>
-              </div>
-              <p>0.5 Mile from the Venue</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="img/hotels/3.jpg" alt="Hotel 3" class="img-fluid">
-              </div>
-              <h3><a href="#">Hotel 3</a></h3>
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>0.6 Mile from the Venue</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </section>
-
-    <!--==========================
-      Gallery Section
-    ============================-->
-    <section id="gallery" class="wow fadeInUp">
-
-      <div class="container">
-        <div class="section-header">
-          <h2>Gallery</h2>
-          <p>Check our gallery from the recent events</p>
-        </div>
-      </div>
-
-      <div class="owl-carousel gallery-carousel">
-        <a href="img/gallery/1.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/1.jpg" alt=""></a>
-        <a href="img/gallery/2.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/2.jpg" alt=""></a>
-        <a href="img/gallery/3.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/3.jpg" alt=""></a>
-        <a href="img/gallery/4.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/4.jpg" alt=""></a>
-        <a href="img/gallery/5.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/5.jpg" alt=""></a>
-        <a href="img/gallery/6.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/6.jpg" alt=""></a>
-        <a href="img/gallery/7.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/7.jpg" alt=""></a>
-        <a href="img/gallery/8.jpg" class="venobox" data-gall="gallery-carousel"><img src="img/gallery/8.jpg" alt=""></a>
-      </div>
-
-    </section>
-
-    <!--==========================
-      Sponsors Section
-    ============================-->
-    <section id="sponsors" class="section-with-bg wow fadeInUp">
-
-      <div class="container">
-        <div class="section-header">
-          <h2>Sponsors</h2>
-        </div>
-
-        <div class="row no-gutters sponsors-wrap clearfix">
-
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/1.png" class="img-fluid" alt="">
-            </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/2.png" class="img-fluid" alt="">
-            </div>
-          </div>
-        
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/3.png" class="img-fluid" alt="">
-            </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/4.png" class="img-fluid" alt="">
-            </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/5.png" class="img-fluid" alt="">
-            </div>
-          </div>
-        
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/6.png" class="img-fluid" alt="">
-            </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/7.png" class="img-fluid" alt="">
-            </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="sponsor-logo">
-              <img src="img/sponsors/8.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!--==========================
-      F.A.Q Section
-    ============================-->
-    <section id="faq" class="wow fadeInUp">
-
-      <div class="container">
-
-        <div class="section-header">
-          <h2>F.A.Q </h2>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-              <ul id="faq-list">
-
-                <li>
-                  <a data-toggle="collapse" class="collapsed" href="#faq1">Non consectetur a erat nam at lectus urna duis? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq1" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                    </p>
-                  </div>
-                </li>
-      
-                <li>
-                  <a data-toggle="collapse" href="#faq2" class="collapsed">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq2" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                    </p>
-                  </div>
-                </li>
-      
-                <li>
-                  <a data-toggle="collapse" href="#faq3" class="collapsed">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq3" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                    </p>
-                  </div>
-                </li>
-      
-                <li>
-                  <a data-toggle="collapse" href="#faq4" class="collapsed">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq4" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                    </p>
-                  </div>
-                </li>
-      
-                <li>
-                  <a data-toggle="collapse" href="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq5" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-                    </p>
-                  </div>
-                </li>
-      
-                <li>
-                  <a data-toggle="collapse" href="#faq6" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq6" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
-                    </p>
-                  </div>
-                </li>
-      
-              </ul>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
 
     <!--==========================
       Subscribe Section
@@ -1022,48 +684,24 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-info">
-            <img src="img/logo3.png" alt="GoToEvent">
-            <p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
+            <img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent">
+            <p>GoToEvent es una pagina de venta de tickets para distintos espectáculos. ¿Qué esperas para conseguir el tuyo? </p>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
+            <h4>Contactanos</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              Av. Dorrego 281 <br>
+              Mar del Plata, Buenos Aires<br>
+              Argentina <br>
+              <strong>Teléfono:</strong> +54 0223 480-1220<br>
+              <strong>Email:</strong> difusion@mdp.utn.edu.ar<br>
             </p>
 
             <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://twitter.com/utnmardelplata?lang=es" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="https://www.facebook.com/utnmardelplata/" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.instagram.com/utnmardelplata/" class="instagram"><i class="fa fa-instagram"></i></a>
             </div>
 
           </div>
@@ -1076,21 +714,21 @@
   <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
   <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/superfish/hoverIntent.js"></script>
-  <script src="lib/superfish/superfish.min.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/venobox/venobox.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/jquery/jquery.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/jquery/jquery-migrate.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/easing/easing.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/superfish/hoverIntent.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/superfish/superfish.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/wow/wow.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/venobox/venobox.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/owlcarousel/owl.carousel.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+  <script src="<?=FRONT_ROOT?>contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="js/mainMenu.js"></script>
+  <script src="<?=FRONT_ROOT?>js/mainMenu.js"></script>
 </body>
 
 </html>
