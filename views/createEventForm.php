@@ -82,13 +82,17 @@ use controllers\eventPlaceController as EventPlaceController;
                         <input type="file" class="form-control-file" name="eventIMG">
                     </div>
 
+                    
+
                     <button type="submit" class="btn btn-primary">Siguiente</button>
+                    
+                </form>
 
                     <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
                     
                     <!--<button type="button" class="btn btn-outline-danger btn-lg btn-block">Volver</button>-->
 
-                </form>
+                
             </div>
         </div>
     </div>

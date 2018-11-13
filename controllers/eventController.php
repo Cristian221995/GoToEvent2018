@@ -4,6 +4,7 @@ namespace controllers;
 use daos\databases\eventDB as eventDB;
 //use daos\lists\eventDao as eventDB;
 use models\Event as Event;
+use models\Image as Image;
 use controllers\CalendarController as CalendarController;
 
 
@@ -59,7 +60,11 @@ class EventController{
         if(!$flag){
             if($_POST){
                 $counter = 0;
-                $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category']);
+                $foto = $_SESSION['eventData']['eventIMG'];
+
+                $rutaImagen = new Image();
+                $rutaImagen -> subirImage($_FILES['eventIMG'], "eventImg");
+                $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen->getDireccion());
                 foreach ($_POST as $key => $value) {
                     $eventDate = $_SESSION['eventData']['eventDates'][$counter];
                     $eventPlace = $_SESSION['eventData']['eventPlace'];

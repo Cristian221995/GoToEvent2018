@@ -1,6 +1,7 @@
 <?php
     use controllers\artistController as ArtistController;
     $_POST['name'] = ucwords(strtolower($_POST['name']));
+    var_dump($_POST);
     $_SESSION['eventData'] = $_POST;
 ?>
 
