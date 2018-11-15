@@ -14,7 +14,7 @@ class EventPlaceDB extends SingletonDao implements IDao{
 
     public function insert($eventPlace){
 
-        $query = 'INSERT INTO event_places (place_name, capacity) VALUES (:name, :capacity)';
+        $query = 'INSERT INTO event_places (event_place_name, capacity) VALUES (:name, :capacity)';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);

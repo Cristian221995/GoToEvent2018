@@ -54,7 +54,7 @@
         <div class="row">
           <div class="col-lg-6">
             <h2>Sobre el evento:</h2>
-            <p>Lollapalooza​ es un festival musical de los Estados Unidos que originalmente ofrecía bandas de rock alternativo, indie y punk rock; también hay actuaciones cómicas y de danza. Concebido en 1991 por Perry Farrell, cantante de Jane's Addiction, Lollapalooza se realizó anualmente hasta 1997 y fue revivido en 2003. </p>
+            <p>Lollapalooza​ es un festival musical de los Estados Unidos que originalmente ofrecia bandas de rock alternativo, indie y punk rock; tambien hay actuaciones comicas y de danza. Concebido en 1991 por Perry Farrell, cantante de Jane's Addiction, Lollapalooza se realizo anualmente hasta 1997 y fue revivido en 2003. </p>
           </div>
           <div class="col-lg-3">
             <h3>Donde:</h3>
@@ -74,101 +74,23 @@
     <section id="speakers" class="wow fadeInUp">
       <div class="container">
         <div class="section-header">
-          <h2>Event Speakers</h2>
-          <p>Here are some of our speakers</p>
+          <h2>Eventos</h2>
+          <p>Aqui estan todos nuestros eventos:</p>
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6">
+        <?php foreach ($eventList as $key => $value){ ?>
+
+           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="<?=FRONT_ROOT?>img/speakers/1.jpg" alt="Speaker 1" class="img-fluid">
+              <img src="<?=FRONT_ROOT . $value[2] ?>" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Brenden Legros</a></h3>
-                <p>Quas alias incidunt</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
+                <h3><a href="speaker-details.html"><?=$value[0]?></a></h3>
+                <p><?=$value[1]?></p>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="<?=FRONT_ROOT?>img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">Hubert Hirthe</a></h3>
-                <p>Consequuntur odio aut</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="<?=FRONT_ROOT?>img/speakers/3.jpg" alt="Speaker 3" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">Cole Emmerich</a></h3>
-                <p>Fugiat laborum et</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="<?=FRONT_ROOT?>img/speakers/4.jpg" alt="Speaker 4" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">Jack Christiansen</a></h3>
-                <p>Debitis iure vero</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="<?=FRONT_ROOT?>img/speakers/5.jpg" alt="Speaker 5" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">Alejandrin Littel</a></h3>
-                <p>Qui molestiae natus</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="<?=FRONT_ROOT?>img/speakers/6.jpg" alt="Speaker 6" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">Willow Trantow</a></h3>
-                <p>Non autem dicta</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <?php }?>
         </div>
       </div>
 
@@ -694,7 +616,7 @@
               Av. Dorrego 281 <br>
               Mar del Plata, Buenos Aires<br>
               Argentina <br>
-              <strong>Teléfono:</strong> +54 0223 480-1220<br>
+              <strong>Telefono:</strong> (+54) 0223 480-1220<br>
               <strong>Email:</strong> difusion@mdp.utn.edu.ar<br>
             </p>
 

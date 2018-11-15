@@ -27,7 +27,7 @@ use controllers\eventPlaceController as EventPlaceController;
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
-                <form action="Event/index2" method="POST">
+                <form action="Event/index2" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Nombre del evento:" required>
@@ -76,13 +76,6 @@ use controllers\eventPlaceController as EventPlaceController;
                                 } ?>
                             </select>
                     </div>
-
-                    <div class="form-group">
-                        <label> Ingresar una imagen para el evento: </label>
-                        <input type="file" class="form-control-file" name="eventIMG">
-                    </div>
-
-                    
 
                     <button type="submit" class="btn btn-primary">Siguiente</button>
                     
