@@ -59,10 +59,11 @@ class EventController{
         if(!$flag){
             if($_POST){
                 $counter = 0;
-                $foto = $_SESSION['eventData']['eventIMG'];
-                var_dump($foto);
+                // $foto = $_SESSION['eventData']['eventIMG'];
+                // $_FILES['eventIMG'] = $foto;
+                // var_dump($_FILES['eventIMG']);
                 $rutaImagen = new Image();
-                $rutaImagen -> subirImage($_FILES[$foto], "eventImg");
+                $rutaImagen -> subirImage($_FILES['eventIMG'], "eventImg");
                 $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen->getDireccion());
                 foreach ($_POST as $key => $value) {
                     $eventDate = $_SESSION['eventData']['eventDates'][$counter];
@@ -73,7 +74,9 @@ class EventController{
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
-                include "views/printEvent.php";
+                header("Location:".HOME);
+                //var_dump($this->getAll());
+                //include "views/printEvent.php";
             }
         }
         else{
@@ -125,6 +128,23 @@ class EventController{
             }
         }
         return $flag;
+    }
+
+    public function getNameById($dbName, $columnName, $id){
+
+        $name = $this->dao->getNameById($dbName, $columnName, $id);
+        return $name;
+    }
+
+
+    public function getAll(){
+
+        $eventList = $this->retride();
+        foreach ($eventList as $key => $value) {
+            $nombreCategoria = $this->getNameById('categories','category',$value[1]);
+            $eventList[$key][1] = $nombreCategoria;
+        }
+        return $eventList;
     }
 
 }

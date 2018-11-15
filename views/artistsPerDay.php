@@ -1,6 +1,7 @@
 <?php
     use controllers\artistController as ArtistController;
     $_POST['name'] = ucwords(strtolower($_POST['name']));
+    var_dump($_POST);
     $_SESSION['eventData'] = $_POST;
     var_dump($_POST);
 ?>
@@ -30,7 +31,7 @@
                 <div class="panel">
                     <h2>Artistas por día</h2>
                 </div>
-                <form action="store" method="POST">
+                <form action="store" method="POST" enctype="multipart/form-data">
 
                     <?php
                         $dateStart = new DateTime($_SESSION['eventData']['eventDateStart']);
@@ -64,6 +65,11 @@
                                 </select>
                             </div>
                     <?php $contador++; } ?>
+
+                    <div class="form-group">
+                        <label> Ingresar una imagen para el evento: </label>
+                        <input type="file" class="form-control-file" name="eventIMG">
+                    </div>  
 
                    <button type="submit" class="btn btn-primary">Crear Evento</button>
                     

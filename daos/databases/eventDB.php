@@ -73,15 +73,19 @@ class EventDB extends SingletonDao implements IDao{
 
         while($result = $command->fetch()){
             
-            array_push($eventList,$result['event_name']);
+            $eventData = array();
+            array_push($eventData,$result['event_name']);
+            array_push($eventData,$result['id_category']);
+            array_push($eventData,$result['img_path']);
+            array_push($eventList, $eventData);
             //var_dump($eventList);
         }
         return $eventList;
     }
 
-    public function getIdByName($dbName, $rowName, $name){
+    public function getIdByName($dbName, $columnName, $name){
 
-        $query = 'SELECT * FROM '. $dbName .' WHERE '. $rowName .'_name = (:name)';
+        $query = 'SELECT * FROM '. $dbName .' WHERE '. $columnName .'_name = (:name)';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
@@ -89,7 +93,24 @@ class EventDB extends SingletonDao implements IDao{
         $command->execute();
 
         if($result = $command->fetch()){
-            return $result['id_'.$rowName];
+            return $result['id_'.$columnName];
+        }
+        else{
+            return null;
+        }
+    }
+
+    public function getNameById($dbName, $columnName, $id){
+
+        $query = 'SELECT * FROM '. $dbName .' WHERE id_' . $columnName . ' = (:id)';
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->bindParam(':id',$id);
+        $command->execute();
+
+        if($result = $command->fetch()){
+            return $result[$columnName. "_name"];
         }
         else{
             return null;

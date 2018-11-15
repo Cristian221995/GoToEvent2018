@@ -1,6 +1,7 @@
 <?php
 
 namespace controllers;
+use controllers\EventController as EventController;
 
 class IndexController{
 
@@ -21,6 +22,8 @@ class IndexController{
         else{
             include(ROOT . "views/headerNotLogued.php");
         }
+        $eventController = new EventController();
+        $eventList = $eventController->getAll();
         include(ROOT . "views/mainMenu.php");
     }
 }

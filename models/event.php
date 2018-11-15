@@ -16,7 +16,7 @@ class Event{
         $this->name = $name;
         $this->category = new Category($category);
         $this->calendar = array();
-        $this->img= $img;
+        $this->img = $img;
     }
 
     public function setName($name){
@@ -52,11 +52,9 @@ class Event{
     }
 
     public function getImg(){
-        
+
         return $this->img;
     }
-
-
 }
 
 ?>

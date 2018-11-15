@@ -30,6 +30,8 @@
                 <p>Lugar a realizarse: <?php echo $_SESSION['eventData']['eventPlace'] ?></p>
                 <p>Inicio de evento: <?php echo $_SESSION['eventData']['eventDateStart'] ?></p>
                 <p>Final de evento: <?php echo $_SESSION['eventData']['eventDateFinish'] ?></p>
+                <p>Imagen: </p>
+                <img src="<?php FRONT_ROOT . $_POST['eventIMG']?>" alt="">
                 
                  <?php if($_POST)
                 {?>
