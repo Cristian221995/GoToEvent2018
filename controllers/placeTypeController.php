@@ -21,7 +21,7 @@ class PlaceTypeController{
         if(!$flag){
             $placeType = new PlaceType($description);
             $ultimoID=$this->dao->insert($placeType);
-            return $ultimoID;
+            header("Location:".HOME);
         }
         else{
             throw new \Exception ('El tipo de plaza ya existe');
@@ -38,7 +38,7 @@ class PlaceTypeController{
         $flag = false;
         if($list){
             foreach ($list as $key => $value) {
-                if($value === $nombre){
+                if($value === $description){
                     $flag = true;
                 }
             }

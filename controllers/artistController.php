@@ -24,7 +24,7 @@ class ArtistController
         if(!$flag){
             $artist = new Artist($nombre);
             $ultimoID=$this->dao->insert($artist);
-            return $ultimoID;
+            header("Location:".HOME);
         }
         else{
             throw new \Exception ('El artista ya existe');

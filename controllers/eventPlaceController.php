@@ -24,8 +24,8 @@ class EventPlaceController{
         $flag = $this->searchInDatabase($nombre);
         if(!$flag){
             $eventPlace = new EventPlace($nombre, $capacidad);
-            //$eventPlace->setCapacity($capacidad);
             $this->dao->insert($eventPlace);
+            header("Location:".HOME);
         }
         else{
             throw new \Exception ('El lugar de evento ya existe');
