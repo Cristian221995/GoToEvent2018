@@ -85,7 +85,7 @@
             <div class="speaker">
               <img src="<?=FRONT_ROOT . $value[2] ?>" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html"><?=$value[0]?></a></h3>
+                <h3><a href="Event/getEventbyName/<?= $value[0] ?>"><?=$value[0]?></a></h3>
                 <p><?=$value[1]?></p>
               </div>
             </div>

@@ -46,6 +46,31 @@ class EventController{
         include "views/artistsPerDay.php";
     }
 
+    public function getEventbyName($nombre){
+        
+        $eventList= $this->getAll();
+        
+        foreach ($eventList as $key => $value) {
+            if($value[0]===$nombre){
+                return $value;
+            }
+        }
+
+        if(isset($_SESSION["userName"])){
+            if($_SESSION['userRole']==="user"){
+                include(ROOT . "views/headerUser.php");
+            }
+            else{
+                include(ROOT . "views/headerAdmin.php");
+            }
+        }
+        else{
+            include(ROOT . "views/headerNotLogued.php");
+        }
+
+        include "views/oneEvent.php";
+    }
+
     /*public function prueba(){
         if($_POST){
             var_dump($_POST);
