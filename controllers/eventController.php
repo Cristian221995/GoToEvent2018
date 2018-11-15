@@ -18,6 +18,12 @@ class EventController{
    }
 
    public function index(){
+    $categoryController = new CategoryController();
+    $listCategory = $categoryController->retride();
+
+    $eventPlaceController = new EventPlaceController();
+    $listEventPlace = $eventPlaceController->retride();
+
     include(ROOT. "views/createEventForm.php");
    }
 
@@ -43,6 +49,10 @@ class EventController{
     }
 
     public function index2(){
+
+        $artistController = new ArtistController();
+        $listArtist = $artistController->retride();
+
         include "views/artistsPerDay.php";
     }
 

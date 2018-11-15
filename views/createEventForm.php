@@ -39,10 +39,8 @@ use controllers\eventPlaceController as EventPlaceController;
                         <select class="custom-select my-1 mr-sm-2" name="category" required>
                             <option disabled selected value="">Elige una categoría: </option>
                             <?php
-                            $list = new CategoryController();
-                            echo $list->retride();
-                            if($list->retride()){
-                                foreach ($list->retride() as $key => $value) { ?>
+                            if($listCategory){
+                                foreach ($listCategory as $key => $value) { ?>
                                     <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                 <?php }  
                             }
@@ -66,10 +64,8 @@ use controllers\eventPlaceController as EventPlaceController;
                             <select class="custom-select my-1 mr-sm-2" name="eventPlace" required>
                                 <option disabled selected value="">Elige el lugar de evento: </option>
                                 <?php
-                                $listEventPlace = new EventPlaceController();
-
-                                if($listEventPlace->retride()){
-                                    foreach ($listEventPlace->retride() as $key => $value) { ?>
+                                if($listEventPlace){
+                                    foreach ($listEventPlace as $key => $value) { ?>
                                         <option value="<?php echo $value[0]; ?>"><?php echo $value[0] . " / Capacidad: " . $value[1]; ?></option>
                                     <?php }  
                                 }
