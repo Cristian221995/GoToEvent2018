@@ -1,7 +1,6 @@
 <?php
     use controllers\artistController as ArtistController;
     $_POST['name'] = ucwords(strtolower($_POST['name']));
-    var_dump($_POST);
     $_SESSION['eventData'] = $_POST;
 ?>
 
@@ -54,9 +53,8 @@
                                 <select class="custom-select my-1 mr-sm-2" multiple name="dia<?php echo $contador?>[]" required>
                                     <option disabled selected value="">Elige uno o mas artistas: </option>
                                     <?php
-                                    $list = new ArtistController();
-                                    if($list->retride()){
-                                        foreach ($list->retride() as $key => $value) { ?>
+                                    if($listArtist){
+                                        foreach ($listArtist as $key => $value) { ?>
                                             <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php }  
                                     } ?>
