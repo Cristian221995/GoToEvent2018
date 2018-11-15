@@ -16,11 +16,6 @@ use controllers\eventPlaceController as EventPlaceController;
     <title>Crear evento</title>
 </head>
 <header>
-<div id="logo" class="pull-left">
-      <!-- Uncomment below if you prefer to use a text logo -->
-      <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-      <a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="img/logo3.png" alt="GoToEvent" title=""></a>
-    </div>
 </header>
 <body id="LoginForm">
         <div id="logo" class="pull-left">
@@ -34,7 +29,7 @@ use controllers\eventPlaceController as EventPlaceController;
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
-                <form action="Event/index2" method="POST">
+                <form action="Event/index2" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Nombre del evento:" required>

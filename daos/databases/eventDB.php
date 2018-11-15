@@ -14,7 +14,7 @@ class EventDB extends SingletonDao implements IDao{
 
     public function insert($event){
 
-        $query = 'INSERT INTO events (event_name, id_category) VALUES (:name, :category)';
+        $query = 'INSERT INTO events (event_name, id_category, img_path) VALUES (:name, :category, :imgPath)';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
@@ -23,8 +23,11 @@ class EventDB extends SingletonDao implements IDao{
 
         $idCategory = $this->getIdByName("categories", "category", $category);
         
+        $idImg = $event->getImg();
+        
         $command->bindParam(':name',$eventName);
         $command->bindParam(':category',$idCategory);
+        $command->bindParam(':imgPath',$idImg);
         $command->execute();
 
         //return $pdo->lastInsertId();/**/

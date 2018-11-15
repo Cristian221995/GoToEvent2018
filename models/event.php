@@ -9,12 +9,14 @@ class Event{
     private $name;
     private $category;
     private $calendar;
+    private $img;
 
-    public function __construct($name, $category){
+    public function __construct($name, $category, $img){
 
         $this->name = $name;
         $this->category = new Category($category);
         $this->calendar = array();
+        $this->img= $img;
     }
 
     public function setName($name){
@@ -48,6 +50,12 @@ class Event{
         
         return $this->calendar;
     }
+
+    public function getImg(){
+        
+        return $this->img;
+    }
+
 
 }
 
