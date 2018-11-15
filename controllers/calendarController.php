@@ -31,21 +31,23 @@ class CalendarController{
 
     public function delete($nombre)
     {
-        //no hecho
         $artist = new Calendar($nombre);
         $this->dao->delete($artist);
     }
 
     public function update($nombre, $nuevoDato)
     {
-        //no hecho
         $artist = new Calendar($nombre);
         $this->dao->update($artist, $nuevoDato);
     }
 
-    public function retride(){
-        //no hecho
-        $list=$this->dao->retride();
+    public function retrideCalendar(){
+        $list=$this->dao->retrideCalendar();
+        return $list;
+    }
+
+    public function retrideArtistxCalendar(){
+        $list=$this->dao->retrideArtistxCalendar();
         return $list;
     }
 

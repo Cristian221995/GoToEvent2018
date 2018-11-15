@@ -12,6 +12,13 @@ class IndexController{
     }
 
     public function index(){
+
+        $eventController = new EventController();
+        $eventList = $eventController->getAll();
+        $categoryController = new CategoryController();
+        $categoryList = $categoryController->retride();
+
+
         if(isset($_SESSION["userName"])){
             if($_SESSION['userRole']==="user"){
                 include(ROOT . "views/headerUser.php");
@@ -23,12 +30,7 @@ class IndexController{
         else{
             include(ROOT . "views/headerNotLogued.php");
         }
-        $eventController = new EventController();
-        $eventList = $eventController->getAll();
-        $categoryController = new CategoryController();
-        $categoryList = $categoryController->retride();
-
-
+        
         include(ROOT . "views/mainMenu.php");
     }
 }

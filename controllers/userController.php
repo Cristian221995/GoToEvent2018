@@ -17,11 +17,8 @@ class UserController{
         include(ROOT . "views/registerForm.php");
     }
 
-    public function store()
+    public function store($email, $userName, $pass)
     {
-        $email = $_POST["email"];
-        $userName = $_POST["userName"];
-        $pass = $_POST["pass"];
         $flag = $this->searchInDatabase($email, $userName);
         if(!$flag){
             $user = new User($email, $userName, $pass, "user");

@@ -2,6 +2,9 @@
     use controllers\artistController as ArtistController;
     $_POST['name'] = ucwords(strtolower($_POST['name']));
     $_SESSION['eventData'] = $_POST;
+    if($_SESSION['eventData']['eventDateFinish']<$_SESSION['eventData']['eventDateStart']){
+        header("Location:" . HOME . "Event");
+    }
 ?>
 
 <!DOCTYPE html>

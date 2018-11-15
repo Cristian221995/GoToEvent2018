@@ -6,6 +6,7 @@ use daos\databases\eventDB as eventDB;
 use models\Event as Event;
 use models\Image as Image;
 use controllers\CalendarController as CalendarController;
+use controllers\ImageController as ImageController;
 
 
 class EventController{
@@ -69,12 +70,9 @@ class EventController{
         if(!$flag){
             if($_POST){
                 $counter = 0;
-                //$foto = $_SESSION['eventData']['eventIMG'];
-                //$_FILES['eventIMG'] = $foto;
-                //var_dump($_FILES['eventIMG']);
-                $rutaImagen = new Image();
-                $rutaImagen -> subirImage($_FILES['eventIMG'], "eventImg");
-                $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen->getDireccion());
+                $imageController = new ImageController();
+                $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
+                $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
                 foreach ($_POST as $key => $value) {
                     $eventDate = $_SESSION['eventData']['eventDates'][$counter];
                     $eventPlace = $_SESSION['eventData']['eventPlace'];
@@ -121,8 +119,9 @@ class EventController{
         return $list;
     }
 
-    public function getIdByName($nombre){
-        $id = $this->dao->getIdByName($nombre);
+    public function getIdByName($dbName, $columnName, $name){
+        $id = $this->dao->getIdByName($dbName, $columnName, $name);
+        return $id;
     }
 
     public function searchInDatabase($nombre){
@@ -153,6 +152,54 @@ class EventController{
             $eventList[$key][1] = $nombreCategoria;
         }
         return $eventList;
+    }
+
+    public function getAllEventData($eventName){
+
+        $allEventData = array();    //Array a guardar los datos
+        $calendarController = new CalendarController();
+        $eventData = $this->getAll();   //Te trae los datos de la tabla eventos
+        $calendarData = $calendarController->retrideCalendar(); //Te trae los datos de la tabla calendarios
+        $artistxCalendar = $calendarController->retrideArtistxCalendar(); //Te trae los datos de la tabla artistas_x_calendario
+
+        foreach ($eventData as $key => $event) {    //For each de la tabla eventos para acceder al id evento y hacer la conexion con la foreign key de la tabla calendario
+            if($event[0]===$eventName){ //Event[0] devuelve el nombre del evento almacenado en la BD
+                array_push($allEventData,$event[0]);    //AllEventData[0] = Nombre del evento;
+                array_push($allEventData,$event[1]);    //AllEventData[1] = Categoria del evento;
+                array_push($allEventData,$event[2]);    //AllEventData[2] = Ruta de imagen del evento;
+
+                
+                $idEvento=$this->getIdByName('events','event',$event[0]);        //Devuelve el id del evento pasado por nombre
+                foreach ($calendarData as $key => $calendar) {  //For each de la tabla calendarios para acceder a la informacion de la fecha del id evento buscado
+
+                    if($idEvento===$calendar[2]){   //Calendar[2] representa la foreign key de id_evento
+                        $eventPlace = $this->getNameById('event_places','event_place', $calendar[3]);   //Devuelve el nombre del lugar del evento
+                        $calendarData[$key][3]=$eventPlace;
+                        array_push($allEventData,$calendar[1]);  //AllEventData[3..4] = Fechas del evento
+                        foreach ($artistxCalendar as $key => $artistCalendar) {
+                            if($calendar[0]===$artistCalendar[2]){
+                                $artistName = $this->getNameById('artists','artist', $artistCalendar[1]);
+                                $artistxCalendar[$key][1]=$artistName;
+                                array_push($allEventData,$artistxCalendar[$key][1]); //AllEventData[5] = Artistas por dia
+                            }
+                        }
+                    }
+                    array_push($allEventData,$calendarData[$key][3]); //AllEventData[6] = Lugar de evento;
+                }
+            }
+        }
+        if(isset($_SESSION["userName"])){
+            if($_SESSION['userRole']==="user"){
+                include(ROOT . "views/headerUser.php");
+            }
+            else{
+                include(ROOT . "views/headerAdmin.php");
+            }
+        }
+        else{
+            include(ROOT . "views/headerNotLogued.php");
+        }
+        include(ROOT . "views/oneEvent.php");
     }
 
     public function getEventsByCategoryName($categoryName){

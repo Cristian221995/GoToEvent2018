@@ -77,8 +77,8 @@ class EventDB extends SingletonDao implements IDao{
             array_push($eventData,$result['event_name']);
             array_push($eventData,$result['id_category']);
             array_push($eventData,$result['img_path']);
+            array_push($eventData,$result['id_event']);
             array_push($eventList, $eventData);
-            //var_dump($eventList);
         }
         return $eventList;
     }
