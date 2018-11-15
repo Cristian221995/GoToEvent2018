@@ -27,7 +27,6 @@ class UserController{
             $user = new User($email, $userName, $pass, "user");
             $ultimoID=$this->dao->insert($user);
             header("Location:" . HOME);
-            return $ultimoID;
         }
         else{
             throw new \Exception ('El email o nombre de usuario ya existe');

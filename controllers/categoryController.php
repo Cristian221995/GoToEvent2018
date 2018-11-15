@@ -22,10 +22,10 @@ class CategoryController{
    public function store($nombre)
     {
         $flag = $this->searchInDatabase($nombre);
-        if(!flag){
+        if(!$flag){
             $category = new Category($nombre);
             $this->dao->insert($category);
-            include ROOT . "views/artistForm.php";
+            header("Location:".HOME);
         }
         else{
             throw new \Exception ('La categoría ya existe');
