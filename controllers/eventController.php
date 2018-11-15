@@ -155,6 +155,38 @@ class EventController{
         return $eventList;
     }
 
+    public function getEventsByCategoryName($categoryName){
+
+        $eventList = $this -> retride();
+        $eventsFilter = array();
+
+        foreach ($eventList as $key => $value){
+            $nombreCategoria = $this->getNameById('categories','category',$value[1]);
+            if($nombreCategoria === $categoryName){
+                array_push($eventsFilter,$value);
+            }
+        }
+
+        $categoryController = new CategoryController();
+        $categoryList= $categoryController->retride();
+        
+        if(isset($_SESSION["userName"])){
+            if($_SESSION['userRole']==="user"){
+                include(ROOT . "views/headerUser.php");
+            }
+            else{
+                include(ROOT . "views/headerAdmin.php");
+            }
+        }
+        else{
+            include(ROOT . "views/headerNotLogued.php");
+        }
+        include(ROOT. "views/mainMenu.php");
+    }
+
 }
+
+
+
 
 ?>

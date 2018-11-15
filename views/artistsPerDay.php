@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <label> Ingresar una imagen para el evento: </label>
-                        <input type="file" class="form-control-file" name="eventIMG">
+                        <input type="file" class="form-control-file" name="eventIMG" required>
                     </div>  
 
                    <button type="submit" class="btn btn-primary">Crear Evento</button>
