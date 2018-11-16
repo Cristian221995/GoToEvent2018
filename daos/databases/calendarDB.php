@@ -111,7 +111,7 @@ class CalendarDB extends SingletonDao implements IDao{
         }
     }
 
-    public function getNameById($dbName, $rowName, $id){
+    public function getIdById($dbName, $rowName, $id){
 
         $query = 'SELECT * FROM '. $dbName .' WHERE id_' . $rowName . '= (:id)';
         $pdo = new Connection();

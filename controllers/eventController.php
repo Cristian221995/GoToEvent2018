@@ -59,7 +59,10 @@ class EventController{
     public function getEventbyName($nombre){
         
         $eventList= $this->getAll();
-        
+        $calendarList= new CalendarController();
+
+        $list=$calendarList->retride();
+        var_dump($list);
         foreach ($eventList as $key => $value) {
             if($value[0]===$nombre){
                 return $value;
@@ -110,6 +113,8 @@ class EventController{
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
                 header("Location:".HOME);
+                //var_dump($this->getAll());
+                //include "views/printEvent.php";
             }
         }
         else{
