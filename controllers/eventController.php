@@ -81,7 +81,7 @@ class EventController{
                 }
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
-                //$calendarControl->store($event);
+                $calendarControl->store($event);
                 header("Location:".HOME);
             }
         }
@@ -143,18 +143,6 @@ class EventController{
         return $name;
     }
 
-
-    public function getAll(){
-
-        $eventList = $this->retride();
-        var_dump($eventList);
-        foreach ($eventList as $key => $value) {
-            $nombreCategoria = $this->getNameById('categories','category',$value[1]);
-            $eventList[$key][1] = $nombreCategoria;
-        }
-        return $eventList;
-    }
-
     public function getAllEventData($eventName){
 
         $allEventData = array();    //Array a guardar los datos
@@ -203,15 +191,35 @@ class EventController{
         include(ROOT . "views/oneEvent.php");
     }
 
+    public function getAll(){
+
+        $eventList = $this->retride();
+        if($eventList){
+            if(is_array($eventList)){
+                foreach ($eventList as $key => $value) {
+                    $value->setCategory($this->getNameById('categories','category',$value->getCategory()->getName()));
+                }
+            }
+            else{
+                $eventList->setCategory($this->getNameById('categories','category',$eventList->getCategory()->getName()));
+            }
+            return $eventList;
+        }
+    }
+
     public function getEventsByCategoryName($categoryName){
 
-        $eventList = $this -> retride();
-        $eventsFilter = array();
-
-        foreach ($eventList as $key => $value){
-            $nombreCategoria = $this->getNameById('categories','category',$value[1]);
-            if($nombreCategoria === $categoryName){
-                array_push($eventsFilter,$value);
+        $eventList = $this->retride();
+        if($eventList){
+            $eventsFilter = array();
+            if(is_array($eventList)){
+                foreach ($eventList as $key => $value){
+                    $nombreCategoria = $this->getNameById('categories','category',$value->getCategory()->getName());
+                    if($nombreCategoria === $categoryName){
+                        $value->setCategory($nombreCategoria);
+                        array_push($eventsFilter,$value);
+                    }
+                }
             }
         }
 
@@ -233,8 +241,8 @@ class EventController{
     }
 
     public function searchByName($nombre){
-        $artist = $this->dao->searchByName($nombre);
-        return $artist;
+        $event = $this->dao->searchByName($nombre);
+        return $event;
     }
 
 }

@@ -14,9 +14,10 @@ class IndexController{
     public function index(){
 
         $eventController = new EventController();
-        //$eventList = $eventController->getAll();
+        $eventList = $eventController->getAll();
+        var_dump($eventList);
         $categoryController = new CategoryController();
-        //$categoryList = $categoryController->retride();
+        $categoryList = $categoryController->retride();
 
 
         if(isset($_SESSION["userName"])){

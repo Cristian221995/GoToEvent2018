@@ -16,13 +16,8 @@ class CalendarDB extends SingletonDao implements IDao{
 
         $query = 'INSERT INTO calendars (calendar_name, id_event, id_event_place) VALUES (:calendar_name, :id_event, :id_event_place)';
         $parameters['calendar_name'] = $calendar->getEventDate();
-        $b = $this->getIdByName("events", "event", $calendar->getEvent());
-        var_dump($b);
-        echo "GetEventPlace: ". $calendar->getEventPlace() . "<br>";
-        $a = $this->getIdByName("event_places", "event_place", $calendar->getEventPlace());
-        var_dump($a);
-        $parameters['name'] = $a;
-        
+        $parameters['id_event'] = $this->getIdByName("events", "event", $calendar->getEvent());
+        $parameters['id_event_place'] = $this->getIdByName("event_places", "event_place", $calendar->getEventPlace());
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -37,17 +32,19 @@ class CalendarDB extends SingletonDao implements IDao{
         $artistList = $calendar->getArtistList();
         foreach ($artistList as $key => $value) {
             $query = 'INSERT INTO artists_x_calendar (id_artist, id_calendar) VALUES (:id_artist, :id_calendar)';
-            $command = $connection->prepare($query);
-            $artistName = $value;
+            $parametersAux['id_artist'] = $this->getIdByName("artists", "artist", $value);
+            $parametersAux['id_calendar'] = $this->getIdByName("calendars", "calendar", $parameters['calendar_name']);
+            try{
+                $pdo = Connection::getInstance();
+                $pdo->connect();
+                $pdo->executeNonQuery($query, $parametersAux);
+            }
+            catch(\PDOException $ex){
+                throw $ex;
+            }
 
-            $idArtist = $this->getIdByName("artists", "artist", $artistName);
-            $idCalendar = $this->getIdByName("calendars", "calendar", $eventDate);
+
             
-            $command->bindParam(':id_artist',$idArtist);
-            $command->bindParam(':id_calendar',$idCalendar);
-            $command->execute();
-
-            //return $pdo->lastInsertId();/**/
         }
     }
 
@@ -107,22 +104,21 @@ class CalendarDB extends SingletonDao implements IDao{
 
     public function getIdByName($dbName, $rowName, $name){
 
-        $query = 'SELECT '. $rowName . '_id FROM '. $dbName .' WHERE '. $rowName .'_name = (:name)';
+        $query = 'SELECT id_'. $rowName . ' FROM '. $dbName .' WHERE '. $rowName .'_name = (:name)';
         $parameters['name'] = $name;
-        echo "Nombre: ".$parameters['name'];
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
             $result = $pdo->execute($query, $parameters);
+            if($result){
+                return $result[0]['id_'.$rowName];
+            }
+            else{
+                return false;
+            }
         }
         catch(\PDOException $ex){
             throw $ex;
-        }
-        if (!empty($result)){
-            return $this->mapear($result);
-        }
-        else{
-            return false;
         }
     }
 
@@ -146,7 +142,7 @@ class CalendarDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Artist ($p['artist_name']);
+            return new Calendar ($p['calendar_name'], $p['id_event'], $p['id_event_place']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }
