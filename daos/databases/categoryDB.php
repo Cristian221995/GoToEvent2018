@@ -14,20 +14,21 @@ class CategoryDB extends SingletonDao implements IDao{
 
     public function insert($category){
 
-        $query = 'INSERT INTO categories (category_name) VALUES (:name)';
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $categoryName = $category->getName();
-        $command->bindParam(':name',$categoryName);
-        $command->execute();
-
-        //return $pdo->lastInsertId();/**/
+        $query = 'INSERT INTO categories (category_name) VALUES (:category_name)';
+        $parameters['category_name'] = $category->getName();
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $pdo->executeNonQuery($query, $parameters);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
     }
 
     public function delete($category){
         
-        $query = 'DELETE FROM categories WHERE category_name = :name';
+        /*$query = 'DELETE FROM categories WHERE category_name = :name';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
@@ -35,12 +36,12 @@ class CategoryDB extends SingletonDao implements IDao{
         $command->bindParam(':name',$categoryName);
         $resultDelete = $command->execute();
 
-        return $resultDelete;
+        return $resultDelete;*/
     }
 
     public function update($dato, $datoNuevo){
 
-        $query = 'UPDATE categories SET name = $datoNuevo WHERE name = $dato';
+        /*$query = 'UPDATE categories SET name = $datoNuevo WHERE name = $dato';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();
@@ -49,42 +50,94 @@ class CategoryDB extends SingletonDao implements IDao{
         $resultUpdate = $command->execute();
 
 
-        return $resultUpdate;
+        return $resultUpdate;*/
     }
 
     public function retride(){
 
-        $categoryList = array();
-
         $query = 'SELECT * FROM categories order by id_category';
-
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $command->execute();
-
-        while($result = $command->fetch()){
-            
-            array_push($categoryList,$result['category_name']);
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
         }
-        return $categoryList;
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function retrideById($id){
+
+        $query = "SELECT * FROM categories where id_category = :id_category";
+        $parameters['id_category'] = $id;
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query, $parameters);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
     }
 
     public function getIdByName($name){
 
-        $query = "SELECT * FROM categories WHERE category_name = :name";
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $command->bindParam(':name',$name);
-        $command->execute();
-
-        if($result = $command->fetch()){
-            return $result['id_category'];
+        $query = "SELECT id_category FROM categories WHERE category_name = :category_name";
+        $parameters['category_name'] = $name;
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query, $parameters);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
         }
         else{
-            return null;
+            return false;
         }
+    }
+
+    public function searchByName($name){
+
+        $query = "SELECT * FROM categories WHERE category_name = :category_name";
+        $parameters['category_name'] = $name;
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query, $parameters);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    protected function mapear($value) {
+        $value = is_array($value) ? $value : [];
+        $resp = array_map(function ($p) {
+            return new Category ($p['category_name']);
+        }, $value);
+        return count($resp) > 1 ? $resp : $resp['0'];
     }
 }
 

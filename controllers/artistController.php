@@ -19,10 +19,10 @@ class ArtistController
   
     public function store($nombre)
     {
-        $flag = $this->searchInDatabase($nombre);
-        if(!$flag){
+        $artistFlag = $this->searchByName($nombre);
+        if(!$artistFlag){
             $artist = new Artist($nombre);
-            $ultimoID=$this->dao->insert($artist);
+            $this->dao->insert($artist);
             header("Location:".HOME);
         }
         else{
@@ -30,7 +30,7 @@ class ArtistController
         }
     }
 
-    public function delete($nombre)
+    /*public function delete($nombre)
     {
         $flag = $this->searchInDatabase($nombre);
         if($flag){
@@ -40,9 +40,9 @@ class ArtistController
         else{
             throw new \Exception ('Ha ocurrido un error'); 
         }
-    }
+    }*/
 
-    public function update($nombre, $nuevoDato)
+    /*public function update($nombre, $nuevoDato)
     {
         $flag = $this->searchInDatabase($nombre);
         if($flag){
@@ -52,7 +52,7 @@ class ArtistController
         else{
             throw new \Exception ('Ha ocurrido un error');
         }
-    }
+    }*/
 
     public function retride(){
         $list=$this->dao->retride();
@@ -63,17 +63,9 @@ class ArtistController
         $id = $this->dao->getIdByName($nombre);
     }
     
-    public function searchInDatabase($nombre){
-        $list = $this->retride();
-        $flag = false;
-        if($list){
-            foreach ($list as $key => $value) {
-                if($value === $nombre){
-                    $flag = true;
-                }
-            }
-        }
-        return $flag;
+    public function searchByName($nombre){
+        $artist = $this->dao->searchByName($nombre);
+        return $artist;
     }
 
 }

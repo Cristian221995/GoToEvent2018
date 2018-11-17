@@ -66,8 +66,8 @@ class EventController{
 
    public function store()
     {
-        $flag = $this->searchInDatabase($_SESSION['eventData']['name']);
-        if(!$flag){
+        $eventFlag = $this->searchByName($_SESSION['eventData']['name']);
+        if(!$eventFlag){
             if($_POST){
                 $counter = 0;
                 $imageController = new ImageController();
@@ -81,7 +81,7 @@ class EventController{
                 }
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
-                $calendarControl->store($event);
+                //$calendarControl->store($event);
                 header("Location:".HOME);
             }
         }
@@ -147,6 +147,7 @@ class EventController{
     public function getAll(){
 
         $eventList = $this->retride();
+        var_dump($eventList);
         foreach ($eventList as $key => $value) {
             $nombreCategoria = $this->getNameById('categories','category',$value[1]);
             $eventList[$key][1] = $nombreCategoria;
@@ -229,6 +230,11 @@ class EventController{
             include(ROOT . "views/headerNotLogued.php");
         }
         include(ROOT. "views/mainMenu.php");
+    }
+
+    public function searchByName($nombre){
+        $artist = $this->dao->searchByName($nombre);
+        return $artist;
     }
 
 }

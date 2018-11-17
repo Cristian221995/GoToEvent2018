@@ -16,26 +16,24 @@ class LoginController
         include(ROOT.'views/login.php');
     }
 
-    public function login(){
+    public function login($username, $pass){
 
         $flag = false;
-        $userName = $_POST['userName'];
-        $pass = $_POST['pass'];
         $userController = new UserController();
-        $list = $userController->retride();
-        foreach ($list as $key => $value) {
-            if($value[1] === $userName && $value[2] === $pass){
-                $_SESSION['userName'] = $userName;
-                $_SESSION['userRole'] = $value[3];
+        $user = $userController->searchByUsername($username);
+        if($user){
+            if($user->getPass() === $pass){
+                $_SESSION['userName'] = $username;
+                $_SESSION['userRole'] = $user->getRole();
                 $flag = true;
                 $indexController = new IndexController();
                 $indexController->index();
             }
         }
-        if($flag===false)
+        /*if($flag===false)
         {
             header("Location:" . HOME . "Login");
-        }
+        }*/
     }
 
     public function logout(){
