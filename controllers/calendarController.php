@@ -41,14 +41,9 @@ class CalendarController{
         $this->dao->update($artist, $nuevoDato);
     }
 
-    public function retrideCalendar(){
-        $list=$this->dao->retrideCalendar();
-        return $list;
-    }
-
-    public function retrideArtistxCalendar(){
-        $list=$this->dao->retrideArtistxCalendar();
-        return $list;
+    public function retrideCalendar($id){
+        $calendar=$this->dao->retrideCalendar($id);
+        return $calendar;
     }
 
     public function getIdByName($nombre){

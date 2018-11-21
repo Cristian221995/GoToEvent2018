@@ -9,11 +9,11 @@ class Calendar{
     private $artistList;
     private $eventPlace;
 
-    function __construct($eventDate, $event, $eventPlace){
+    function __construct($eventDate, $event, $artistList, $eventPlace){
 
         $this->eventDate = $eventDate;
         $this->event = $event;
-        $this->artistList = array();
+        $this->artistList = $artistList;
         $this->eventPlace = $eventPlace;
     }
 

@@ -4,6 +4,7 @@ use interfaces\IDao as IDao;
 use daos\SingletonDao as SingletonDao;
 use daos\databases\Connection as Connection;
 use models\Calendar as Calendar;
+use models\Category as Category;
 
 class CalendarDB extends SingletonDao implements IDao{
 
@@ -57,49 +58,44 @@ class CalendarDB extends SingletonDao implements IDao{
     }
     
     public function retride(){
-        
+
     }
 
-    public function retrideCalendar(){
+    public function retrideCalendar($eventID){
 
-        $calendarList = array();
+        $query = 'SELECT
+            a.artist_name,
+            c.id_calendar,
+            c.calendar_name,
+            e.event_name,
+            e.img_path,
+            ca.category_name,
+            ep.event_place_name,
+            ep.capacity
+        FROM
+            artists_x_calendar axc inner join artists a on axc.id_artist = a.id_artist
+            inner join calendars c on axc.id_calendar = c.id_calendar
+            inner join events e on c.id_event = e.id_event
+            inner join categories ca on e.id_category = ca.id_category
+            inner join event_places ep on c.id_event_place = ep.id_event_place
+        WHERE
+            e.id_event = :id_event';
 
-        $query = 'SELECT * FROM calendars order by id_calendar';
-
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $command->execute();
-
-        while($result = $command->fetch()){
-            $calendarData = array();
-            array_push($calendarData,$result['id_calendar']);
-            array_push($calendarData,$result['calendar_name']);
-            array_push($calendarData,$result['id_event']);
-            array_push($calendarData,$result['id_event_place']);
-            array_push($calendarList,$calendarData);
+        $parameters['id_event'] = $eventID;
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query, $parameters);
         }
-        return $calendarList;
-    }
-
-    public function retrideArtistxCalendar(){
-        $ArtistxCalendarList = array();
-
-        $query = 'SELECT * FROM artists_x_calendar order by id_artists_x_calendar';
-
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $command->execute();
-
-        while($result = $command->fetch()){
-            $ArtistxCalendarData = array();
-            array_push($ArtistxCalendarData,$result['id_artists_x_calendar']);
-            array_push($ArtistxCalendarData,$result['id_artist']);
-            array_push($ArtistxCalendarData,$result['id_calendar']);
-            array_push($ArtistxCalendarList,$ArtistxCalendarData);
+        catch(\PDOException $ex){
+            throw $ex;
         }
-        return $ArtistxCalendarList;
+        if(!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
     }
 
     public function getIdByName($dbName, $rowName, $name){
@@ -142,9 +138,34 @@ class CalendarDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Calendar ($p['calendar_name'], $p['id_event'], $p['id_event_place']);
+            $category = new Category($p['category_name']);
+            echo "AAAAAAAAAAAAAAAAA";
+            $event = new Event($p['event_name'], $category, $p['id_calendar'], $p['img_path']);
+            $eventPlace = new EventPlace($p['event_place_name'], $p['capacity']);
+            $artists = $this->mapearAxC($p['id_calendar']);
+            return new Calendar ($p['calendar_name'], $event, $artists, $eventPlace);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
+    public function mapearAxC($idCalendar) {
+        $query = "
+        SELECT * FROM artists_x_calendar axc inner join artists a on axc.id_artist = a.id_artist where axc.id_calendar = $idCalendar";
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $value = $this->connection->execute($query);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($value)) {
+            $value = is_array($value) ? $value : [];
+            $resp = array_map(function ($p) {
+                return new Artist($p['artist_name']);
+            }, $value);
+            return count($resp) > 1 ? $resp : $resp['0'];
+        }
     }
 
 }
