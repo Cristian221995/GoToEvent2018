@@ -2,7 +2,9 @@
     use controllers\artistController as ArtistController;
     $_POST['name'] = ucwords(strtolower($_POST['name']));
     $_SESSION['eventData'] = $_POST;
-    var_dump($_POST);
+    if($_SESSION['eventData']['eventDateFinish']<$_SESSION['eventData']['eventDateStart']){
+        header("Location:" . HOME . "Event");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +68,7 @@
 
                     <div class="form-group">
                         <label> Ingresar una imagen para el evento: </label>
-                        <input type="file" class="form-control-file" name="eventIMG">
+                        <input type="file" class="form-control-file" name="eventIMG" required>
                     </div>  
 
                    <button type="submit" class="btn btn-primary">Crear Evento</button>

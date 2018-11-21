@@ -50,36 +50,21 @@ class CalendarDB extends SingletonDao implements IDao{
 
     public function delete($event){
         
-        $query = 'DELETE FROM events WHERE event_name = :name';
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $eventList = $event->getName();
-        $command->bindParam(':name',$eventList);
-        $resultDelete = $command->execute();
-
-        return $resultDelete;
     }
 
     public function update($dato, $datoNuevo){
 
-        $query = 'UPDATE events SET name = $datoNuevo WHERE name = $dato';
-
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-
-        $resultUpdate = $command->execute();
-
-
-        return $resultUpdate;
+    }
+    
+    public function retride(){
+        
     }
 
-    public function retride(){
+    public function retrideCalendar(){
 
-        $eventList = array();
+        $calendarList = array();
 
-        $query = 'SELECT * FROM events order by id_event';
+        $query = 'SELECT * FROM calendars order by id_calendar';
 
         $pdo = new Connection();
         $connection = $pdo->Connect();
@@ -87,11 +72,34 @@ class CalendarDB extends SingletonDao implements IDao{
         $command->execute();
 
         while($result = $command->fetch()){
-            
-            array_push($eventList,$result['event_name']);
-            //var_dump($eventList);
+            $calendarData = array();
+            array_push($calendarData,$result['id_calendar']);
+            array_push($calendarData,$result['calendar_name']);
+            array_push($calendarData,$result['id_event']);
+            array_push($calendarData,$result['id_event_place']);
+            array_push($calendarList,$calendarData);
         }
-        return $eventList;
+        return $calendarList;
+    }
+
+    public function retrideArtistxCalendar(){
+        $ArtistxCalendarList = array();
+
+        $query = 'SELECT * FROM artists_x_calendar order by id_artists_x_calendar';
+
+        $pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query);
+        $command->execute();
+
+        while($result = $command->fetch()){
+            $ArtistxCalendarData = array();
+            array_push($ArtistxCalendarData,$result['id_artists_x_calendar']);
+            array_push($ArtistxCalendarData,$result['id_artist']);
+            array_push($ArtistxCalendarData,$result['id_calendar']);
+            array_push($ArtistxCalendarList,$ArtistxCalendarData);
+        }
+        return $ArtistxCalendarList;
     }
 
     public function getIdByName($dbName, $rowName, $name){

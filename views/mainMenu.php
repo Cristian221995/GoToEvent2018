@@ -56,20 +56,12 @@
             <h2>Sobre el evento:</h2>
             <p>Lollapalooza​ es un festival musical de los Estados Unidos que originalmente ofrecia bandas de rock alternativo, indie y punk rock; tambien hay actuaciones comicas y de danza. Concebido en 1991 por Perry Farrell, cantante de Jane's Addiction, Lollapalooza se realizo anualmente hasta 1997 y fue revivido en 2003. </p>
           </div>
-          <div class="col-lg-3">
-            <h3>Donde:</h3>
-            <p>Downtown Conference Center, New York</p>
-          </div>
-          <div class="col-lg-3">
-            <h3>Fechas:</h3>
-            <p>Monday to Wednesday<br>10-12 December</p>
-          </div>
         </div>
       </div>
     </section>
 
     <!--==========================
-      Speakers Section
+      Events Section
     ============================-->
     <section id="speakers" class="wow fadeInUp">
       <div class="container">
@@ -79,450 +71,70 @@
         </div>
 
         <div class="row">
-        <?php foreach ($eventList as $key => $value){ ?>
-
-           <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="<?=FRONT_ROOT . $value[2] ?>" class="img-fluid">
-              <div class="details">
-                <h3><a href="Event/getEventbyName/<?= $value[0] ?>"><?=$value[0]?></a></h3>
-                <p><?=$value[1]?></p>
-              </div>
-            </div>
-          </div>
-        <?php }?>
+        <?php if(isset($eventsFilter)){?>
+         <?php foreach($eventsFilter as $key => $value){ ?>
+                    <div class="col-lg-4 col-md-6">
+                    <div class="speaker">
+                      <img src="<?=FRONT_ROOT . $value[2] ?>" class="img-fluid">
+                      <div class="details">
+                        <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value[0]?>"><?=$value[0]?></a></h3>
+                        <p><?=$value[1]?></p>
+                      </div>
+                    </div>
+                  </div>
+                <?php } 
+                } else{ ?>
+                <?php foreach ($eventList as $key => $value){ ?>
+                        <div class="col-lg-4 col-md-6">
+                          <div class="speaker">
+                            <img src="<?=FRONT_ROOT . $value[2] ?>" class="img-fluid">
+                            <div class="details">
+                              <?php $aux = $value[0]; ?>
+                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value[3];?>"><?=$aux;?></a></h3>
+                              <p><?=$value[1]?></p>
+                            </div>
+                          </div>
+                        </div>
+                  <?php }
+                  }?>
         </div>
       </div>
 
     </section>
 
     <!--==========================
-      Schedule Section
+      Category seccion
     ============================-->
-    <section id="schedule" class="section-with-bg">
+    <section id="category">
       <div class="container wow fadeInUp">
         <div class="section-header">
-          <h2>Event Schedule</h2>
-          <p>Here is our event schedule</p>
+          <h2>Categorias</h2>
+          <p>Seleccione los eventos de la categoria que usted desee.</p>
         </div>
 
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" href="#day-1" role="tab" data-toggle="tab">Day 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-2" role="tab" data-toggle="tab">Day 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-3" role="tab" data-toggle="tab">Day 3</a>
-          </li>
-        </ul>
-
-        <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
-          necessitatibus voluptatem quis labore perspiciatis quia.</h3>
-
-        <div class="tab-content row justify-content-center">
-
-          <!-- Schdule Day 1 -->
-          <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>09:30 AM</time></div>
-              <div class="col-md-10">
-                <h4>Registration</h4>
-                <p>Fugit voluptas iusto maiores temporibus autem numquam magnam.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/1.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Keynote <span>Brenden Legros</span></h4>
-                <p>Facere provident incidunt quos voluptas.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/2.jpg" alt="Hubert Hirthe">
-                </div>
-                <h4>Et voluptatem iusto dicta nobis. <span>Hubert Hirthe</span></h4>
-                <p>Maiores dignissimos neque qui cum accusantium ut sit sint inventore.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>12:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/3.jpg" alt="Cole Emmerich">
-                </div>
-                <h4>Explicabo et rerum quis et ut ea. <span>Cole Emmerich</span></h4>
-                <p>Veniam accusantium laborum nihil eos eaque accusantium aspernatur.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>02:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/4.jpg" alt="Jack Christiansen">
-                </div>
-                <h4>Qui non qui vel amet culpa sequi. <span>Jack Christiansen</span></h4>
-                <p>Nam ex distinctio voluptatem doloremque suscipit iusto.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>03:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/5.jpg" alt="Alejandrin Littel">
-                </div>
-                <h4>Quos ratione neque expedita asperiores. <span>Alejandrin Littel</span></h4>
-                <p>Eligendi quo eveniet est nobis et ad temporibus odio quo.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>04:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/6.jpg" alt="Willow Trantow">
-                </div>
-                <h4>Quo qui praesentium nesciunt <span>Willow Trantow</span></h4>
-                <p>Voluptatem et alias dolorum est aut sit enim neque veritatis.</p>
-              </div>
-            </div>
-
-          </div>
-          <!-- End Schdule Day 1 -->
-
-          <!-- Schdule Day 2 -->
-          <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/1.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Libero corrupti explicabo itaque. <span>Brenden Legros</span></h4>
-                <p>Facere provident incidunt quos voluptas.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/2.jpg" alt="Hubert Hirthe">
-                </div>
-                <h4>Et voluptatem iusto dicta nobis. <span>Hubert Hirthe</span></h4>
-                <p>Maiores dignissimos neque qui cum accusantium ut sit sint inventore.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>12:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/3.jpg" alt="Cole Emmerich">
-                </div>
-                <h4>Explicabo et rerum quis et ut ea. <span>Cole Emmerich</span></h4>
-                <p>Veniam accusantium laborum nihil eos eaque accusantium aspernatur.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>02:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/4.jpg" alt="Jack Christiansen">
-                </div>
-                <h4>Qui non qui vel amet culpa sequi. <span>Jack Christiansen</span></h4>
-                <p>Nam ex distinctio voluptatem doloremque suscipit iusto.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>03:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/5.jpg" alt="Alejandrin Littel">
-                </div>
-                <h4>Quos ratione neque expedita asperiores. <span>Alejandrin Littel</span></h4>
-                <p>Eligendi quo eveniet est nobis et ad temporibus odio quo.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>04:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/6.jpg" alt="Willow Trantow">
-                </div>
-                <h4>Quo qui praesentium nesciunt <span>Willow Trantow</span></h4>
-                <p>Voluptatem et alias dolorum est aut sit enim neque veritatis.</p>
-              </div>
-            </div>
-
-          </div>
-          <!-- End Schdule Day 2 -->
-
-          <!-- Schdule Day 3 -->
-          <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-3">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/2.jpg" alt="Hubert Hirthe">
-                </div>
-                <h4>Et voluptatem iusto dicta nobis. <span>Hubert Hirthe</span></h4>
-                <p>Maiores dignissimos neque qui cum accusantium ut sit sint inventore.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/3.jpg" alt="Cole Emmerich">
-                </div>
-                <h4>Explicabo et rerum quis et ut ea. <span>Cole Emmerich</span></h4>
-                <p>Veniam accusantium laborum nihil eos eaque accusantium aspernatur.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>12:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/1.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Libero corrupti explicabo itaque. <span>Brenden Legros</span></h4>
-                <p>Facere provident incidunt quos voluptas.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>02:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/4.jpg" alt="Jack Christiansen">
-                </div>
-                <h4>Qui non qui vel amet culpa sequi. <span>Jack Christiansen</span></h4>
-                <p>Nam ex distinctio voluptatem doloremque suscipit iusto.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>03:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/5.jpg" alt="Alejandrin Littel">
-                </div>
-                <h4>Quos ratione neque expedita asperiores. <span>Alejandrin Littel</span></h4>
-                <p>Eligendi quo eveniet est nobis et ad temporibus odio quo.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>04:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/speakers/6.jpg" alt="Willow Trantow">
-                </div>
-                <h4>Quo qui praesentium nesciunt <span>Willow Trantow</span></h4>
-                <p>Voluptatem et alias dolorum est aut sit enim neque veritatis.</p>
-              </div>
-            </div>
-
-          </div>
-          <!-- End Schdule Day 2 -->
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!--==========================
-      Venue Section
-    ============================-->
-    <section id="venue" class="wow fadeInUp">
-
-      <div class="container-fluid">
-
-        <div class="section-header">
-          <h2>Event Venue</h2>
-          <p>Event venue location info and gallery</p>
-        </div>
-
-        <div class="row no-gutters">
-          <div class="col-lg-6 venue-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>
-
-          <div class="col-lg-6 venue-info">
-            <div class="row justify-content-center">
-              <div class="col-11 col-lg-8">
-                <h3>Downtown Conference Center, New York</h3>
-                <p>Iste nobis eum sapiente sunt enim dolores labore accusantium autem. Cumque beatae ipsam. Est quae sit qui voluptatem corporis velit. Qui maxime accusamus possimus. Consequatur sequi et ea suscipit enim nesciunt quia velit.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-    <!--==========================
-      Subscribe Section
-    ============================-->
-    <section id="subscribe">
-      <div class="container wow fadeInUp">
-        <div class="section-header">
-          <h2>Newsletter</h2>
-          <p>Rerum numquam illum recusandae quia mollitia consequatur.</p>
-        </div>
-
-        <form method="POST" action="#">
+        <form method="POST" action="<?= FRONT_ROOT ?>Event/getEventsByCategoryName">
           <div class="form-row justify-content-center">
+          <div class="col-auto">
+                        <select class="custom-select my-1 mr-sm-2" name="category" required>
+                            <option disabled selected value="">Elige una categoria: </option>
+                            <?php
+                            if($categoryList){
+                                foreach ($categoryList as $key => $value) { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php }  
+                            }
+                            else{
+                                echo "No hay nada";
+                            } ?>
+                        </select>
+                    </div>
             <div class="col-auto">
-              <input type="text" class="form-control" placeholder="Enter your Email">
-            </div>
-            <div class="col-auto">
-              <button type="submit">Subscribe</button>
+              <button type="submit">Buscar</button>
             </div>
           </div>
         </form>
 
       </div>
-    </section>
-
-    <!--==========================
-      Buy Ticket Section
-    ============================-->
-    <section id="buy-tickets" class="section-with-bg wow fadeInUp">
-      <div class="container">
-
-        <div class="section-header">
-          <h2>Buy Tickets</h2>
-          <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="card mb-5 mb-lg-0">
-              <div class="card-body">
-                <h5 class="card-title text-muted text-uppercase text-center">Standard Access</h5>
-                <h6 class="card-price text-center">$150</h6>
-                <hr>
-                <ul class="fa-ul">
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
-                  <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Community Access</li>
-                  <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
-                  <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
-                </ul>
-                <hr>
-                <div class="text-center">
-                  <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Buy Now</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card mb-5 mb-lg-0">
-              <div class="card-body">
-                <h5 class="card-title text-muted text-uppercase text-center">Pro Access</h5>
-                <h6 class="card-price text-center">$250</h6>
-                <hr>
-                <ul class="fa-ul">
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                  <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
-                  <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
-                </ul>
-                <hr>
-                <div class="text-center">
-                  <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="pro-access">Buy Now</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Pro Tier -->
-          <div class="col-lg-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-muted text-uppercase text-center">Premium Access</h5>
-                <h6 class="card-price text-center">$350</h6>
-                <hr>
-                <ul class="fa-ul">
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Workshop Access</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>After Party</li>
-                </ul>
-                <hr>
-                <div class="text-center">
-                  <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="premium-access">Buy Now</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Modal Order Form -->
-      <div id="buy-ticket-modal" class="modal fade">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Buy Tickets</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form method="POST" action="#">
-                <div class="form-group">
-                  <input type="text" class="form-control" name="your-name" placeholder="Your Name">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="your-email" placeholder="Your Email">
-                </div>
-                <div class="form-group">
-                  <select id="ticket-type" name="ticket-type" class="form-control" >
-                    <option value="">-- Select Your Ticket Type --</option>
-                    <option value="standard-access">Standard Access</option>
-                    <option value="pro-access">Pro Access</option>
-                    <option value="premium-access">Premium Access</option>
-                  </select>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn">Buy Now</button>
-                </div>
-              </form>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-
     </section>
 
     <!--==========================
@@ -534,7 +146,7 @@
 
         <div class="section-header">
           <h2>Contact Us</h2>
-          <p>Nihil officia ut sint molestiae tenetur.</p>
+          <p>Si tienes alguna consulta no dudes en contactarnos.</p>
         </div>
 
         <div class="row contact-info">
@@ -543,7 +155,7 @@
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
               <h3>Address</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
+              <address>Av. Dorrego 281, Mar del Plata, Buenos Aires</address>
             </div>
           </div>
 
@@ -551,7 +163,7 @@
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+              <p><a href="tel:+542234801220">(+54) 0223 480-1220</a></p>
             </div>
           </div>
 
@@ -559,7 +171,7 @@
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:difusion@mdp.utn.edu.ar">difusion@mdp.utn.edu.ar</a></p>
             </div>
           </div>
 

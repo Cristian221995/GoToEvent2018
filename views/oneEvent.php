@@ -35,15 +35,31 @@
     <div class="container">
         <div class="section-header">
           <br>
-          <h2><?=$value[0]?></h2>
+          <h2><?=$allEventData[0]?></h2>
           <p>Informacion del Evento:</p>
         </div>    
         <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$value[1]?></h3>
+        <h3>Categoria: <?=$allEventData[1]?></h3>
         </div>
         <div class="speaker col-lg-4 col-md-6">
-          <img src="<?=FRONT_ROOT . $value[2] ?>" class="img-fluid">
-        </div>   
+        <h3>Imagen de evento:</h3>
+          <img src="<?=FRONT_ROOT . $allEventData[2] ?>" class="img-fluid">
+        </div>
+        <div class="speaker col-lg-4 col-md-6">
+        <h3>Categoria: <?=$allEventData[3]?></h3>
+        </div>
+        <div class="speaker col-lg-4 col-md-6">
+        <h3>Categoria: <?=$allEventData[4]?></h3>
+        </div>
+        <div class="speaker col-lg-4 col-md-6">
+        <h3>Categoria: <?=$allEventData[5]?></h3>
+        </div>
+        <div class="speaker col-lg-4 col-md-6">
+        <h3>Categoria: <?=$allEventData[6]?></h3>
+        </div>
+        <div class="speaker col-lg-4 col-md-6">
+        <h3>Categoria: <?=$allEventData[7]?></h3>
+        </div>
 
     </div>  
 

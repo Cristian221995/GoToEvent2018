@@ -5,7 +5,7 @@
     <div id="logo" class="pull-left">
       <!-- Uncomment below if you prefer to use a text logo -->
       <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-      <a href="#intro" class="scrollto"><img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent" title=""></a>
+      <a href="<?=FRONT_ROOT?>Index" class="scrollto"><img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent" title=""></a>
         </div class="btn-group">
 
         <nav id="nav-menu-container">
