@@ -15,6 +15,7 @@ class IndexController{
 
         $eventController = new EventController();
         $eventList = $eventController->getAll();
+
         $categoryController = new CategoryController();
         $categoryList = $categoryController->retride();
 

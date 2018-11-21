@@ -23,7 +23,7 @@
                     <h2>Nuevo Artista</h2><br>
                     
                 </div>
-                <form action="" method="POST">
+                <form action="Artist/store" method="POST">
                     
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Nombre del Artista" required>

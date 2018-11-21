@@ -12,17 +12,17 @@ class CategoryController{
     public function __construct(){
 
         $this->dao = CategoryDB::getInstance();
-   }
+    }
 
    public function index(){
 
     include(ROOT. "views/createCategoryForm.php");
-   }
+    }
 
-   public function store($nombre)
+    public function store($nombre)
     {
-        $flag = $this->searchInDatabase($nombre);
-        if(!$flag){
+        $categoryFlag = $this->searchByName($nombre);
+        if(!$categoryFlag){
             $category = new Category($nombre);
             $this->dao->insert($category);
             header("Location:".HOME);
@@ -65,17 +65,9 @@ class CategoryController{
         $id = $this->dao->getIdByName($nombre);
     }
     
-    public function searchInDatabase($nombre){
-        $list = $this->retride();
-        $flag = false;
-        if($list){
-            foreach ($list as $key => $value) {
-                if($value === $nombre){
-                    $flag = true;
-                }
-            }
-        }
-        return $flag;
+    public function searchByName($nombre){
+        $category = $this->dao->searchByName($nombre);
+        return $category;
     }
 
 }

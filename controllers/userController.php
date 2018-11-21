@@ -47,6 +47,11 @@ class UserController{
         return $list;
     }
 
+    public function searchByUsername($username){
+        $user = $this->dao->searchByUsername($username);
+        return $user;
+    }
+
     public function searchInDatabase($email, $userName){
         $list = $this->retride();
         $flag = false;

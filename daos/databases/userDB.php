@@ -15,30 +15,24 @@ class UserDB extends SingletonDao implements IDao{
 
     public function insert($user){
 
-        $query = 'INSERT INTO users (user_email, user_name, user_pass, user_role) VALUES (:email, :userName, :pass, :role)';
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $userEmail = $user->getEmail();
-        $userName = $user->getUserName();
-        $userPass = $user->getPass();
-        $userRole = $user->getRole();
-        $command->bindParam(':email',$userEmail);
-        $command->bindParam(':userName',$userName);
-        $command->bindParam(':pass',$userPass);
-        $command->bindParam(':role',$userRole);
-        echo $userEmail."<br>";
-        echo $userName."<br>";
-        echo $userPass."<br>";
-        echo $userRole."<br>";
-        $command->execute();
-        $lastId = $connection->lastInsertId();
-        return $lastId;
+        $query = 'INSERT INTO users (user_email, user_name, user_pass, user_role) VALUES (:user_email, :user_name, :user_pass, :user_role)';
+        $parameters['user_email'] = $user->getEmail();
+        $parameters['user_name'] = $user->getUserName();
+        $parameters['user_pass'] = $user->getPass();
+        $parameters['user_role'] = $user->getRole();
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $pdo->executeNonQuery($query, $parameters);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
     }
 
     public function delete($user){
         
-        $query = 'DELETE FROM users WHERE user_name = :userName';
+        /*$query = 'DELETE FROM users WHERE user_name = :userName';
         $pdo = new Connection();
         $connection = $pdo->Connect();
         $command = $connection->prepare($query);
@@ -46,7 +40,7 @@ class UserDB extends SingletonDao implements IDao{
         $command->bindParam(':userName',$userName);
         $resultDelete = $command->execute();
 
-        return $resultDelete;
+        return $resultDelete;*/
     }
 
     public function update($dato, $datoNuevo){
@@ -55,25 +49,89 @@ class UserDB extends SingletonDao implements IDao{
 
     public function retride(){
 
-        $userList = array();
-
         $query = 'SELECT * FROM users order by id_user';
-
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $command->execute();
-
-        while($result = $command->fetch()){
-            
-            $userData = array();
-            array_push($userData,$result['user_email']);
-            array_push($userData,$result['user_name']);
-            array_push($userData,$result['user_pass']);
-            array_push($userData,$result['user_role']);
-            array_push($userList,$userData);
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
         }
-        return $userList;
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function retrideById($id){
+
+        $query = "SELECT * FROM users where id_user = :id_user";
+        $parameters['id_user'] = $id;
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query, $parameters);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getIdByName($name){
+
+        $query = "SELECT id_user FROM users WHERE user_name = :user_name";
+        $parameters['user_name'] = $name;
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query, $parameters);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function searchByUsername($username){
+
+        $query = "SELECT * FROM users WHERE user_name = :user_name";
+        $parameters['user_name'] = $username;
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query, $parameters);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    protected function mapear($value) {
+        $value = is_array($value) ? $value : [];
+        $resp = array_map(function ($p) {
+            return new User ($p['user_email'], $p['user_name'], $p['user_pass'], $p['user_role']);
+        }, $value);
+        return count($resp) > 1 ? $resp : $resp['0'];
     }
     
 }

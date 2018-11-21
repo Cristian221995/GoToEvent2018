@@ -30,7 +30,7 @@ create table events(
     id_category int,
     img_path varchar(50),
     constraint pk_id_event primary key (id_event),
-    constraint fk_id_category foreign key (id_category) references categories (id_category)
+    constraint fk_id_category foreign key (id_category) references categories (id_category) on delete cascade
 );
 
 create table calendars(

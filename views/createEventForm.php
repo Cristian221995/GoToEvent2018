@@ -41,7 +41,7 @@ use controllers\eventPlaceController as EventPlaceController;
                             <?php
                             if($listCategory){
                                 foreach ($listCategory as $key => $value) { ?>
-                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                    <option value="<?php echo $value->getName(); ?>"><?php echo $value->getName(); ?></option>
                                 <?php }  
                             }
                             else{
@@ -66,7 +66,7 @@ use controllers\eventPlaceController as EventPlaceController;
                                 <?php
                                 if($listEventPlace){
                                     foreach ($listEventPlace as $key => $value) { ?>
-                                        <option value="<?php echo $value[0]; ?>"><?php echo $value[0] . " / Capacidad: " . $value[1]; ?></option>
+                                        <option value="<?php echo $value->getName(); ?>"><?php echo $value->getName() . " / Capacidad: " . $value->getCapacity(); ?></option>
                                     <?php }  
                                 }
                                 else{

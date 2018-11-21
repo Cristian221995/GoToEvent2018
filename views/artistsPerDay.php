@@ -32,7 +32,7 @@
                 <div class="panel">
                     <h2>Artistas por día</h2>
                 </div>
-                <form action="store" method="POST" enctype="multipart/form-data">
+                <form action="<?=FRONT_ROOT?>Event/store" method="POST" enctype="multipart/form-data">
 
                     <?php
                         $dateStart = new DateTime($_SESSION['eventData']['eventDateStart']);
@@ -59,7 +59,7 @@
                                     <?php
                                     if($listArtist){
                                         foreach ($listArtist as $key => $value) { ?>
-                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                            <option value="<?php echo $value->getName(); ?>"><?php echo $value->getName(); ?></option>
                                         <?php }  
                                     } ?>
                                 </select>
