@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/form.css">
     <title>Crear evento</title>
 </head>
+
 <body id="LoginForm">
 <div id="logo" class="pull-left">
             <!-- Uncomment below if you prefer to use a text logo -->

@@ -15,6 +15,8 @@ use controllers\eventPlaceController as EventPlaceController;
     <link rel="stylesheet" href="css/form.css">
     <title>Crear evento</title>
 </head>
+<header>
+</header>
 <body id="LoginForm">
         <div id="logo" class="pull-left">
         <!-- Uncomment below if you prefer to use a text logo -->

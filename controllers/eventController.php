@@ -76,6 +76,8 @@ class EventController{
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
                 header("Location:".HOME);
+                //var_dump($this->getAll());
+                //include "views/printEvent.php";
             }
         }
         else{
