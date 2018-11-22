@@ -22,30 +22,36 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                    <h2>Your Event</h2><br>
+                <?php if(is_array($data)){ ?>
+                    <h2><?=$data[0]->getEvent()->getName()?></h2><br>
+                    <p>Nombre del evento: <?= $data[0]->getEvent()->getName() ?></p>
+                    <p>Categoria: <?= $data[0]->getEvent()->getCategory()->getName() ?></p>
+                    <p>Lugar a realizarse: <?= $data[0]->getEventPlace()->getName() ?></p>
+                    <p>Capacidad: <?= $data[0]->getEventPlace()->getCapacity() ?></p>
+                    <p>Inicio de evento: <?= $data[0]->getEventDate() ?></p>
+                    <p>Final de evento: <?= $data[$length]->getEventDate() ?></p>
+                    <?php foreach ($data as $key => $value) { ?>
+                        <p>Dia: <?=$value->getEventDate() ?></p>
+                        <?php foreach ($value->getArtistList() as $key => $value) { ?>
+                            <p>- <?= $value->getName() ?></p>
+                        <?php }
+                    }
+                } 
+                else{ ?>
+                    <h2><?=$data->getEvent()->getName()?></h2><br>
+                    <p>Nombre del evento: <?= $data->getEvent()->getName() ?></p>
+                    <p>Categoria: <?= $data->getEvent()->getCategory()->getName() ?></p>
+                    <p>Lugar a realizarse: <?= $data->getEventPlace()->getName() ?></p>
+                    <p>Inicio de evento: <?= $data->getEventDate() ?></p>
+                    <p>Final de evento: <?= $data->getEventDate() ?></p>
+                    <p>Dia: <?= $data->getEventDate() ?></p>
+                    <p>- <?= $data->getArtistList()->getName() ?></p>
+                <?php } ?>
                 </div>
                 <div>
-                <p>Nombre del evento: <?php echo $_SESSION['eventData']['name'] ?></p>
-                <p>Categoria: <?php echo $_SESSION['eventData']['category'] ?></p>
-                <p>Lugar a realizarse: <?php echo $_SESSION['eventData']['eventPlace'] ?></p>
-                <p>Inicio de evento: <?php echo $_SESSION['eventData']['eventDateStart'] ?></p>
-                <p>Final de evento: <?php echo $_SESSION['eventData']['eventDateFinish'] ?></p>
-                <p>Imagen: </p>
-                <img src="<?php FRONT_ROOT . $_POST['eventIMG']?>" alt="">
                 
-                 <?php if($_POST)
-                {?>
-                    
-                <?php foreach ($_POST as $clave=>$valor)
-                    {?>
-                    <p><?php echo "Los artistas del $clave son:"; ?> </p>
-                    <?php foreach ($valor as $artistas){ ?>
-                        <p> <?php echo $artistas; ?> </p>
-                        <?php }
-                        }
-                }?>
-
-                <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
+                <a href="" class="btn btn-danger btn-block" role="button" aria-pressed="true">Comprar tickets</a>
+                <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                 </div>
             </div>
         </div>

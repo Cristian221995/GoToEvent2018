@@ -5,6 +5,9 @@ use daos\SingletonDao as SingletonDao;
 use daos\databases\Connection as Connection;
 use models\Calendar as Calendar;
 use models\Category as Category;
+use models\Event as Event;
+use models\EventPlace as EventPlace;
+use models\Artist as Artist;
 
 class CalendarDB extends SingletonDao implements IDao{
 
@@ -63,7 +66,7 @@ class CalendarDB extends SingletonDao implements IDao{
 
     public function retrideCalendar($eventID){
 
-        $query = 'SELECT
+        $query = "SELECT
             a.artist_name,
             c.id_calendar,
             c.calendar_name,
@@ -79,13 +82,12 @@ class CalendarDB extends SingletonDao implements IDao{
             inner join categories ca on e.id_category = ca.id_category
             inner join event_places ep on c.id_event_place = ep.id_event_place
         WHERE
-            e.id_event = :id_event';
+            e.id_event = '$eventID'";
 
-        $parameters['id_event'] = $eventID;
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
-            $result = $pdo->execute($query, $parameters);
+            $result = $pdo->execute($query);
         }
         catch(\PDOException $ex){
             throw $ex;
@@ -138,10 +140,9 @@ class CalendarDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            $category = new Category($p['category_name']);
-            echo "AAAAAAAAAAAAAAAAA";
-            $event = new Event($p['event_name'], $category, $p['id_calendar'], $p['img_path']);
-            $eventPlace = new EventPlace($p['event_place_name'], $p['capacity']);
+            $category = new Category('', $p['category_name']);
+            $event = new Event('', $p['event_name'], $category, $p['id_calendar'], $p['img_path']);
+            $eventPlace = new EventPlace('', $p['event_place_name'], $p['capacity']);
             $artists = $this->mapearAxC($p['id_calendar']);
             return new Calendar ($p['calendar_name'], $event, $artists, $eventPlace);
         }, $value);
@@ -149,8 +150,8 @@ class CalendarDB extends SingletonDao implements IDao{
     }
 
     public function mapearAxC($idCalendar) {
-        $query = "
-        SELECT * FROM artists_x_calendar axc inner join artists a on axc.id_artist = a.id_artist where axc.id_calendar = $idCalendar";
+        $query = 
+        "SELECT * FROM artists_x_calendar axc inner join artists a on axc.id_artist = a.id_artist where axc.id_calendar = '$idCalendar'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
@@ -162,7 +163,7 @@ class CalendarDB extends SingletonDao implements IDao{
         if (!empty($value)) {
             $value = is_array($value) ? $value : [];
             $resp = array_map(function ($p) {
-                return new Artist($p['artist_name']);
+                return new Artist('',$p['artist_name']);
             }, $value);
             return count($resp) > 1 ? $resp : $resp['0'];
         }

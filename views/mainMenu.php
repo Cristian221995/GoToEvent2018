@@ -73,13 +73,12 @@
         <div class="row">
         <?php if(is_array($eventList) || is_array($eventsFilter)){ ?>
           <?php if(isset($eventsFilter)){?>
-         <?php  foreach($eventsFilter as $key => $value){ ?>
-          <div class="col-lg-4 col-md-6">
+               <?php  foreach($eventsFilter as $key => $value){ ?>
+                        <div class="col-lg-4 col-md-6">
                           <div class="speaker">
                             <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
                             <div class="details">
-                              <?php $aux = $value->getName(); ?>
-                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getName();?>"><?=$value->getName();?></a></h3>
+                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
                               <p><?=$value->getCategory()->getName()?></p>
                             </div>
                           </div>
@@ -91,8 +90,7 @@
                           <div class="speaker">
                             <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
                             <div class="details">
-                              <?php $aux = $value->getName(); ?>
-                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getName();?>"><?=$value->getName();?></a></h3>
+                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
                               <p><?=$value->getCategory()->getName()?></p>
                             </div>
                           </div>
@@ -106,7 +104,7 @@
                     <div class="speaker">
                       <img src="<?=FRONT_ROOT . $eventsFilter->getImg() ?>" class="img-fluid">
                       <div class="details">
-                        <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventsFilter->getName()?>"><?=$eventsFilter->getName()?></a></h3>
+                        <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventsFilter->getId()?>"><?=$eventsFilter->getName()?></a></h3>
                         <p><?=$eventsFilter->getCategory()->getName()?></p>
                       </div>
                     </div>
@@ -117,7 +115,7 @@
                               <div class="speaker">
                                 <img src="<?=FRONT_ROOT . $eventList->getImg() ?>" class="img-fluid">
                                 <div class="details">
-                                  <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventList->getName()?>"><?=$eventList->getName()?></a></h3>
+                                  <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventList->getId()?>"><?=$eventList->getName()?></a></h3>
                                   <p><?=$eventList->getCategory()->getName()?></p>
                                 </div>
                               </div>

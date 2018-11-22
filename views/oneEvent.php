@@ -34,33 +34,16 @@
 <section id="speakers" class="wow fadeInUp">
     <div class="container">
         <div class="section-header">
-          <br>
-          <h2><?=$allEventData[0]?></h2>
+          <h2><?=$data->getEvent()->getName()?></h2>
           <p>Informacion del Evento:</p>
         </div>    
         <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$allEventData[1]?></h3>
+        <h3>Categoria: <?=$data->getEvent()->getCategory()->getName()?></h3>
         </div>
         <div class="speaker col-lg-4 col-md-6">
         <h3>Imagen de evento:</h3>
-          <img src="<?=FRONT_ROOT . $allEventData[2] ?>" class="img-fluid">
+          <img src="<?=FRONT_ROOT . $data->getEvent->getImg() ?>" class="img-fluid">
         </div>
-        <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$allEventData[3]?></h3>
-        </div>
-        <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$allEventData[4]?></h3>
-        </div>
-        <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$allEventData[5]?></h3>
-        </div>
-        <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$allEventData[6]?></h3>
-        </div>
-        <div class="speaker col-lg-4 col-md-6">
-        <h3>Categoria: <?=$allEventData[7]?></h3>
-        </div>
-
     </div>  
 
 
@@ -69,7 +52,7 @@
 
 
 <!-- JavaScript Libraries -->
-<script src="<?=FRONT_ROOT?>lib/jquery/jquery.min.js"></script>
+  <script src="<?=FRONT_ROOT?>lib/jquery/jquery.min.js"></script>
   <script src="<?=FRONT_ROOT?>lib/jquery/jquery-migrate.min.js"></script>
   <script src="<?=FRONT_ROOT?>lib/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="<?=FRONT_ROOT?>lib/easing/easing.min.js"></script>

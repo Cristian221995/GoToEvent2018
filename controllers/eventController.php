@@ -65,7 +65,7 @@ class EventController{
                 $counter = 0;
                 $imageController = new ImageController();
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
-                $event = new Event($_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
+                $event = new Event('',$_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
                 foreach ($_POST as $key => $value) {
                     $eventDate = $_SESSION['eventData']['eventDates'][$counter];
                     $eventPlace = $_SESSION['eventData']['eventPlace'];
@@ -76,8 +76,6 @@ class EventController{
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
                 header("Location:".HOME);
-                //var_dump($this->getAll());
-                //include "views/printEvent.php";
             }
         }
         else{
@@ -132,30 +130,13 @@ class EventController{
         return $flag;
     }
 
-    public function getNameById($dbName, $columnName, $id){
+    public function getAllEventData($id){
 
-        $name = $this->dao->getNameById($dbName, $columnName, $id);
-        return $name;
-    }
-
-    public function getAllEventData($eventName){
-
-        $id = $this->getByName($eventName);
-        var_dump($id);
         $calendarController = new CalendarController();
-        $data = $calendarController->retrideCalendar($id->getId());
-        /*if(isset($_SESSION["userName"])){
-            if($_SESSION['userRole']==="user"){
-                include(ROOT . "views/headerUser.php");
-            }
-            else{
-                include(ROOT . "views/headerAdmin.php");
-            }
-        }
-        else{
-            include(ROOT . "views/headerNotLogued.php");
-        }
-        include(ROOT . "views/oneEvent.php");*/
+        $data = $calendarController->retrideCalendar($id);
+        var_dump($data);
+        $length = sizeof($data) - 1;
+        include(ROOT . "views/printEvent.php");
     }
 
     public function getAll(){
@@ -191,6 +172,12 @@ class EventController{
     public function retrideByCategory($category){
 
         $eventList = $this->dao->retrideByCategory($category);
+        return $eventList;
+    }
+
+    public function getById($id){
+
+        $eventList = $this->dao->retrideById($id);
         return $eventList;
     }
 

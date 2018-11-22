@@ -116,7 +116,7 @@ class EventPlaceDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new EventPlace ($p['event_place_name'], $p['capacity']);
+            return new EventPlace ($p['id_event_place'], $p['event_place_name'], $p['capacity']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

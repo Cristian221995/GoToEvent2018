@@ -17,7 +17,7 @@ class EventDB extends SingletonDao implements IDao{
 
         $query = 'INSERT INTO events (event_name, id_category, img_path) VALUES (:event_name, :id_category, :img_path)';
         $parameters['event_name'] = $event->getName();
-        $parameters['id_category'] = $this->getCategoryIdByName($event->getCategory()->getName());
+        $parameters['id_category'] = $this->getCategoryIdByName($event->getCategory());
         $parameters['img_path'] = $event->getImg();
         try{
             $pdo = Connection::getInstance();
@@ -86,7 +86,18 @@ class EventDB extends SingletonDao implements IDao{
 
     public function retrideById($id){
 
-        $query = "SELECT * FROM events where id_event = '$id'";
+    $query = 
+        "SELECT
+            e.id_event,
+            e.event_name,
+            e.img_path,
+            c.category_name 
+        FROM 
+            events e inner join categories c on e.id_category = c.id_category
+        WHERE
+            e.id_event = '$id'
+        ORDER BY 
+            id_event";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
@@ -133,26 +144,6 @@ class EventDB extends SingletonDao implements IDao{
         }
     }
 
-    public function getNameById($dbName, $columnName, $id){
-
-        $query = "SELECT " . $columnName . "_name FROM " . $dbName . " WHERE id_" . $columnName . " = :id";
-        $parameters['id'] = $id;
-        try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
-            if($result){
-                return $result[0][$columnName."_name"];
-            }
-            else{
-                return false;
-            }
-        }
-        catch(Exception $ex) {
-            throw $ex;
-        }
-    }
-
     public function getByName($name){
 
         $query = "SELECT * FROM events WHERE event_name = '$name'";
@@ -180,7 +171,7 @@ class EventDB extends SingletonDao implements IDao{
         try {
             $pdo = Connection::getInstance();
             $pdo->connect();
-            $result = $pdo->execute($query, $parameters);
+            $result = $pdo->execute($query);
             if($result){
                 return $result[0]['id_category'];
             }
@@ -195,12 +186,11 @@ class EventDB extends SingletonDao implements IDao{
 
     public function searchByName($name){        //Funciona bien
 
-        $query = "SELECT * FROM events WHERE event_name = :event_name";
-        $parameters['event_name'] = $name;
+        $query = "SELECT * FROM events WHERE event_name = '$name'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
