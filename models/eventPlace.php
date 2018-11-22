@@ -4,13 +4,20 @@ namespace models;
 
 class EventPlace{
 
+    private $id;
     private $name;
     private $capacity;
 
-    public function __construct($name, $capacity){
+    public function __construct($id, $name, $capacity){
 
+        $this->id = $id;
         $this->name = $name;
         $this->capacity = $capacity;
+    }
+
+    public function setId($id){
+
+        $this->id = $id;
     }
 
     public function setName($name){
@@ -21,6 +28,11 @@ class EventPlace{
     public function setCapacity($capacity){
 
         $this->capacity = $capacity;
+    }
+
+    public function getId(){
+
+        return $this->id;
     }
 
     public function getName(){

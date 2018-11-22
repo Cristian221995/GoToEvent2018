@@ -23,8 +23,7 @@ class CategoryController{
     {
         $categoryFlag = $this->searchByName($nombre);
         if(!$categoryFlag){
-            $category = new Category($nombre);
-            $this->dao->insert($category);
+            $this->dao->insert($nombre);
             header("Location:".HOME);
         }
         else{
@@ -32,7 +31,7 @@ class CategoryController{
         }
     }
 
-    public function delete($nombre)
+    /*public function delete($nombre)
     {
         $flag = $this->searchInDatabase($nombre);
         if($flag){
@@ -42,9 +41,9 @@ class CategoryController{
         else{
             throw new \Exception ('Ha ocurrido un error'); 
         }
-    }
+    }*/
 
-    public function update($nombre, $nuevoDato)
+    /*public function update($nombre, $nuevoDato)
     {
         $flag = $this->searchInDatabase($nombre);
         if($flag){
@@ -54,20 +53,21 @@ class CategoryController{
         else{
             throw new \Exception ('Ha ocurrido un error'); 
         }
-    }
+    }*/
 
     public function retride(){
         $list=$this->dao->retride();
         return $list;
     }
-
-    public function getIdByName($nombre){
-        $id = $this->dao->getIdByName($nombre);
-    }
     
     public function searchByName($nombre){
         $category = $this->dao->searchByName($nombre);
-        return $category;
+        if($category){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

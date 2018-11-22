@@ -5,6 +5,7 @@ use interfaces\IDao as IDao;
 use daos\SingletonDao as SingletonDao;
 use daos\databases\Connection as Connection;
 use models\Event as Event;
+use models\Category as Category;
 
 class EventDB extends SingletonDao implements IDao{
 
@@ -57,7 +58,16 @@ class EventDB extends SingletonDao implements IDao{
 
     public function retride(){
 
-        $query = 'SELECT * FROM events order by id_event';
+        $query = 
+        'SELECT
+            e.id_event,
+            e.event_name,
+            e.img_path,
+            c.category_name 
+        FROM 
+            events e inner join categories c on e.id_category = c.id_category 
+        ORDER BY 
+            id_event';
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -76,17 +86,46 @@ class EventDB extends SingletonDao implements IDao{
 
     public function retrideById($id){
 
-        $query = "SELECT * FROM events where id_event = :id_event";
-        $parameters['id_event'] = $id;
+        $query = "SELECT * FROM events where id_event = '$id'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
         }
         if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function retrideByCategory($category){
+        
+        $query = 
+        "SELECT
+            e.id_event,
+            e.event_name,
+            e.img_path,
+            c.category_name 
+        FROM 
+            events e inner join categories c on e.id_category = c.id_category
+        WHERE
+            c.category_name = '$category'
+        ORDER BY 
+            id_event";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
             return $this->mapear($result);
         }
         else{
@@ -114,14 +153,15 @@ class EventDB extends SingletonDao implements IDao{
         }
     }
 
-    public function getIdByName($name){
+    public function getByName($name){
 
-        $query = "SELECT id_event FROM events WHERE event_name = :event_name";
-        $parameters['event_name'] = $name;
+        $query = "SELECT * FROM events WHERE event_name = '$name'";
+        echo $query;
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
+            var_dump($result);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -136,8 +176,7 @@ class EventDB extends SingletonDao implements IDao{
 
     public function getCategoryIdByName($name){
 
-        $query = "SELECT id_category FROM categories WHERE category_name = :category_name";
-        $parameters['category_name'] = $name;
+        $query = "SELECT id_category FROM categories WHERE category_name = '$name'";
         try {
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -177,7 +216,8 @@ class EventDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Event ($p['event_name'], $p['id_category'], $p['img_path']);
+            $category = new Category('', $p['category_name']);
+            return new Event($p['id_event'], $p['event_name'], $category, $p['img_path']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

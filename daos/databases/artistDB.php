@@ -13,10 +13,10 @@ class ArtistDB extends SingletonDao implements IDao
 
     }
 
-    public function insert($artist){
+    public function insert($name){
 
         $query = 'INSERT INTO artists (artist_name) VALUES (:artist_name)';
-        $parameters['artist_name'] = $artist->getName();
+        $parameters['artist_name'] = $name;
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -75,32 +75,11 @@ class ArtistDB extends SingletonDao implements IDao
 
     public function retrideById($id){
 
-        $query = "SELECT * FROM artists where id_artist = :id_artist";
-        $parameters['id_artist'] = $id;
-        try {
+        $query = "SELECT * FROM artists where id_artist = '$id'";
+        try{
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
-        }
-        catch(Exception $ex) {
-            throw $ex;
-        }
-        if (!empty($result)){
-            return $this->mapear($result);
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function getIdByName($name){
-
-        $query = "SELECT id_artist FROM artists WHERE artist_name = :artist_name";
-        $parameters['artist_name'] = $name;
-        try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -115,12 +94,11 @@ class ArtistDB extends SingletonDao implements IDao
 
     public function searchByName($name){
 
-        $query = "SELECT * FROM artists WHERE artist_name = :artist_name";
-        $parameters['artist_name'] = $name;
+        $query = "SELECT * FROM artists WHERE artist_name = '$name'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -136,7 +114,7 @@ class ArtistDB extends SingletonDao implements IDao
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Artist ($p['artist_name']);
+            return new Artist ($p['id_artist'], $p['artist_name']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

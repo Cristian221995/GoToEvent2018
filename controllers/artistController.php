@@ -21,8 +21,7 @@ class ArtistController
     {
         $artistFlag = $this->searchByName($nombre);
         if(!$artistFlag){
-            $artist = new Artist($nombre);
-            $this->dao->insert($artist);
+            $this->dao->insert($nombre);
             header("Location:".HOME);
         }
         else{
@@ -58,14 +57,15 @@ class ArtistController
         $list=$this->dao->retride();
         return $list;
     }
-
-    public function getIdByName($nombre){
-        $id = $this->dao->getIdByName($nombre);
-    }
     
     public function searchByName($nombre){
         $artist = $this->dao->searchByName($nombre);
-        return $artist;
+        if($artist){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

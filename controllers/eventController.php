@@ -112,8 +112,8 @@ class EventController{
         return $list;
     }
 
-    public function getIdByName($name){
-        $id = $this->dao->getIdByName($name);
+    public function getByName($name){
+        $id = $this->dao->getByName($name);
         return $id;
     }
 
@@ -138,10 +138,10 @@ class EventController{
 
     public function getAllEventData($eventName){
 
-
-        $id = $this->getIdByName($eventName);
+        $id = $this->getByName($eventName);
+        var_dump($id);
         $calendarController = new CalendarController();
-        $data = $calendarController->retrideCalendar($id);
+        $data = $calendarController->retrideCalendar($id->getId());
         /*if(isset($_SESSION["userName"])){
             if($_SESSION['userRole']==="user"){
                 include(ROOT . "views/headerUser.php");
@@ -159,38 +159,14 @@ class EventController{
     public function getAll(){
 
         $eventList = $this->retride();
-        if($eventList){
-            if(is_array($eventList)){
-                foreach ($eventList as $key => $value) {
-                    $value->setCategory($this->getNameById('categories','category',$value->getCategory()->getName()));
-                }
-            }
-            else{
-                $eventList->setCategory($this->getNameById('categories','category',$eventList->getCategory()->getName()));
-            }
-            return $eventList;
-        }
+        return $eventList;
     }
 
     public function getEventsByCategoryName($categoryName){
 
-        $eventList = $this->retride();
-        if($eventList){
-            $eventsFilter = array();
-            if(is_array($eventList)){
-                foreach ($eventList as $key => $value){
-                    $nombreCategoria = $this->getNameById('categories','category',$value->getCategory()->getName());
-                    if($nombreCategoria === $categoryName){
-                        $value->setCategory($nombreCategoria);
-                        array_push($eventsFilter,$value);
-                    }
-                }
-            }
-        }
-
+        $eventsFilter = $this->retrideByCategory($categoryName);
         $categoryController = new CategoryController();
-        $categoryList= $categoryController->retride();
-        
+        $categoryList = $categoryController->retride();
         if(isset($_SESSION["userName"])){
             if($_SESSION['userRole']==="user"){
                 include(ROOT . "views/headerUser.php");
@@ -208,6 +184,12 @@ class EventController{
     public function searchByName($nombre){
         $event = $this->dao->searchByName($nombre);
         return $event;
+    }
+
+    public function retrideByCategory($category){
+
+        $eventList = $this->dao->retrideByCategory($category);
+        return $eventList;
     }
 
 }

@@ -12,10 +12,10 @@ class CategoryDB extends SingletonDao implements IDao{
 
     }
 
-    public function insert($category){
+    public function insert($name){
 
         $query = 'INSERT INTO categories (category_name) VALUES (:category_name)';
-        $parameters['category_name'] = $category->getName();
+        $parameters['category_name'] = $name;
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -74,32 +74,11 @@ class CategoryDB extends SingletonDao implements IDao{
 
     public function retrideById($id){
 
-        $query = "SELECT * FROM categories where id_category = :id_category";
-        $parameters['id_category'] = $id;
+        $query = "SELECT * FROM categories where id_category = '$id'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
-        }
-        catch(Exception $ex) {
-            throw $ex;
-        }
-        if (!empty($result)){
-            return $this->mapear($result);
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function getIdByName($name){
-
-        $query = "SELECT id_category FROM categories WHERE category_name = :category_name";
-        $parameters['category_name'] = $name;
-        try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -114,12 +93,11 @@ class CategoryDB extends SingletonDao implements IDao{
 
     public function searchByName($name){
 
-        $query = "SELECT * FROM categories WHERE category_name = :category_name";
-        $parameters['category_name'] = $name;
+        $query = "SELECT * FROM categories WHERE category_name = '$name'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -135,7 +113,7 @@ class CategoryDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Category ($p['category_name']);
+            return new Category ($p['id_category'], $p['category_name']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

@@ -6,17 +6,24 @@ use models\Calendar as Calendar;
 
 class Event{
 
+    private $id;
     private $name;
     private $category;
     private $calendar;
     private $img;
 
-    public function __construct($name, $category, $img){
+    public function __construct($id, $name, $category, $img){
 
+        $this->id = $id;
         $this->name = $name;
-        $this->category = new Category($category);
+        $this->category = $category;
         $this->calendar = array();
         $this->img = $img;
+    }
+
+    public function setId($id){
+
+        $this->id = $id;
     }
 
     public function setName($name){
@@ -34,6 +41,11 @@ class Event{
         $calendario = new Calendar($eventDate, $this->name, $eventPlace);
         $calendario->setArtistList($artistList);
         array_push($this->calendar, $calendario);
+    }
+
+    public function getId(){
+
+        return $this->id;
     }
 
     public function getName(){
