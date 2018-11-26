@@ -30,8 +30,8 @@
 
 <body>
 <?php
-  if(isset($_SESSION["userName"])){
-            if($_SESSION['userRole']==="user"){
+  if(isset($_SESSION["user"])){
+            if($_SESSION["user"]->getRole()==="user"){
                 include(ROOT . "views/headerUser.php");
             }
             else{

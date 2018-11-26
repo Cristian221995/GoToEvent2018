@@ -41,18 +41,6 @@ class ArtistController
         }
     }*/
 
-    /*public function update($nombre, $nuevoDato)
-    {
-        $flag = $this->searchInDatabase($nombre);
-        if($flag){
-            $artist = new Artist($nombre);
-            $this->dao->update($artist, $nuevoDato);
-        }
-        else{
-            throw new \Exception ('Ha ocurrido un error');
-        }
-    }*/
-
     public function retride(){
         $list=$this->dao->retride();
         return $list;

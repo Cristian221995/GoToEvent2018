@@ -10,7 +10,7 @@
 
     <nav id="nav-menu-container">
       <ul class="nav-menu">
-        <li class="menu-active"><a> Bienvenido, <?=$_SESSION["userName"]?></a></li>
+        <li class="menu-active"><a> Bienvenido, <?=$_SESSION["user"]->getName()?></a></li>
         <li class="buy-tickets"><a href="#">Carrito</a></li>
         <li class="buy-tickets"><a href="<?=FRONT_ROOT?>Login/logout">Cerrar Sesion</a></li>
       </ul>

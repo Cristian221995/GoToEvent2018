@@ -108,12 +108,11 @@ class UserDB extends SingletonDao implements IDao{
 
     public function searchByUsername($username){
 
-        $query = "SELECT * FROM users WHERE user_name = :user_name";
-        $parameters['user_name'] = $username;
+        $query = "SELECT * FROM users WHERE user_name = '$username'";
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $result = $this->connection->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;

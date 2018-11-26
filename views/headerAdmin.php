@@ -9,7 +9,7 @@
 
         <nav id="nav-menu-container">
         <ul class="nav-menu">
-            <li class="menu-active"><a> Administrador</a></li>
+            <li class="menu-active"><a> Administrador </a></li>
             
             <li><div class="dropdown">
             <button class="btn btn-secundary dropdown-toggle" type="button" data-toggle="dropdown">Administrar Eventos

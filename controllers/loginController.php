@@ -1,6 +1,6 @@
 <?php
 namespace controllers;
-use controllers\UserController as UserController;
+use daos\databases\UserDB as UserDB;
 use controllers\IndexController as IndexController;
 
 class LoginController
@@ -18,32 +18,24 @@ class LoginController
 
     public function login($username, $pass){
 
-        $flag = false;
-        $userController = new UserController();
-        $user = $userController->searchByUsername($username);
+        $userDB = new UserDB();
+        $user = $userDB->searchByUsername($username);
         if($user){
             if($user->getPass() === $pass){
-                $_SESSION['userName'] = $username;
-                $_SESSION['userRole'] = $user->getRole();
-                $flag = true;
+                $_SESSION['user'] = $user;
                 $indexController = new IndexController();
                 $indexController->index();
             }
         }
-        /*if($flag===false)
-        {
-            header("Location:" . HOME . "Login");
-        }*/
     }
 
     public function logout(){
 
-        if(isset($_SESSION["userName"])){
-
+        if(isset($_SESSION["user"])){
             session_unset();
             session_destroy();
-            session_start();
-            header("Location:" . HOME);
+            $indexController = new IndexController();
+            $indexController->index();
         }
     }
 
