@@ -5,18 +5,18 @@ namespace models;
 class Place
 {
     private $calendar;
-    private $placeTypeList;
+    private $placeType;
     private $price;
     private $quantity;
     private $remainder;
 
-    public function __construct($calendar, $placeTypeList, $price, $quantity, $remainder)
+    public function __construct($calendar, $placeType, $price, $quantity, $remainder)
     {
-            $this->calendar=$calendar;
-            $this->placeTypeList=$placeTypeList;
-            $this->price=$price;
-            $this->quantity=$quantity;
-            $this->remainder=$remainder;
+        $this->calendar=$calendar;
+        $this->placeType=$placeType;
+        $this->price=$price;
+        $this->quantity=$quantity;
+        $this->remainder=$remainder;
     }
 
     public function getCalendar(){
@@ -27,14 +27,12 @@ class Place
         $this->calendar=$calendar;
     }
 
-    public function getPlaceTypeList(){
-        return $this->placeTypeList;
+    public function getPlaceType(){
+        return $this->placeType;
     }
 
-    public function setPlaceType($placeTypeList){
-        foreach ($placeTypeList as $key => $value) {
-            array_push($this->placeTypeList, $value);
-        }
+    public function setPlaceType($placeType){
+        $this->placeType = $placeType;
     }
 
     public function getPrice(){

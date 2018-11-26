@@ -9,8 +9,8 @@ class Ticket
 
     public function __construct($number, $qrCode)
     {
-            $this->number=$number;
-            $this->qrCode=$qrCode;
+        $this->number=$number;
+        $this->qrCode=$qrCode;
     }
 
     public function getNumber(){

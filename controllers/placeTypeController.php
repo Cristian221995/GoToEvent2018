@@ -15,12 +15,11 @@ class PlaceTypeController{
         include(ROOT."views/placeTypeForm.php");
     }
 
-    public function store($description){
+    public function store($name){
 
-        $flag = $this->searchInDatabase($description);
+        $flag = $this->searchInDatabase($name);
         if(!$flag){
-            $placeType = new PlaceType($description);
-            $ultimoID=$this->dao->insert($placeType);
+            $ultimoID=$this->dao->insert($name);
             header("Location:".HOME);
         }
         else{
@@ -33,17 +32,14 @@ class PlaceTypeController{
         return $list;
     }
     
-    public function searchInDatabase($description){
-        $list = $this->retride();
-        $flag = false;
+    public function searchInDatabase($name){
+        $list = $this->dao->retrideByName($name);
         if($list){
-            foreach ($list as $key => $value) {
-                if($value === $description){
-                    $flag = true;
-                }
-            }
+            return true;
         }
-        return $flag;
+        else{
+            return false;
+        }
     }
 
 

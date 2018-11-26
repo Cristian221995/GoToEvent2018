@@ -7,6 +7,7 @@ use models\Event as Event;
 use models\Image as Image;
 use controllers\CalendarController as CalendarController;
 use controllers\ImageController as ImageController;
+use controllers\PlaceTypeController as PlaceTypeController;
 
 
 class EventController{
@@ -53,6 +54,9 @@ class EventController{
 
         $artistController = new ArtistController();
         $listArtist = $artistController->retride();
+
+        $placeTypeController = new PlaceTypeController();
+        $listPlaceType = $placeTypeController->retride();
 
         include "views/artistsPerDay.php";
     }
@@ -134,7 +138,6 @@ class EventController{
 
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
-        var_dump($data);
         $length = sizeof($data) - 1;
         include(ROOT . "views/printEvent.php");
     }

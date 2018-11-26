@@ -71,9 +71,9 @@
         </div>
 
         <div class="row">
-        <?php if(is_array($eventList) || is_array($eventsFilter)){ ?>
-          <?php if(isset($eventsFilter)){?>
-               <?php  foreach($eventsFilter as $key => $value){ ?>
+          <?php if(isset($eventsFilter)){ ?>
+            <?php if(is_array($eventsFilter)){ ?>
+              <?php  foreach($eventsFilter as $key => $value){ ?>
                         <div class="col-lg-4 col-md-6">
                           <div class="speaker">
                             <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
@@ -84,34 +84,38 @@
                           </div>
                         </div>
                 <?php } 
-                } else{ ?>
-                <?php foreach ($eventList as $key => $value){ ?>
-                        <div class="col-lg-4 col-md-6">
-                          <div class="speaker">
-                            <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
-                            <div class="details">
-                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
-                              <p><?=$value->getCategory()->getName()?></p>
-                            </div>
-                          </div>
+                  }
+                  else{ ?>
+                    <div class="col-lg-4 col-md-6">
+                      <div class="speaker">
+                        <img src="<?=FRONT_ROOT . $eventsFilter->getImg() ?>" class="img-fluid">
+                        <div class="details">
+                          <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventsFilter->getId()?>"><?=$eventsFilter->getName()?></a></h3>
+                          <p><?=$eventsFilter->getCategory()->getName()?></p>
                         </div>
-                  <?php }
-                  }?>
-        <?php }
-                else{ ?>
-                <?php if(isset($eventsFilter)){ ?>
-                  <div class="col-lg-4 col-md-6">
-                    <div class="speaker">
-                      <img src="<?=FRONT_ROOT . $eventsFilter->getImg() ?>" class="img-fluid">
-                      <div class="details">
-                        <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventsFilter->getId()?>"><?=$eventsFilter->getName()?></a></h3>
-                        <p><?=$eventsFilter->getCategory()->getName()?></p>
                       </div>
                     </div>
-                  </div>
+
                 <?php }
-                       else{ ?>
-                            <div class="col-lg-4 col-md-6">
+              }
+                  else{ ?>
+                       <?php if(isset($eventList)){?>
+                          <?php if(is_array($eventList)){ ?>
+                            <?php foreach ($eventList as $key => $value){ ?>
+                          <div class="col-lg-4 col-md-6">
+                            <div class="speaker">
+                              <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
+                              <div class="details">
+                                <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
+                                <p><?=$value->getCategory()->getName()?></p>
+                              </div>
+                            </div>
+                          </div>
+                  <?php }
+                          }
+                        }
+                          else{ ?>
+                              <div class="col-lg-4 col-md-6">
                               <div class="speaker">
                                 <img src="<?=FRONT_ROOT . $eventList->getImg() ?>" class="img-fluid">
                                 <div class="details">
@@ -120,9 +124,8 @@
                                 </div>
                               </div>
                             </div>
-                <?php } ?>
-            <?php } ?>
-
+                         <?php }
+                  } ?>
         </div>
       </div>
 

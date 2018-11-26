@@ -1,5 +1,4 @@
 <?php
-    use controllers\artistController as ArtistController;
     $_POST['name'] = ucwords(strtolower($_POST['name']));
     $_SESSION['eventData'] = $_POST;
     if($_SESSION['eventData']['eventDateFinish']<$_SESSION['eventData']['eventDateStart']){
@@ -69,7 +68,20 @@
                     <div class="form-group">
                         <label> Ingresar una imagen para el evento: </label>
                         <input type="file" class="form-control-file" name="eventIMG" required>
+                    </div> 
+
+                    <div class="form-group">
+                        <label> Ingresar tipos de plaza a vender: </label><br>
+                        <?php
+                        if($listPlaceType){
+                            foreach ($listPlaceType as $key => $value) { ?>
+                                <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <?=$value->getName()?> <br>
+                            <?php }
+                        } ?>
+                        
                     </div>  
+
+
 
                    <button type="submit" class="btn btn-primary">Crear Evento</button>
                     

@@ -63,6 +63,7 @@ class EventDB extends SingletonDao implements IDao{
             e.id_event,
             e.event_name,
             e.img_path,
+            c.id_category,
             c.category_name 
         FROM 
             events e inner join categories c on e.id_category = c.id_category 
@@ -91,6 +92,7 @@ class EventDB extends SingletonDao implements IDao{
             e.id_event,
             e.event_name,
             e.img_path,
+            c.id_category,
             c.category_name 
         FROM 
             events e inner join categories c on e.id_category = c.id_category
@@ -121,6 +123,7 @@ class EventDB extends SingletonDao implements IDao{
             e.id_event,
             e.event_name,
             e.img_path,
+            c.id_category,
             c.category_name 
         FROM 
             events e inner join categories c on e.id_category = c.id_category
@@ -206,7 +209,7 @@ class EventDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            $category = new Category('', $p['category_name']);
+            $category = new Category($p['id_category'], $p['category_name']);
             return new Event($p['id_event'], $p['event_name'], $category, $p['img_path']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];

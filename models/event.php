@@ -38,7 +38,7 @@ class Event{
 
     public function setCalendar($eventDate, $eventPlace, $artistList){
 
-        $calendario = new Calendar($eventDate, $this->name, $artistList, $eventPlace);
+        $calendario = new Calendar('',$eventDate, $this->name, $artistList, $eventPlace);
         array_push($this->calendar, $calendario);
     }
 

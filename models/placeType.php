@@ -4,21 +4,33 @@ namespace models;
 
 class PlaceType{
 
-    private $description;
+    private $id;
+    private $name;
 
-    function __construct($description){
+    function __construct($id, $name){
 
-        $this->description = $description;
+        $this->id = $id;
+        $this->name = $name;
     }
 
-    public function setDescription($description){
+    public function setId($id){
 
-        $this->description = $description;
+        $this->id = $id;
     }
 
-    public function getDescription(){
+    public function setName($name){
 
-        return $this->description;
+        $this->name = $name;
+    }
+
+    public function getId(){
+
+        return $this->id;
+    }
+
+    public function getName(){
+
+        return $this->name;
     }
 }
 

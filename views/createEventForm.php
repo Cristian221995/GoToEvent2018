@@ -1,7 +1,3 @@
-<?php
-use controllers\categoryController as CategoryController;
-use controllers\eventPlaceController as EventPlaceController;
-?>
 
 <!DOCTYPE html>
 <html lang="en">

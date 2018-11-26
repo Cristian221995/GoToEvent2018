@@ -144,7 +144,7 @@ class CalendarDB extends SingletonDao implements IDao{
             $event = new Event('', $p['event_name'], $category, $p['id_calendar'], $p['img_path']);
             $eventPlace = new EventPlace('', $p['event_place_name'], $p['capacity']);
             $artists = $this->mapearAxC($p['id_calendar']);
-            return new Calendar ($p['calendar_name'], $event, $artists, $eventPlace);
+            return new Calendar ($p['id_calendar'], $p['calendar_name'], $event, $artists, $eventPlace);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

@@ -65,8 +65,21 @@ create table users(
 
 create table place_types(
     id_place_type int auto_increment,
-    place_type_description varchar(50),
-    constraint pk_id_place_type primary key (id_place_type)
+    place_type_name varchar(50),
+    constraint pk_id_place_type primary key (id_place_type),
+    constraint unq_place_type_event unique (place_type_name)
+);
+
+create table places(
+    id_place int auto_increment,
+    id_calendar int,
+    id_place_type int,
+    price int,
+    quantity int,
+    remainder int,
+    constraint pk_id_place primary key (id_place),
+    constraint fk_id_calendar_place foreign key (id_calendar) references calendars (id_calendar),
+    constraint fk_id_place_type foreign key (id_place_type) references place_types (id_place_type)
 );
 
 insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');
