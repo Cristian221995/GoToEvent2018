@@ -18,22 +18,10 @@ class IndexController{
 
         $categoryController = new CategoryController();
         $categoryList = $categoryController->retride();
-
-
-        if(isset($_SESSION["userName"])){
-            if($_SESSION['userRole']==="user"){
-                include(ROOT . "views/headerUser.php");
-            }
-            else{
-                include(ROOT . "views/headerAdmin.php");
-            }
-        }
-        else{
-            include(ROOT . "views/headerNotLogued.php");
-        }
         
         include(ROOT . "views/mainMenu.php");
     }
 }
 
 ?>
+

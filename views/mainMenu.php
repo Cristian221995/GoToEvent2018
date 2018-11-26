@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>GoToEvent - Buy Tickets Online Now!</title>
@@ -30,7 +29,19 @@
 </head>
 
 <body>
-
+<?php
+  if(isset($_SESSION["userName"])){
+            if($_SESSION['userRole']==="user"){
+                include(ROOT . "views/headerUser.php");
+            }
+            else{
+                include(ROOT . "views/headerAdmin.php");
+            }
+        }
+        else{
+            include(ROOT . "views/headerNotLogued.php");
+        }
+?>
   <!--==========================
     Intro Section
   ============================-->

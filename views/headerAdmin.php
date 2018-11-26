@@ -1,4 +1,3 @@
-<html>
 <header id="header">
   <div class="container">
 
@@ -31,5 +30,3 @@
     </div>
   </div>
 </header>
-</html>
-       
