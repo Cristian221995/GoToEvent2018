@@ -139,7 +139,7 @@ class EventController{
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
         $length = sizeof($data) - 1;
-        include(ROOT . "views/printEvent.php");
+        include(ROOT . "views/printOneEvent.php");
     }
 
     public function getAll(){
