@@ -25,6 +25,14 @@
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
+              <!--  <?php if(isset($alert)) { ?>
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position: absolute; width: 90%; margin: 5%; top: 0; left: 0;">
+                    <small><?= $alert ?></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+                /*<?php } ?>-->
                 <form action="Event/index2" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">

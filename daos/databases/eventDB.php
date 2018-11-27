@@ -187,6 +187,20 @@ class EventDB extends SingletonDao implements IDao{
         }
     }
 
+    public function getNextEvents(){
+
+        $query = "SELECT id_event, calendar_name FROM calendars GROUP BY id_event ORDER BY calendar_name asc limit 6";
+
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query);
+        }catch(Exception $ex){
+            throw $ex;
+        }
+
+    }
+
     public function searchByName($name){        //Funciona bien
 
         $query = "SELECT * FROM events WHERE event_name = '$name'";
@@ -214,6 +228,9 @@ class EventDB extends SingletonDao implements IDao{
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }
+
+
+
 }
 
 ?>
