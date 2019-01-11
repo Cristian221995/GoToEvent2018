@@ -51,14 +51,29 @@ class EventController{
     }
 
     public function index2(){
+       
+      /*  $completeDate = getdate();
+        $year = $completeDate['year'];
+        $month = $completeDate['mon'];
+        $day = $completeDate['mday'];
+        $myConcatenate = $year . "-" . $month . "-" . $day;
 
-        $artistController = new ArtistController();
-        $listArtist = $artistController->retride();
+        $actualDate = new DateTime($myConcatenate);
+        $dateStart = new DateTime($_POST['eventDateStart']);
 
-        $placeTypeController = new PlaceTypeController();
-        $listPlaceType = $placeTypeController->retride();
+        if($dateStart < $actualDate){
+            $alert = 'La fecha de inicio del evento es incorrecta.';
+            include "views/createEventForm.php";
+        }else{*/
+            $artistController = new ArtistController();
+            $listArtist = $artistController->retride();
+    
+            $placeTypeController = new PlaceTypeController();
+            $listPlaceType = $placeTypeController->retride();
+    
+            include "views/artistsPerDay.php";
+        /*}*/
 
-        include "views/artistsPerDay.php";
     }
 
    public function store()
@@ -155,18 +170,14 @@ class EventController{
         $eventsFilter = $this->retrideByCategory($categoryName);
         $categoryController = new CategoryController();
         $categoryList = $categoryController->retride();
-        if(isset($_SESSION["userName"])){
-            if($_SESSION['userRole']==="user"){
-                include(ROOT . "views/headerUser.php");
-            }
-            else{
-                include(ROOT . "views/headerAdmin.php");
-            }
-        }
-        else{
-            include(ROOT . "views/headerNotLogued.php");
-        }
         include(ROOT. "views/mainMenu.php");
+    }
+
+    public function getNextSixEvents(){
+
+        
+
+
     }
 
     public function searchByName($nombre){
