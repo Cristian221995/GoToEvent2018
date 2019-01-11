@@ -138,9 +138,11 @@ class EventController{
 
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
+        var_dump($data);
         $length = sizeof($data) - 1;
         include(ROOT . "views/printEvent.php");
     }
+
 
     public function getAll(){
 
@@ -182,6 +184,10 @@ class EventController{
 
         $eventList = $this->dao->retrideById($id);
         return $eventList;
+    }
+
+    public function buyTickets($id){
+        
     }
 
 }

@@ -30,6 +30,7 @@
                     <p>Capacidad: <?= $data[0]->getEventPlace()->getCapacity() ?></p>
                     <p>Inicio de evento: <?= $data[0]->getEventDate() ?></p>
                     <p>Final de evento: <?= $data[$length]->getEventDate() ?></p>
+                    <p>ahuwu: <?=$id?></p>
                     <?php foreach ($data as $key => $value) { ?>
                         <p>Dia: <?=$value->getEventDate() ?></p>
                         <?php foreach ($value->getArtistList() as $key => $value) { ?>
@@ -50,7 +51,7 @@
                 </div>
                 <div>
                 
-                <a href="" class="btn btn-danger btn-block" role="button" aria-pressed="true">Comprar tickets</a>
+                <a href="<?=FRONT_ROOT?>Event/buyTickets/<?=$id?>" class="btn btn-danger btn-block" role="button" aria-pressed="true">Comprar tickets</a>
                 <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                 </div>
             </div>

@@ -57,7 +57,7 @@ class UserController{
         $flag = false;
         if($list){
             foreach ($list as $key => $value) {
-                if($value[0] === $email || $value[1] === $userName){
+                if($value->getEmail() === $email || $value->getUserName() === $userName){
                     $flag = true;
                 }
             }

@@ -11,7 +11,6 @@ class ImageController{
 
     public function subirImage($image, $carpeta)
 	{
-        $imageParam = new Image();
 		if (!empty($image)) {
 				$imageDirectory = ROOT . $carpeta . '/';
 				if (!file_exists($imageDirectory)) {
@@ -27,7 +26,6 @@ class ImageController{
 						if ($image['size'] < $tamanioMaximo) {
 							if (move_uploaded_file($image["tmp_name"], $file)) {
 								$ruta = $carpeta . '/' . $nombreArchivo;
-								$imageParam->setDireccion($ruta);
 							} else
 								throw new Exception("Error al mover la imagen.");
 						} else

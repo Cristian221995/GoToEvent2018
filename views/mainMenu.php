@@ -185,7 +185,7 @@
       <div class="container">
 
         <div class="section-header">
-          <h2>Contact Us</h2>
+          <h2>Contactanos</h2>
           <p>Si tienes alguna consulta no dudes en contactarnos.</p>
         </div>
 
