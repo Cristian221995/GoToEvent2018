@@ -49,7 +49,7 @@ class EventDao extends SingletonDao implements IDao
 
     public function delete($EventName){
         $this->list = $this->getSessionEvent();
-        if (isset($this->list) {
+        if (isset($this->list)) {
           foreach ($this->list as $key => $value) {
                 if ($EventName == $value->getName()) {
                     unset($this->list[$key]);

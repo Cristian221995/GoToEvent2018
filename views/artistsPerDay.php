@@ -75,7 +75,7 @@
                         <?php
                         if($listPlaceType){
                             foreach ($listPlaceType as $key => $value) { ?>
-                                <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <?=$value->getName()?> <br>
+                                <?=$value->getName()?> <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
                             <?php }
                         } ?>
                         
@@ -84,7 +84,6 @@
 
 
                    <button type="submit" class="btn btn-primary">Crear Evento</button>
-                    
 
                 </form>
             </div>

@@ -68,12 +68,11 @@ class UserDB extends SingletonDao implements IDao{
 
     public function retrideById($id){
 
-        $query = "SELECT * FROM users where id_user = :id_user";
-        $parameters['id_user'] = $id;
+        $query = "SELECT * FROM users where id_user = '$id'";
         try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -86,33 +85,13 @@ class UserDB extends SingletonDao implements IDao{
         }
     }
 
-    public function getIdByName($name){
-
-        $query = "SELECT id_user FROM users WHERE user_name = :user_name";
-        $parameters['user_name'] = $name;
-        try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query, $parameters);
-        }
-        catch(Exception $ex) {
-            throw $ex;
-        }
-        if (!empty($result)){
-            return $this->mapear($result);
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function searchByUsername($username){
+    public function retrideByUsername($username){
 
         $query = "SELECT * FROM users WHERE user_name = '$username'";
         try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query);
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -128,7 +107,7 @@ class UserDB extends SingletonDao implements IDao{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new User ($p['user_email'], $p['user_name'], $p['user_pass'], $p['user_role']);
+            return new User ($p['id_user'], $p['user_email'], $p['user_name'], $p['user_pass'], $p['user_role']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

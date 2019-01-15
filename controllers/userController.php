@@ -3,6 +3,8 @@
 namespace controllers;
 use daos\databases\UserDB as UserDB;
 use models\User as User;
+use controllers\IndexController as IndexController;
+
 
 class UserController{
 
@@ -17,13 +19,14 @@ class UserController{
         include(ROOT . "views/registerForm.php");
     }
 
-    public function store($email, $userName, $pass)
+    public function store($email, $username, $pass)
     {
-        $flag = $this->searchInDatabase($email, $userName);
+        $flag = $this->dao->retrideByUsername($username);
         if(!$flag){
-            $user = new User($email, $userName, $pass, "user");
-            $ultimoID=$this->dao->insert($user);
-            header("Location:" . HOME);
+            $user = new User("", $email, $username, $pass, "user");
+            $this->dao->insert($user);
+            $indexController = new IndexController();
+            $indexController->index();
         }
         else{
             throw new \Exception ('El email o nombre de usuario ya existe');
@@ -46,26 +49,6 @@ class UserController{
         $list=$this->dao->retride();
         return $list;
     }
-
-    public function searchByUsername($username){
-        $user = $this->dao->searchByUsername($username);
-        return $user;
-    }
-
-    public function searchInDatabase($email, $userName){
-        $list = $this->retride();
-        $flag = false;
-        if($list){
-            foreach ($list as $key => $value) {
-                if($value->getEmail() === $email || $value->getUserName() === $userName){
-                    $flag = true;
-                }
-            }
-        }
-        return $flag;
-    }
-
-
 }
 
 ?>

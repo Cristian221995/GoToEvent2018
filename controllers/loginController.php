@@ -19,7 +19,7 @@ class LoginController
     public function login($username, $pass){
 
         $userDB = new UserDB();
-        $user = $userDB->searchByUsername($username);
+        $user = $userDB->retrideByUsername($username);
         if($user){
             if($user->getPass() === $pass){
                 $_SESSION['user'] = $user;

@@ -56,7 +56,7 @@ class ArtistDB extends SingletonDao implements IDao
 
     public function retride(){
 
-        $query = 'SELECT * FROM artists order by id_artist';
+        $query = 'SELECT * FROM artists ORDER BY id_artist';
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -75,11 +75,11 @@ class ArtistDB extends SingletonDao implements IDao
 
     public function retrideById($id){
 
-        $query = "SELECT * FROM artists where id_artist = '$id'";
+        $query = "SELECT * FROM artists WHERE id_artist = '$id'";
         try{
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query);
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
@@ -92,13 +92,13 @@ class ArtistDB extends SingletonDao implements IDao
         }
     }
 
-    public function searchByName($name){
+    public function retrideByName($name){
 
         $query = "SELECT * FROM artists WHERE artist_name = '$name'";
         try {
-            $this->connection = Connection::getInstance();
-            $this->connection->connect();
-            $result = $this->connection->execute($query);
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
         }
         catch(Exception $ex) {
             throw $ex;
