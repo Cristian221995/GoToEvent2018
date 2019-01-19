@@ -31,7 +31,7 @@
                 <div class="panel">
                     <h2>Artistas por día</h2>
                 </div>
-                <form action="<?=FRONT_ROOT?>Event/store" method="POST" enctype="multipart/form-data">
+                <form action="<?=FRONT_ROOT?>Event/index3" method="POST"
 
                     <?php
                         $dateStart = new DateTime($_SESSION['eventData']['eventDateStart']);

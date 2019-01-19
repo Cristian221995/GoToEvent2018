@@ -51,29 +51,48 @@ class EventController{
     }
 
     public function index2(){
-       
-      /*  $completeDate = getdate();
-        $year = $completeDate['year'];
-        $month = $completeDate['mon'];
-        $day = $completeDate['mday'];
-        $myConcatenate = $year . "-" . $month . "-" . $day;
 
-        $actualDate = new DateTime($myConcatenate);
-        $dateStart = new DateTime($_POST['eventDateStart']);
+        $artistController = new ArtistController();
+        $listArtist = $artistController->retride();
 
-        if($dateStart < $actualDate){
-            $alert = 'La fecha de inicio del evento es incorrecta.';
-            include "views/createEventForm.php";
-        }else{*/
-            $artistController = new ArtistController();
-            $listArtist = $artistController->retride();
+        $placeTypeController = new PlaceTypeController();
+        $listPlaceType = $placeTypeController->retride();
     
-            $placeTypeController = new PlaceTypeController();
-            $listPlaceType = $placeTypeController->retride();
-    
-            include "views/artistsPerDay.php";
-        /*}*/
+        include "views/artistsPerDay.php";
+    }
 
+    public function index3(){
+
+        if($_POST){
+            var_dump($_POST);
+            $array = array();
+            foreach ($_POST as $key => $value) {
+                if($key!="place"){
+                    $array[$key]=$value;
+                }
+            }
+
+            $_SESSION["eventData"]["eventDays"]=$array;
+            $_SESSION["eventData"]["placeTypes"]=$_POST["place"];
+            include "views/placeTypes.php";
+        }
+    }
+
+    public function hola(){
+        $array = array();
+        foreach ($_SESSION["eventData"]["placeTypes"] as $key1 => $value) {
+            foreach ($_POST as $key2 => $valuePost) {
+                foreach ($valuePost as $key3 => $valueIndex) {
+                    if($key1 === $key3){
+                        $array[$key2]=$valueIndex;
+                    }
+                }
+            }
+            unset($_SESSION["eventData"]["placeTypes"][$key1]); //Hago unset para modificar el nombre del indice. Pasa de 0 y 1 a Platea y Popular
+            $_SESSION["eventData"]["placeTypes"][$value]=$array;
+        }
+        var_dump($_SESSION["eventData"]["placeTypes"]);
+        var_dump($_SESSION["eventData"]);
     }
 
    public function store()
@@ -85,7 +104,7 @@ class EventController{
                 $imageController = new ImageController();
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
                 $event = new Event('',$_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
-                foreach ($_POST as $key => $value) {
+                foreach ($_SESSION["eventData"]["eventDays"] as $key => $value) {
                     $eventDate = $_SESSION['eventData']['eventDates'][$counter];
                     $eventPlace = $_SESSION['eventData']['eventPlace'];
                     $event->setCalendar($eventDate, $eventPlace, $value);
