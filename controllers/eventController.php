@@ -5,9 +5,12 @@ use daos\databases\eventDB as eventDB;
 //use daos\lists\eventDao as eventDB;
 use models\Event as Event;
 use models\Image as Image;
+use models\PlaceType as PlaceType;
+use models\Place as Place;
 use controllers\CalendarController as CalendarController;
 use controllers\ImageController as ImageController;
 use controllers\PlaceTypeController as PlaceTypeController;
+use daos\databases\PlaceDB as PlaceDao;
 
 
 class EventController{
@@ -87,7 +90,6 @@ class EventController{
                 $imageController = new ImageController();
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
                 $event = new Event('',$_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
-                $this->setEventPlaces();
                 foreach ($_POST as $key => $value) {
                     if($key!="price" && $key!="quantity"){
                         $eventDate = $_SESSION['eventData']['eventDates'][$counter];
@@ -99,6 +101,24 @@ class EventController{
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
+
+                $this->setEventPlaces();
+                $placeDao = new PlaceDao();
+                $price = "";
+                $quantity = "";
+                foreach ($_SESSION["eventData"]["place"] as $key => $value) {
+                    foreach ($value as $key2 => $value2) {
+                        if($key2=="price"){
+                            $price=$value2;
+                        }
+                        else{
+                            $quantity=$value2;
+                        }
+                        $placeType = new PlaceType('', $key);
+                        $place = new Place('', $placeType, $price, $quantity, $quantity);
+                    }
+                    $placeDao->insert($place, $event);
+                }
                 header("Location:".HOME);
             }
         }

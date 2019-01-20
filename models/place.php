@@ -4,27 +4,27 @@ namespace models;
 
 class Place
 {
-    private $calendar;
+    private $id;
     private $placeType;
     private $price;
     private $quantity;
     private $remainder;
 
-    public function __construct($calendar, $placeType, $price, $quantity, $remainder)
+    public function __construct($id, $placeType, $price, $quantity, $remainder)
     {
-        $this->calendar=$calendar;
+        $this->id=$id;
         $this->placeType=$placeType;
         $this->price=$price;
         $this->quantity=$quantity;
         $this->remainder=$remainder;
     }
 
-    public function getCalendar(){
-        return $this->calendar;
+    public function setId($id){
+        $this->id=$id;
     }
 
-    public function setCalendar($calendar){
-        $this->calendar=$calendar;
+    public function getId(){
+        return $this->id;
     }
 
     public function getPlaceType(){
