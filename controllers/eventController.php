@@ -26,6 +26,9 @@ class EventController{
     $eventPlaceController = new EventPlaceController();
     $listEventPlace = $eventPlaceController->retride();
 
+    $placeTypeController = new PlaceTypeController();
+    $listPlaceType = $placeTypeController->retride();
+
     include(ROOT. "views/createEventForm.php");
    }
 
@@ -54,45 +57,25 @@ class EventController{
 
         $artistController = new ArtistController();
         $listArtist = $artistController->retride();
-
-        $placeTypeController = new PlaceTypeController();
-        $listPlaceType = $placeTypeController->retride();
     
         include "views/artistsPerDay.php";
     }
 
-    public function index3(){
-
-        if($_POST){
-            var_dump($_POST);
-            $array = array();
-            foreach ($_POST as $key => $value) {
-                if($key!="place"){
-                    $array[$key]=$value;
-                }
-            }
-
-            $_SESSION["eventData"]["eventDays"]=$array;
-            $_SESSION["eventData"]["placeTypes"]=$_POST["place"];
-            include "views/placeTypes.php";
-        }
-    }
-
-    public function hola(){
+    public function setEventPlaces(){
         $array = array();
-        foreach ($_SESSION["eventData"]["placeTypes"] as $key1 => $value) {
+        foreach ($_SESSION["eventData"]["place"] as $key1 => $value) {
             foreach ($_POST as $key2 => $valuePost) {
-                foreach ($valuePost as $key3 => $valueIndex) {
-                    if($key1 === $key3){
-                        $array[$key2]=$valueIndex;
+                if($key2=="price" || $key2=="quantity"){
+                    foreach ($valuePost as $key3 => $valueIndex) {
+                        if($key1 === $key3){
+                            $array[$key2]=$valueIndex;
+                        }
                     }
                 }
             }
-            unset($_SESSION["eventData"]["placeTypes"][$key1]); //Hago unset para modificar el nombre del indice. Pasa de 0 y 1 a Platea y Popular
-            $_SESSION["eventData"]["placeTypes"][$value]=$array;
+            unset($_SESSION["eventData"]["place"][$key1]); //Hago unset para modificar el nombre del indice. Pasa de 0 y 1 a Platea y Popular
+            $_SESSION["eventData"]["place"][$value]=$array;
         }
-        var_dump($_SESSION["eventData"]["placeTypes"]);
-        var_dump($_SESSION["eventData"]);
     }
 
    public function store()
@@ -104,11 +87,14 @@ class EventController{
                 $imageController = new ImageController();
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
                 $event = new Event('',$_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
-                foreach ($_SESSION["eventData"]["eventDays"] as $key => $value) {
-                    $eventDate = $_SESSION['eventData']['eventDates'][$counter];
-                    $eventPlace = $_SESSION['eventData']['eventPlace'];
-                    $event->setCalendar($eventDate, $eventPlace, $value);
-                    $counter++;
+                $this->setEventPlaces();
+                foreach ($_POST as $key => $value) {
+                    if($key!="price" && $key!="quantity"){
+                        $eventDate = $_SESSION['eventData']['eventDates'][$counter];
+                        $eventPlace = $_SESSION['eventData']['eventPlace'];
+                        $event->setCalendar($eventDate, $eventPlace, $value);
+                        $counter++;
+                    }
                 }
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
@@ -172,7 +158,6 @@ class EventController{
 
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
-        var_dump($data);
         $length = sizeof($data) - 1;
         include(ROOT . "views/printEvent.php");
     }
