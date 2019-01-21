@@ -22,6 +22,7 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
+                <?php var_dump($data);?>
                 <?php if(is_array($data)){ ?>
                     <h2><?=$data[0]->getEvent()->getName()?></h2><br>
                     <p>Nombre del evento: <?= $data[0]->getEvent()->getName() ?></p>

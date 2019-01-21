@@ -12,28 +12,10 @@ class PlaceController{
         $this->dao=PlaceDB::getInstance();
     }
 
-    public function index()
+    public function index($event)
     {
-        
-    }
-
-    public function store($calendar, $placeType, $price, $quantity, $remainder){
-        
-        $place = new Place($calendar, $placeType, $price, $quantity, $remainder);
-        $this->dao->insert($place);
-        header("Location:".HOME);
-    }
-
-    public function retrideAll(){
-
-        $list = $this->dao->retride();
-        return $list;
-    }
-
-    public function retrideById($id){
-
-        $list = $this->dao->retrideById($id);
-        return $list;
+        /*$placeType = $this->dao->retrideByIdEvent($event->getId());
+        include "views/buyTickets.php";*/
     }
 }
 

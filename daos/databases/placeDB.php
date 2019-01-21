@@ -27,7 +27,6 @@ class PlaceDB{
         $parameters['price'] = $place->getPrice();
         $parameters['quantity'] = $place->getQuantity();
         $parameters['remainder'] = $place->getRemainder();
-        var_dump($parameters);
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -42,13 +41,13 @@ class PlaceDB{
 
     }
 
-    public function update($dato, $datoNuevo){
+    public function update($dato, $datonuevo){  //modificar el update para que funcione el remainder
 
     }
 
     public function retride(){
 
-        $query = "SELECT * FROM places order by id_place";
+        $query = "SELECT * FROM place_types_x_event order by id_place_type_x_event";
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -65,9 +64,28 @@ class PlaceDB{
         }
     }
 
-    public function retrideById($id){
+    public function retrideByPlaceType($idPlaceType){
 
-        $query = "SELECT * FROM places WHERE id_place = '$id'";
+        $query = "SELECT * FROM place_types_x_event WHERE id_place_type = '$idPlaceType'";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function retrideByIdEvent($idEvent){
+
+        $query = "SELECT * FROM place_types_x_event WHERE id_event = '$idEvent'";
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -87,7 +105,7 @@ class PlaceDB{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Place ($p['id_place'], $p['id_place_type'], $p['price'], $p['quantity'], $p['remainder']);
+            return new Place ($p['id_place_type_x_event'], $p['id_place_type'], $p['price'], $p['quantity'], $p['remainder']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }
