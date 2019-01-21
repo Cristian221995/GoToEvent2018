@@ -22,33 +22,20 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                <?php var_dump($data);?>
-                <?php if(is_array($data)){ ?>
-                    <h2><?=$data[0]->getEvent()->getName()?></h2><br>
-                    <p>Nombre del evento: <?= $data[0]->getEvent()->getName() ?></p>
-                    <p>Categoria: <?= $data[0]->getEvent()->getCategory()->getName() ?></p>
-                    <p>Lugar a realizarse: <?= $data[0]->getEventPlace()->getName() ?></p>
-                    <p>Capacidad: <?= $data[0]->getEventPlace()->getCapacity() ?></p>
-                    <p>Inicio de evento: <?= $data[0]->getEventDate() ?></p>
-                    <p>Final de evento: <?= $data[$length]->getEventDate() ?></p>
-                    <p>ahuwu: <?=$id?></p>
-                    <?php foreach ($data as $key => $value) { ?>
+                <?php var_dump($event);?>
+                    <h2><?=$event->getName()?></h2><br>
+                    <p>Nombre del evento: <?= $event->getName() ?></p>
+                    <p>Categoria: <?= $event->getCategory()->getName() ?></p>
+                    <p>Lugar a realizarse: <?= $event->getCalendar()[0]->getEventPlace()->getName() ?></p>
+                    <p>Capacidad: <?= $event->getCalendar()[0]->getEventPlace()->getCapacity() ?></p>
+                    <p>Inicio de evento: <?= $event->getCalendar()[0]->getEventDate() ?></p>
+                    <p>Final de evento: <?= $event->getCalendar()[$length]->getEventDate() ?></p>
+                    <?php foreach ($event->getCalendar() as $key => $value) { ?>
                         <p>Dia: <?=$value->getEventDate() ?></p>
                         <?php foreach ($value->getArtistList() as $key => $value) { ?>
                             <p>- <?= $value->getName() ?></p>
                         <?php }
-                    }
-                } 
-                else{ ?>
-                    <h2><?=$data->getEvent()->getName()?></h2><br>
-                    <p>Nombre del evento: <?= $data->getEvent()->getName() ?></p>
-                    <p>Categoria: <?= $data->getEvent()->getCategory()->getName() ?></p>
-                    <p>Lugar a realizarse: <?= $data->getEventPlace()->getName() ?></p>
-                    <p>Inicio de evento: <?= $data->getEventDate() ?></p>
-                    <p>Final de evento: <?= $data->getEventDate() ?></p>
-                    <p>Dia: <?= $data->getEventDate() ?></p>
-                    <p>- <?= $data->getArtistList()->getName() ?></p>
-                <?php } ?>
+                    }?>
                 </div>
                 <div>
                 

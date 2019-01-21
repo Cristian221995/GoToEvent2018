@@ -10,6 +10,7 @@ use models\Place as Place;
 use controllers\CalendarController as CalendarController;
 use controllers\ImageController as ImageController;
 use controllers\PlaceTypeController as PlaceTypeController;
+use controllers\IndexController as IndexController;
 use daos\databases\PlaceDB as PlaceDao;
 
 
@@ -23,16 +24,16 @@ class EventController{
    }
 
    public function index(){
-    $categoryController = new CategoryController();
-    $listCategory = $categoryController->retride();
+        $categoryController = new CategoryController();
+        $listCategory = $categoryController->retride();
 
-    $eventPlaceController = new EventPlaceController();
-    $listEventPlace = $eventPlaceController->retride();
+        $eventPlaceController = new EventPlaceController();
+        $listEventPlace = $eventPlaceController->retride();
 
-    $placeTypeController = new PlaceTypeController();
-    $listPlaceType = $placeTypeController->retride();
+        $placeTypeController = new PlaceTypeController();
+        $listPlaceType = $placeTypeController->retride();
 
-    include(ROOT. "views/createEventForm.php");
+        include(ROOT. "views/createEventForm.php");
    }
 
    public function getEventData(){
@@ -119,7 +120,8 @@ class EventController{
                     }
                     $placeDao->insert($place, $event);
                 }
-                header("Location:".HOME);
+                $indexController = new IndexController();
+                $indexController->index();
             }
         }
         else{
@@ -176,17 +178,35 @@ class EventController{
 
     public function getAllEventData($id){
 
+        $event = $this->dao->retrideById($id);
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
-        $length = sizeof($data) - 1;
+        foreach ($data as $key => $value) {
+            if($key-1 >= 0){
+                $eventDate = $data[$key-1]->getEventDate();
+                if($eventDate<$value->getEventDate()){
+                    $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
+                }
+            }
+            else{
+                $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
+            }
+        }
+        $length = sizeof($event->getCalendar()) - 1;
         include(ROOT . "views/printEvent.php");
     }
 
 
     public function getAll(){
 
-        $eventList = $this->retride();
-        return $eventList;
+        $eventList = $this->dao->retride();
+        if(!is_array($eventList)){
+            $eventListAux[] = $eventList;
+        }
+        else{
+            $eventListAux = $eventList;
+        }
+        return $eventListAux;
     }
 
     public function getEventsByCategoryName($categoryName){
@@ -197,13 +217,6 @@ class EventController{
         include(ROOT. "views/mainMenu.php");
     }
 
-    public function getNextSixEvents(){
-
-        
-
-
-    }
-
     public function searchByName($nombre){
         $event = $this->dao->searchByName($nombre);
         return $event;
@@ -212,7 +225,13 @@ class EventController{
     public function retrideByCategory($category){
 
         $eventList = $this->dao->retrideByCategory($category);
-        return $eventList;
+        if(!is_array($eventList)){
+            $eventListAux[] = $eventList;
+        }
+        else{
+            $eventListAux = $eventList;
+        }
+        return $eventListAux;
     }
 
     public function getById($id){

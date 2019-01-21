@@ -84,8 +84,10 @@
                         <?php
                         if($listPlaceType){
                             foreach ($listPlaceType as $key => $value) { ?>
-                                <?=$value->getName()?> <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
-                            <?php }
+                                <?php if($value){ ?>
+                                    <?=$value->getName()?> <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
+                               <?php }
+                             }
                         } ?>
                         
                     </div>

@@ -49,7 +49,7 @@
     <div class="intro-container wow fadeIn">
       <h1 class="mb-4 pb-0">El evento mas esperado<br><span>Lollapalooza</span> Argentina 2019</h1>
       <p class="mb-4 pb-0">29,30,31 de marzo, Hipodromo de San Isidro, Buenos Aires</p>
-      <a href="https://www.youtube.com/watch?v=MeM6UZ4Y_wY" class="venobox play-btn mb-4" data-vbtype="video"
+      <a href="https://www.youtube.com/watch?v=PKzQy6NK83g" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a>
       <a href="#about" class="about-btn scrollto">Sobre el evento</a>
     </div>
@@ -83,9 +83,9 @@
 
         <div class="row">
           <?php if(isset($eventsFilter)){ ?>
-            <?php if(is_array($eventsFilter)){ ?>
-              <?php  foreach($eventsFilter as $key => $value){ ?>
-                        <div class="col-lg-4 col-md-6">
+              <?php foreach($eventsFilter as $key => $value){ 
+                  if($value){ ?>
+                    <div class="col-lg-4 col-md-6">
                           <div class="speaker">
                             <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
                             <div class="details">
@@ -94,48 +94,25 @@
                             </div>
                           </div>
                         </div>
-                <?php } 
-                  }
-                  else{ ?>
-                    <div class="col-lg-4 col-md-6">
-                      <div class="speaker">
-                        <img src="<?=FRONT_ROOT . $eventsFilter->getImg() ?>" class="img-fluid">
-                        <div class="details">
-                          <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventsFilter->getId()?>"><?=$eventsFilter->getName()?></a></h3>
-                          <p><?=$eventsFilter->getCategory()->getName()?></p>
-                        </div>
-                      </div>
-                    </div>
-
-                <?php }
+                 <?php }
+                }
               }
-                  else{ ?>
-                       <?php if(isset($eventList)){?>
-                          <?php if(is_array($eventList)){ ?>
-                            <?php foreach ($eventList as $key => $value){ ?>
-                          <div class="col-lg-4 col-md-6">
-                            <div class="speaker">
-                              <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
-                              <div class="details">
-                                <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
-                                <p><?=$value->getCategory()->getName()?></p>
-                              </div>
-                            </div>
-                          </div>
-                  <?php }
-                          }
-                        }
-                          else{ ?>
-                              <div class="col-lg-4 col-md-6">
-                              <div class="speaker">
-                                <img src="<?=FRONT_ROOT . $eventList->getImg() ?>" class="img-fluid">
-                                <div class="details">
-                                  <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$eventList->getId()?>"><?=$eventList->getName()?></a></h3>
-                                  <p><?=$eventList->getCategory()->getName()?></p>
+                else{
+                       if(isset($eventList)){ ?>
+                            <?php foreach ($eventList as $key => $value){
+                              if($value){ ?>
+                                <div class="col-lg-4 col-md-6">
+                                  <div class="speaker">
+                                  <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
+                                    <div class="details">
+                                    <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
+                                    <p><?=$value->getCategory()->getName()?></p>
+                                    </div>
                                 </div>
                               </div>
-                            </div>
-                         <?php }
+                              <?php }
+                              }
+                          }
                   } ?>
         </div>
       </div>
@@ -259,7 +236,7 @@
 
           <div class="col-lg-3 col-md-6 footer-info">
             <img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent">
-            <p>GoToEvent es una pagina de venta de tickets para distintos espectáculos. ¿Qué esperas para conseguir el tuyo? </p>
+            <p>GoToEvent es una pagina de venta de tickets para espectáculos de todo tipo. ¿Qué esperas para conseguir el tuyo? </p>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-contact">

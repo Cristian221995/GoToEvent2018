@@ -29,7 +29,13 @@ class PlaceTypeController{
 
     public function retride(){
         $list=$this->dao->retride();
-        return $list;
+        if(!is_array($list)){
+            $listAux[] = $list;
+        }
+        else{
+            $listAux = $list;
+        }
+        return $listAux;
     }
     
     public function searchInDatabase($name){
