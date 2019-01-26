@@ -87,7 +87,6 @@ class EventController{
         $eventFlag = $this->searchByName($_SESSION['eventData']['name']);
         if(!$eventFlag){
             if($_POST){
-                var_dump($_POST);
                 $counter = 0;
                 $imageController = new ImageController();
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
@@ -95,14 +94,11 @@ class EventController{
                 foreach ($_POST as $key => $value) {
                     if($key!="price" && $key!="quantity"){
                         $eventDate = $_SESSION['eventData']['eventDates'][$counter];
-                        echo "EventDate: ".$eventDate."<br>";
                         $eventPlace = $_SESSION['eventData']['eventPlace'];
-                        echo "EventPlace: ".$eventPlace;
                         $event->setCalendar($eventDate, $eventPlace, $value);
                         $counter++;
                     }
                 }
-                var_dump($event);
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);

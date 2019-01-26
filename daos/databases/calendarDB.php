@@ -33,9 +33,7 @@ class CalendarDB extends SingletonDao implements IDao{
 
         //AHORA PARA ARTISTAS X CALENDARIO
 
-        echo "entra a la funcion";
         $artistList = $calendar->getArtistList();
-        var_dump($artistList);
         foreach ($artistList as $key => $value) {
             $query = 'INSERT INTO artists_x_calendar (id_artist, id_calendar) VALUES (:id_artist, :id_calendar)';
             $parametersAux['id_artist'] = $this->getIdByName("artists", "artist", $value);
@@ -104,12 +102,11 @@ class CalendarDB extends SingletonDao implements IDao{
 
     public function getIdByName($dbName, $rowName, $name){
 
-        $query = 'SELECT id_'. $rowName . ' FROM '. $dbName .' WHERE '. $rowName .'_name = (:name)';
-        $parameters['name'] = $name;
+        $query = "SELECT id_". $rowName . " FROM ". $dbName ." WHERE ". $rowName ."_name = '$name' ORDER BY id_" . $rowName . " desc";
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
-            $result = $pdo->execute($query, $parameters);
+            $result = $pdo->execute($query);
             if($result){
                 return $result[0]['id_'.$rowName];
             }
