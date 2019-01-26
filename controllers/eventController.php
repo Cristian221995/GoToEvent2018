@@ -87,6 +87,7 @@ class EventController{
         $eventFlag = $this->searchByName($_SESSION['eventData']['name']);
         if(!$eventFlag){
             if($_POST){
+                var_dump($_POST);
                 $counter = 0;
                 $imageController = new ImageController();
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
@@ -94,11 +95,14 @@ class EventController{
                 foreach ($_POST as $key => $value) {
                     if($key!="price" && $key!="quantity"){
                         $eventDate = $_SESSION['eventData']['eventDates'][$counter];
+                        echo "EventDate: ".$eventDate."<br>";
                         $eventPlace = $_SESSION['eventData']['eventPlace'];
+                        echo "EventPlace: ".$eventPlace;
                         $event->setCalendar($eventDate, $eventPlace, $value);
                         $counter++;
                     }
                 }
+                var_dump($event);
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
@@ -182,13 +186,7 @@ class EventController{
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
         foreach ($data as $key => $value) {
-            if($key-1 >= 0){
-                $eventDate = $data[$key-1]->getEventDate();
-                if($eventDate<$value->getEventDate()){
-                    $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
-                }
-            }
-            else{
+            if($key%2==0){
                 $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
             }
         }

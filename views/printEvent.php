@@ -22,7 +22,7 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                <?php var_dump($event);?>
+                <?php var_dump($event->getCalendar());?>
                     <h2><?=$event->getName()?></h2><br>
                     <p>Nombre del evento: <?= $event->getName() ?></p>
                     <p>Categoria: <?= $event->getCategory()->getName() ?></p>

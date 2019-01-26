@@ -33,7 +33,9 @@ class CalendarDB extends SingletonDao implements IDao{
 
         //AHORA PARA ARTISTAS X CALENDARIO
 
+        echo "entra a la funcion";
         $artistList = $calendar->getArtistList();
+        var_dump($artistList);
         foreach ($artistList as $key => $value) {
             $query = 'INSERT INTO artists_x_calendar (id_artist, id_calendar) VALUES (:id_artist, :id_calendar)';
             $parametersAux['id_artist'] = $this->getIdByName("artists", "artist", $value);
@@ -83,7 +85,7 @@ class CalendarDB extends SingletonDao implements IDao{
             inner join event_places ep on c.id_event_place = ep.id_event_place
         WHERE
             e.id_event = '$eventID'";
-
+            
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
