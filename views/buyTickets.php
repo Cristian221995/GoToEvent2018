@@ -35,8 +35,10 @@
                                 <option value="<?= $value->getPrice(); ?>"><?= $value->getPlaceType()->getName() . " / Entradas Restantes: " . $value->getRemainder()?></option>
                             <?php } ?>
                     </select>
-                    <br><br><label for="">Ingrese cantidad de entradas a comprar: </label>
+                    <br><br><label for="">Ingrese cantidad de entradas a comprar: </label><br>
                     <input type="text" name="quantity" required><br><br>
+                    <label for="">Precio Final: </label>
+                    <input type="text" disabled><br><br>
                     <a href="#" class="btn btn-danger btn-block" role="button" aria-pressed="true">Agregar al carrito</a>
                     <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                 </div>
