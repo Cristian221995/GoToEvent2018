@@ -86,4 +86,5 @@ insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Malu
 insert into categories (category_name) values ('Obra Teatral'),('Recital'),('Festival'),('Deportivo'),('Entretenimiento General'),('Lectura'),('Informatica'),('Gastronomica');
 insert into event_places (event_place_name, capacity) values ('Gran Rex', '3262'),('Luna Park', '9290'),('Jose Amalfitani', '49540'),('La Rural','950'),('Teatro Opera','2500');
 insert into users (user_email, user_name, user_pass, user_role) values ('admin@admin.com', 'admin', 'admin123', 'admin');
+insert into place_types (place_type_name) values ('Popular'),('Platea'),('Palco'),('Vip');
 

@@ -8,7 +8,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/form.css">
-    <title>Crear categoria</title>
+    <title>Informacion del evento</title>
 </head>
 <body id="LoginForm">
     <header>
@@ -22,7 +22,6 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                <?php var_dump($event->getCalendar());?>
                     <h2><?=$event->getName()?></h2><br>
                     <p>Nombre del evento: <?= $event->getName() ?></p>
                     <p>Categoria: <?= $event->getCategory()->getName() ?></p>
@@ -39,7 +38,11 @@
                 </div>
                 <div>
                 
-                <a href="<?=FRONT_ROOT?>Event/buyTickets/<?=$id?>" class="btn btn-danger btn-block" role="button" aria-pressed="true">Comprar tickets</a>
+                <?php if(isset($_SESSION['user'])){ 
+                        if($_SESSION['user']->getRole()=="user"){ ?>
+                            <a href="<?=FRONT_ROOT?>Buy/index/<?=$id?>" class="btn btn-danger btn-block" role="button" aria-pressed="true">Comprar tickets</a>
+                       <?php }
+                 } ?>
                 <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                 </div>
             </div>
