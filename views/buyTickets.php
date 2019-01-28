@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/form.css">
     <title>Buy Tickets</title>
 </head>
+
+<script>
+    function calcularTotal(){
+        var num1 = document.form.entrance.value;
+        var num2 = document.form.quantity.value;
+        var resultado = parseInt(num1)*parseInt(num2);
+        document.form.finalPrice.value="AR$ "+resultado;
+    }
+</script>
+
 <body id="LoginForm">
     <header>
         <div id="logo" class="pull-left">
@@ -23,23 +33,26 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                    <h2>Comprar Tickets</h2>
-                    <p>Precio de las entradas: </p>
-                    <?php foreach ($place as $key => $value) { ?>
-                        - <strong><?=$value->getPlaceType()->getName()?>: $<?=$value->getPrice()?></strong><br>
-                    <?php } ?>
-                    <br><select class="custom-select my-1 mr-sm-2" name="entrance" required>
-                            <option disabled selected value="">Seleccione entrada a comprar: </option>
-                            <?php
-                            foreach ($place as $key => $value) { ?>
-                                <option value="<?= $value->getPrice(); ?>"><?= $value->getPlaceType()->getName() . " / Entradas Restantes: " . $value->getRemainder()?></option>
-                            <?php } ?>
-                    </select>
-                    <br><br><label for="">Ingrese cantidad de entradas a comprar: </label><br>
-                    <input type="text" name="quantity" required><br><br>
-                    <label for="">Precio Final: </label>
-                    <input type="text" disabled><br><br>
-                    <a href="#" class="btn btn-danger btn-block" role="button" aria-pressed="true">Agregar al carrito</a>
+                    <form action="" method="post" id="form" name="form">
+                        <h2>Comprar Tickets</h2>
+                        <p>Precio de las entradas: </p>
+                        <?php foreach ($place as $key => $value) { ?>
+                            - <strong><?=$value->getPlaceType()->getName()?>: AR$ <?=$value->getPrice()?></strong><br>
+                        <?php } ?>
+                        <br><select class="custom-select my-1 mr-sm-2" name="entrance" required OnKeyUp="calcularTotal()">
+                                <option disabled selected value="">Seleccione entrada a comprar: </option>
+                                <?php
+                                foreach ($place as $key => $value) { ?>
+                                    <option value="<?= $value->getPrice(); ?>"><?= $value->getPlaceType()->getName() . " / Entradas Restantes: " . $value->getRemainder()?></option>
+                                <?php } ?>
+                        </select>
+                        <br><br><label for="">Ingrese cantidad de entradas a comprar: </label><br>
+                        <input type="text" name="quantity" required OnKeyUp="calcularTotal()"><br><br>
+                        <label for=""><strong>Precio Final: </strong></label>
+                        <input type="text" name="finalPrice" disabled ><br><br>
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </form>
+                    
                     <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                 </div>
             </div> 

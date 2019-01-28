@@ -17,7 +17,6 @@ class BuyController{
 
         $placedb = new PlaceDB();
         $place = $placedb->retrideByIdEvent($id);
-        var_dump($place);
         include(ROOT."views/buyTickets.php");
     }
 }
