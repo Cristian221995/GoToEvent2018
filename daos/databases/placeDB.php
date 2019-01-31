@@ -105,7 +105,9 @@ class PlaceDB{
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function ($p) {
-            return new Place ($p['id_place_type_x_event'], $p['id_place_type'], $p['price'], $p['quantity'], $p['remainder']);
+            $placeTypeDB = new PlaceTypeDB();
+            $placeTypeList = $placeTypeDB->retrideById($p['id_place_type']);
+            return new Place ($p['id_place_type_x_event'], $placeTypeList, $p['price'], $p['quantity'], $p['remainder']);
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }

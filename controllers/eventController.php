@@ -178,18 +178,14 @@ class EventController{
 
     public function getAllEventData($id){
 
+        $aux = '';
         $event = $this->dao->retrideById($id);
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
         foreach ($data as $key => $value) {
-            if($key-1 >= 0){
-                $eventDate = $data[$key-1]->getEventDate();
-                if($eventDate<$value->getEventDate()){
-                    $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
-                }
-            }
-            else{
+            if($aux!=$value){
                 $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
+                $aux = $value;
             }
         }
         $length = sizeof($event->getCalendar()) - 1;
@@ -239,14 +235,6 @@ class EventController{
         $eventList = $this->dao->retrideById($id);
         return $eventList;
     }
-
-    public function buyTickets($id){
-        
-    }
-
 }
-
-
-
 
 ?>

@@ -42,7 +42,13 @@ class CalendarController{
 
     public function retrideCalendar($id){
         $calendar=$this->dao->retrideCalendar($id);
-        return $calendar;
+        if(!is_array($calendar)){
+            $calendarAux[] = $calendar;
+        }
+        else{
+            $calendarAux = $calendar;
+        }
+        return $calendarAux;
     }
 
     public function getIdByName($nombre){

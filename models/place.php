@@ -32,7 +32,9 @@ class Place
     }
 
     public function setPlaceType($placeType){
-        $this->placeType = $placeType;
+        foreach ($placeType as $key => $value) {
+            array_push($this->placeType, $value);
+        }
     }
 
     public function getPrice(){

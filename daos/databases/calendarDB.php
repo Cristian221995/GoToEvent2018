@@ -83,7 +83,7 @@ class CalendarDB extends SingletonDao implements IDao{
             inner join event_places ep on c.id_event_place = ep.id_event_place
         WHERE
             e.id_event = '$eventID'";
-
+            
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -102,12 +102,11 @@ class CalendarDB extends SingletonDao implements IDao{
 
     public function getIdByName($dbName, $rowName, $name){
 
-        $query = 'SELECT id_'. $rowName . ' FROM '. $dbName .' WHERE '. $rowName .'_name = (:name)';
-        $parameters['name'] = $name;
+        $query = "SELECT id_". $rowName . " FROM ". $dbName ." WHERE ". $rowName ."_name = '$name' ORDER BY id_" . $rowName . " desc";
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
-            $result = $pdo->execute($query, $parameters);
+            $result = $pdo->execute($query);
             if($result){
                 return $result[0]['id_'.$rowName];
             }
