@@ -3,6 +3,7 @@ namespace controllers;
 use daos\databases\ArtistDB as Artista;
 //use daos\lists\ArtistDao as Artista;
 use models\Artist as Artist;
+use controllers\IndexController as IndexController;
 
 class ArtistController
 {
@@ -19,10 +20,11 @@ class ArtistController
   
     public function store($nombre)
     {
-        $artistFlag = $this->searchByName($nombre);
-        if(!$artistFlag){
+        $flag = $this->dao->retrideByName($nombre);
+        if(!$flag){
             $this->dao->insert($nombre);
-            header("Location:".HOME);
+            $indexController = new IndexController();
+            $indexController->index();
         }
         else{
             throw new \Exception ('El artista ya existe');
@@ -44,16 +46,6 @@ class ArtistController
     public function retride(){
         $list=$this->dao->retride();
         return $list;
-    }
-    
-    public function searchByName($nombre){
-        $artist = $this->dao->searchByName($nombre);
-        if($artist){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 
 }

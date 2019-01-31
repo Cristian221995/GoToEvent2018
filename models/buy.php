@@ -9,8 +9,8 @@ class Buy
 
     public function __construct($date, $user)
     {
-            $this->date=$date;
-            $this->user=$user;
+        $this->date=$date;
+        $this->user=$user;
     }
 
     public function getDate(){

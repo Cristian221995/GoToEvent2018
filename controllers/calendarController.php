@@ -23,7 +23,6 @@ class CalendarController{
         $calendarList = $event->getCalendar();
         if($calendarList){
             foreach ($calendarList as $key => $value) {
-                var_dump($value);
                 $this->dao->insert($value);
             }
         }

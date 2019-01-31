@@ -58,6 +58,14 @@
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
+              <!--  <?php if(isset($alert)) { ?>
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position: absolute; width: 90%; margin: 5%; top: 0; left: 0;">
+                    <small><?= $alert ?></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+                /*<?php } ?>-->
                 <form action="Event/index2" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
@@ -104,6 +112,24 @@
                             </select>
                     </div>
 
+                    <div class="form-group">
+                        <label> Ingresar tipos de plaza a vender: </label><br>
+                        <?php
+                        if($listPlaceType){
+                            foreach ($listPlaceType as $key => $value) { ?>
+                                <?php if($value){ ?>
+                                    <?=$value->getName()?> <input onClick="checkboxPlace()" type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
+                               <?php }
+                             }
+                        } ?>
+                    </div>  
+                    <!-- Div en el que se va a insertar el codigo con Js -->
+                    <div id="toComplete">
+
+                    </div>
+
+                    
+
                     <button type="submit" class="btn btn-primary">Siguiente</button>
                     
                 </form>
@@ -116,5 +142,6 @@
             </div>
         </div>
     </div>
+    <script src="<?=FRONT_ROOT?>js/event.js"></script>
 </body>
 </html>

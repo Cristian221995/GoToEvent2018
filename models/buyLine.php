@@ -9,10 +9,10 @@ class Buy
 
     public function __construct($buyList, $finalPrice, $place, $quantity)
     {
-            $this->buyList=$buyList;
-            $this->finalPrice=$finalPrice;
-            $this->place=$place;
-            $this->quantity=$quantity;
+        $this->buyList=$buyList;
+        $this->finalPrice=$finalPrice;
+        $this->place=$place;
+        $this->quantity=$quantity;
     }
 
     public function getBuyList(){
