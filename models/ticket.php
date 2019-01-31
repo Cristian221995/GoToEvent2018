@@ -1,32 +1,25 @@
-<?php
+<?php 
 
 namespace models;
 
-class Ticket
-{
+class Ticket {
+    private $qr;
+    private $id;
     private $number;
-    private $qrCode;
-
-    public function __construct($number, $qrCode)
-    {
-        $this->number=$number;
-        $this->qrCode=$qrCode;
+    function __construct($number,$qr, $id = "") {
+        $this->id = $id;
+        $this->qr = $qr;
+        $this->number = $number;
     }
-
-    public function getNumber(){
+    public function getQR() {
+        return $this->qr;
+    }
+    public function getID() {
+        return $this->id;
+    }
+    public function getNumber() {
         return $this->number;
-    }
-
-    public function setNumber($number){
-        $this->number=$number;
-    }
-
-    public function getQrCode(){
-        return $this->qrCode;
-    }
-
-    public function setQrCode($qrCode){
-        $this->qrCode=$qrCode;
     }
 }
 ?>
+
