@@ -4,17 +4,23 @@ namespace models;
 
 class User{
 
+    private $id;
     private $email;
     private $userName;
     private $pass;
     private $role;      //user or admin
 
-    function __construct($email, $userName, $pass, $role){
+    function __construct($id, $email, $userName, $pass, $role){
         
+        $this->id = $id;
         $this->email = $email;
         $this->userName = $userName;
         $this->pass = $pass;
         $this->role = $role;
+    }
+
+    public function setId($id){
+        $this->id = $id;
     }
 
     public function setEmail($email){
@@ -35,6 +41,10 @@ class User{
     public function setRole($role){
 
         $this->role = $role;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 
     public function getEmail(){

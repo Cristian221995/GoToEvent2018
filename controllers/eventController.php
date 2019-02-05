@@ -5,9 +5,13 @@ use daos\databases\eventDB as eventDB;
 //use daos\lists\eventDao as eventDB;
 use models\Event as Event;
 use models\Image as Image;
+use models\PlaceType as PlaceType;
+use models\Place as Place;
 use controllers\CalendarController as CalendarController;
 use controllers\ImageController as ImageController;
 use controllers\PlaceTypeController as PlaceTypeController;
+use controllers\IndexController as IndexController;
+use daos\databases\PlaceDB as PlaceDao;
 
 
 class EventController{
@@ -20,13 +24,16 @@ class EventController{
    }
 
    public function index(){
-    $categoryController = new CategoryController();
-    $listCategory = $categoryController->retride();
+        $categoryController = new CategoryController();
+        $listCategory = $categoryController->retride();
 
-    $eventPlaceController = new EventPlaceController();
-    $listEventPlace = $eventPlaceController->retride();
+        $eventPlaceController = new EventPlaceController();
+        $listEventPlace = $eventPlaceController->retride();
 
-    include(ROOT. "views/createEventForm.php");
+        $placeTypeController = new PlaceTypeController();
+        $listPlaceType = $placeTypeController->retride();
+
+        include(ROOT. "views/createEventForm.php");
    }
 
    public function getEventData(){
@@ -51,29 +58,28 @@ class EventController{
     }
 
     public function index2(){
-       
-      /*  $completeDate = getdate();
-        $year = $completeDate['year'];
-        $month = $completeDate['mon'];
-        $day = $completeDate['mday'];
-        $myConcatenate = $year . "-" . $month . "-" . $day;
 
-        $actualDate = new DateTime($myConcatenate);
-        $dateStart = new DateTime($_POST['eventDateStart']);
-
-        if($dateStart < $actualDate){
-            $alert = 'La fecha de inicio del evento es incorrecta.';
-            include "views/createEventForm.php";
-        }else{*/
-            $artistController = new ArtistController();
-            $listArtist = $artistController->retride();
+        $artistController = new ArtistController();
+        $listArtist = $artistController->retride();
     
-            $placeTypeController = new PlaceTypeController();
-            $listPlaceType = $placeTypeController->retride();
-    
-            include "views/artistsPerDay.php";
-        /*}*/
+        include "views/artistsPerDay.php";
+    }
 
+    public function setEventPlaces(){
+        $array = array();
+        foreach ($_SESSION["eventData"]["place"] as $key1 => $value) {
+            foreach ($_POST as $key2 => $valuePost) {
+                if($key2=="price" || $key2=="quantity"){
+                    foreach ($valuePost as $key3 => $valueIndex) {
+                        if($key1 === $key3){
+                            $array[$key2]=$valueIndex;
+                        }
+                    }
+                }
+            }
+            unset($_SESSION["eventData"]["place"][$key1]); //Hago unset para modificar el nombre del indice. Pasa de 0 y 1 a Platea y Popular
+            $_SESSION["eventData"]["place"][$value]=$array;
+        }
     }
 
    public function store()
@@ -86,15 +92,36 @@ class EventController{
                 $rutaImagen = $imageController -> subirImage($_FILES['eventIMG'], "eventImg");
                 $event = new Event('',$_SESSION['eventData']['name'], $_SESSION['eventData']['category'], $rutaImagen);
                 foreach ($_POST as $key => $value) {
-                    $eventDate = $_SESSION['eventData']['eventDates'][$counter];
-                    $eventPlace = $_SESSION['eventData']['eventPlace'];
-                    $event->setCalendar($eventDate, $eventPlace, $value);
-                    $counter++;
+                    if($key!="price" && $key!="quantity"){
+                        $eventDate = $_SESSION['eventData']['eventDates'][$counter];
+                        $eventPlace = $_SESSION['eventData']['eventPlace'];
+                        $event->setCalendar($eventDate, $eventPlace, $value);
+                        $counter++;
+                    }
                 }
                 $this->dao->insert($event);
                 $calendarControl = new CalendarController();
                 $calendarControl->store($event);
-                header("Location:".HOME);
+
+                $this->setEventPlaces();
+                $placeDao = new PlaceDao();
+                $price = "";
+                $quantity = "";
+                foreach ($_SESSION["eventData"]["place"] as $key => $value) {
+                    foreach ($value as $key2 => $value2) {
+                        if($key2=="price"){
+                            $price=$value2;
+                        }
+                        else{
+                            $quantity=$value2;
+                        }
+                        $placeType = new PlaceType('', $key);
+                        $place = new Place('', $placeType, $price, $quantity, $quantity);
+                    }
+                    $placeDao->insert($place, $event);
+                }
+                $indexController = new IndexController();
+                $indexController->index();
             }
         }
         else{
@@ -151,18 +178,31 @@ class EventController{
 
     public function getAllEventData($id){
 
+        $aux = '';
+        $event = $this->dao->retrideById($id);
         $calendarController = new CalendarController();
         $data = $calendarController->retrideCalendar($id);
-        var_dump($data);
-        $length = sizeof($data) - 1;
+        foreach ($data as $key => $value) {
+            if($aux!=$value){
+                $event->setCalendar($value->getEventDate(), $value->getEventPlace(), $value->getArtistList());
+                $aux = $value;
+            }
+        }
+        $length = sizeof($event->getCalendar()) - 1;
         include(ROOT . "views/printEvent.php");
     }
 
 
     public function getAll(){
 
-        $eventList = $this->retride();
-        return $eventList;
+        $eventList = $this->dao->retride();
+        if(!is_array($eventList)){
+            $eventListAux[] = $eventList;
+        }
+        else{
+            $eventListAux = $eventList;
+        }
+        return $eventListAux;
     }
 
     public function getEventsByCategoryName($categoryName){
@@ -173,13 +213,6 @@ class EventController{
         include(ROOT. "views/mainMenu.php");
     }
 
-    public function getNextSixEvents(){
-
-        
-
-
-    }
-
     public function searchByName($nombre){
         $event = $this->dao->searchByName($nombre);
         return $event;
@@ -188,7 +221,13 @@ class EventController{
     public function retrideByCategory($category){
 
         $eventList = $this->dao->retrideByCategory($category);
-        return $eventList;
+        if(!is_array($eventList)){
+            $eventListAux[] = $eventList;
+        }
+        else{
+            $eventListAux = $eventList;
+        }
+        return $eventListAux;
     }
 
     public function getById($id){
@@ -196,14 +235,6 @@ class EventController{
         $eventList = $this->dao->retrideById($id);
         return $eventList;
     }
-
-    public function buyTickets($id){
-        
-    }
-
 }
-
-
-
 
 ?>

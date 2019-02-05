@@ -68,23 +68,19 @@
                     <div class="form-group">
                         <label> Ingresar una imagen para el evento: </label>
                         <input type="file" class="form-control-file" name="eventIMG" required>
-                    </div> 
+                    </div>   
 
-                    <div class="form-group">
-                        <label> Ingresar tipos de plaza a vender: </label><br>
-                        <?php
-                        if($listPlaceType){
-                            foreach ($listPlaceType as $key => $value) { ?>
-                                <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <?=$value->getName()?> <br>
-                            <?php }
-                        } ?>
-                        
-                    </div>  
+                    <?php foreach ($_SESSION["eventData"]["place"] as $key => $value) { ?>
+                        <label for="">Nombre: <?=$value?></label><br>
+                        <label for="">Precio de entrada: </label>
+                            <input type="text" name="price[]"><br>
+                        <label for="">Cantidad a vender: </label>
+                            <input type="text" name="quantity[]"><br><br>
+                    <?php } ?>
 
 
 
                    <button type="submit" class="btn btn-primary">Crear Evento</button>
-                    
 
                 </form>
             </div>

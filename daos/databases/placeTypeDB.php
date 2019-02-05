@@ -57,7 +57,7 @@ class PlaceTypeDB extends SingletonDao implements IDao
 
     public function retride(){
 
-        $query = 'SELECT * FROM place_types order by place_type_name';
+        $query = 'SELECT * FROM place_types order by place_type_name desc';
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();

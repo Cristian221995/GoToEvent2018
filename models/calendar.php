@@ -32,7 +32,13 @@ class Calendar{
     }
 
     public function getArtistList(){
-        return $this->artistList;
+        if(!is_array($this->artistList)){
+            $aux[] = $this->artistList;
+        }
+        else{
+            $aux = $this->artistList;
+        }
+        return $aux;
     }
 
     public function getEventPlace(){

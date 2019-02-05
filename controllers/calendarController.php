@@ -23,7 +23,6 @@ class CalendarController{
         $calendarList = $event->getCalendar();
         if($calendarList){
             foreach ($calendarList as $key => $value) {
-                var_dump($value);
                 $this->dao->insert($value);
             }
         }
@@ -43,7 +42,13 @@ class CalendarController{
 
     public function retrideCalendar($id){
         $calendar=$this->dao->retrideCalendar($id);
-        return $calendar;
+        if(!is_array($calendar)){
+            $calendarAux[] = $calendar;
+        }
+        else{
+            $calendarAux = $calendar;
+        }
+        return $calendarAux;
     }
 
     public function getIdByName($nombre){

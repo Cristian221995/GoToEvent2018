@@ -70,20 +70,21 @@ create table place_types(
     constraint unq_place_type_event unique (place_type_name)
 );
 
-create table places(
-    id_place int auto_increment,
-    id_calendar int,
+create table place_types_x_event(
+    id_place_type_x_event int auto_increment,
+    id_event int,
     id_place_type int,
     price int,
     quantity int,
     remainder int,
-    constraint pk_id_place primary key (id_place),
-    constraint fk_id_calendar_place foreign key (id_calendar) references calendars (id_calendar),
-    constraint fk_id_place_type foreign key (id_place_type) references place_types (id_place_type)
+    constraint pk_id_place_type_x_event primary key (id_place_type_x_event),
+    constraint fk_id_event_place_types_x_event foreign key (id_event) references events (id_event),
+    constraint fk_id_place_type_place_types_x_event foreign key (id_place_type) references place_types (id_place_type)
 );
 
 insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');
 insert into categories (category_name) values ('Obra Teatral'),('Recital'),('Festival'),('Deportivo'),('Entretenimiento General'),('Lectura'),('Informatica'),('Gastronomica');
 insert into event_places (event_place_name, capacity) values ('Gran Rex', '3262'),('Luna Park', '9290'),('Jose Amalfitani', '49540'),('La Rural','950'),('Teatro Opera','2500');
 insert into users (user_email, user_name, user_pass, user_role) values ('admin@admin.com', 'admin', 'admin123', 'admin');
+insert into place_types (place_type_name) values ('Popular'),('Platea'),('Palco'),('Vip');
 

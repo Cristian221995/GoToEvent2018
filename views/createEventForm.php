@@ -79,6 +79,19 @@
                             </select>
                     </div>
 
+                    <div class="form-group">
+                        <label> Ingresar tipos de plaza a vender: </label><br>
+                        <?php
+                        if($listPlaceType){
+                            foreach ($listPlaceType as $key => $value) { ?>
+                                <?php if($value){ ?>
+                                    <?=$value->getName()?> <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
+                               <?php }
+                             }
+                        } ?>
+                        
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Siguiente</button>
                     
                 </form>
