@@ -82,6 +82,16 @@ create table place_types_x_event(
     constraint fk_id_place_type_place_types_x_event foreign key (id_place_type) references place_types (id_place_type)
 );
 
+
+create table tickets(
+    id_ticket int auto_increment,
+    number_ticket int,
+    qr varchar(50),
+    constraint pk_id_ticket primary key (id_ticket),
+    constraint unq_number_ticket unique (number_ticket),
+    constraint unq_qr unique (qr)
+);
+
 insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');
 insert into categories (category_name) values ('Obra Teatral'),('Recital'),('Festival'),('Deportivo'),('Entretenimiento General'),('Lectura'),('Informatica'),('Gastronomica');
 insert into event_places (event_place_name, capacity) values ('Gran Rex', '3262'),('Luna Park', '9290'),('Jose Amalfitani', '49540'),('La Rural','950'),('Teatro Opera','2500');
