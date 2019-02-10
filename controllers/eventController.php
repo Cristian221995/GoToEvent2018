@@ -228,7 +228,7 @@ class EventController{
     }
 
     public function getEventsByName($eventName){
-        $list = $this->getByName($eventName);
+        $list = $this->dao->getByNameLike($eventName);
         if($list){
             if(!is_array($list)){
                 $eventList[] = $list; 

@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/util.css">
-	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/main.css">
+	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/login.css">
 	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/formStyle.css">
 
 <!--===============================================================================================-->
@@ -32,7 +32,7 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('<?= FRONT_ROOT ?>images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('http://www.thejeffersonchronicle.com/wp-content/uploads/2018/06/raffle-tickets-1024x683.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 			<?php if(isset($alertSuccess)){ ?>
                 <div class="alert alert-success">
@@ -84,19 +84,6 @@
 								<a href="User" class="login100-form-btn" role="button" aria-pressed="true">Registrate Aquí</a>
 							</button>
 						</div>
-					</div>
-
-
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>
-							O registrate usando...
-						</span>
-					</div>
-
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
-						</a>
 					</div>
 
 					<div class="text-right p-t-8 p-b-31"></div>

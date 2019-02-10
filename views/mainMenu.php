@@ -79,7 +79,7 @@
     <section class="search-section">
       <div class="search-bar">
         <form action="<?= FRONT_ROOT ?>Event/getEventsByName" method="post">
-          <input type="text" name="search" placeholder="Ingrese evento o artista a buscar:" class="search-txt">
+          <input type="text" name="search" placeholder="Ingrese evento o artista a buscar:" class="search-txt" required>
           <button type="submit" class="search-btn"></button>
         </form>
       </div>

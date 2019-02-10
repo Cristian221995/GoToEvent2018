@@ -16,7 +16,13 @@ class BuyController{
     public function index($id){
 
         $placedb = new PlaceDB();
-        $place = $placedb->retrideByIdEvent($id);
+        $placeAux = $placedb->retrideByIdEvent($id);
+        if(!is_array($placeAux)){
+            $place[] = $placeAux;
+        }
+        else{
+            $place = $placeAux;
+        }
         include(ROOT."views/buyTickets.php");
     }
 }
