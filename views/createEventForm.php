@@ -22,18 +22,23 @@
     <div class="container">
         <div class="login-form-all">
             <div class="main-div-all">
+            <?php if(isset($alertSuccess)){ ?>
+                <div class="alert alert-success">
+                    <strong>MENSAJE:</strong> <?= $alertSuccess ?>
+                </div>
+            <?php } 
+                else{
+                    if(isset($alertError)){ ?>
+                        <div class="alert alert-danger">
+                            <strong>ERROR:</strong> <?= $alertError ?>
+                        </div>
+                <?php }
+                }?>
+
                 <div class="panel">
                     <h2>Nuevo Evento</h2>
                 </div>
-              <!--  <?php if(isset($alert)) { ?>
-                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position: absolute; width: 90%; margin: 5%; top: 0; left: 0;">
-                    <small><?= $alert ?></small>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                    </button>
-               </div>
-                /*<?php } ?>-->
-                <form action="Event/index2" method="POST" enctype="multipart/form-data">
+                <form action="<?= FRONT_ROOT ?>Event/index2" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Nombre del evento:" required>

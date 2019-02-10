@@ -24,7 +24,7 @@
   <link href="<?=FRONT_ROOT?>lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="<?=FRONT_ROOT?>css/style.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>css/mainMenu.css" rel="stylesheet">
 
 </head>
 
@@ -68,6 +68,20 @@
             <p>Lollapalooza​ es un festival musical de los Estados Unidos que originalmente ofrecia bandas de rock alternativo, indie y punk rock; tambien hay actuaciones comicas y de danza. Concebido en 1991 por Perry Farrell, cantante de Jane's Addiction, Lollapalooza se realizo anualmente hasta 1997 y fue revivido en 2003. </p>
           </div>
         </div>
+      </div>
+    </section>
+    <br><br>
+    <div class="section-header">
+          <h2>Buscador</h2>
+          <p>¡Busca aquí tus eventos o artistas favoritos!</p>
+    </div>
+
+    <section class="search-section">
+      <div class="search-bar">
+        <form action="<?= FRONT_ROOT ?>Event/getEventsByName" method="post">
+          <input type="text" name="search" placeholder="Ingrese evento o artista a buscar:" class="search-txt">
+          <button type="submit" class="search-btn"></button>
+        </form>
       </div>
     </section>
 
