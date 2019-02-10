@@ -15,8 +15,8 @@ class CategoryController{
     }
 
    public function index(){
-
-    include(ROOT. "views/createCategoryForm.php");
+       
+       include(ROOT. "views/createCategoryForm.php");
     }
 
     public function store($nombre)
@@ -24,11 +24,12 @@ class CategoryController{
         $categoryFlag = $this->searchByName($nombre);
         if(!$categoryFlag){
             $this->dao->insert($nombre);
-            header("Location:".HOME);
+            $alertSuccess = "La categoría se guardó con exito";
         }
         else{
-            throw new \Exception ('La categoría ya existe');
+            $alertError = "La categoría ya exíste";
         }
+        include(ROOT. "views/createCategoryForm.php");
     }
 
     /*public function delete($nombre)

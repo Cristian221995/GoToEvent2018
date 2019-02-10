@@ -7,7 +7,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/form.css">
+    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/formStyle.css">
     <title>Buy Tickets</title>
 </head>
 
@@ -30,8 +30,8 @@
     </header>
 
     <div class="container">
-        <div class="login-form">
-            <div class="main-div">
+        <div class="login-form-all">
+            <div class="main-div-all">
                 <div class="panel">
                     <form action="" method="post" id="form" name="form">
                         <h2>Comprar Tickets</h2>
@@ -50,10 +50,9 @@
                         <input type="text" name="quantity" required OnKeyUp="calcularTotal()"><br><br>
                         <label for=""><strong>Precio Final: </strong></label>
                         <input type="text" name="finalPrice" disabled ><br><br>
-                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        <button type="submit" class="btn btn-danger btn-block">Agregar al carrito</button>
+                        <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                     </form>
-                    
-                    <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menu principal</a>
                 </div>
             </div> 
         </div>

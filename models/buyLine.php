@@ -1,18 +1,14 @@
 <?php
 namespace models;
-class Buy
+class BuyLine
 {
-    private $buyList;
+    private $buyList;       //array de compras (buy)
     private $finalPrice;
-    private $place;
-    private $quantity;
 
-    public function __construct($buyList, $finalPrice, $place, $quantity)
+    public function __construct($buyList, $finalPrice)
     {
         $this->buyList=$buyList;
         $this->finalPrice=$finalPrice;
-        $this->place=$place;
-        $this->quantity=$quantity;
     }
 
     public function getBuyList(){
@@ -32,22 +28,6 @@ class Buy
 
     public function setFinalPrice($finalPrice){
         $this->finalPrice=$finalPrice;
-    }
-
-    public function getPlace(){
-        return $this->place;
-    }
-
-    public function setPlace($place){
-        $this->place=$place;
-    }
-
-    public function getQuantity(){
-        return $this->quantity;
-    }
-
-    public function setQuantity($quantity){
-        $this->quantity=$quantity;
     }
 }
 ?>

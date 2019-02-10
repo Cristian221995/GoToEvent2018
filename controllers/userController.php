@@ -29,7 +29,8 @@ class UserController{
             $indexController->index();
         }
         else{
-            throw new \Exception ('El email o nombre de usuario ya existe');
+            $alertError = "El nombre de usuario ya exíste";
+            include(ROOT. "views/registerForm.php");
         }
     }
 

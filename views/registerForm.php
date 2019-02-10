@@ -32,14 +32,26 @@
 	<div id="logo" class="pull-left">
 		<!-- Uncomment below if you prefer to use a text logo -->
 		<!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-		<a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="img/logo3.png" alt="GoToEvent" title=""></a>
+		<a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="<?= FRONT_ROOT ?>img/logo3.png" alt="GoToEvent" title=""></a>
 		</div>
 	</header>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('<?= FRONT_ROOT ?>images/bg-01.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="User/Store" method="POST">
+			<?php if(isset($alertSuccess)){ ?>
+                <div class="alert alert-success">
+                    <strong>MENSAJE:</strong> <?= $alertSuccess ?>
+                </div>
+            <?php } 
+                else{
+                    if(isset($alertError)){ ?>
+                        <div class="alert alert-danger">
+                            <strong>ERROR:</strong> <?= $alertError ?>
+                        </div>
+                <?php }
+                }?>
+				<form class="login100-form validate-form" action="<?= FRONT_ROOT ?>User/store" method="POST">
 					<span class="login100-form-title p-b-49">
 						Registro
                     </span>

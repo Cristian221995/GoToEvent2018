@@ -1,10 +1,3 @@
-<?php
-    $_POST['name'] = ucwords(strtolower($_POST['name']));
-    $_SESSION['eventData'] = $_POST;
-    if($_SESSION['eventData']['eventDateFinish']<$_SESSION['eventData']['eventDateStart']){
-        header("Location:" . HOME . "Event");
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +8,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/form.css">
+    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/formStyle.css">
     <title>Crear evento</title>
 
     <!-- Bootstrap core CSS -->
@@ -59,8 +52,8 @@
         }
 ?><br><br>
     <div class="container">
-        <div class="login-form">
-            <div class="main-div">
+        <div class="login-form-all">
+            <div class="main-div-all">
                 <div class="panel">
                     <h2>Artistas por día</h2>
                 </div>
@@ -113,8 +106,7 @@
 
 
 
-
-                   <button type="submit" class="btn btn-primary">Crear Evento</button>
+                   <button type="submit" class="btn btn-danger btn-block">Crear Evento</button>
 
                 </form>
             </div>
