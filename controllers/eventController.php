@@ -129,15 +129,12 @@ class EventController{
         }
     }
 
-    public function delete($nombre)
-    {
-        $flag = $this->searchInDatabase($nombre);
-        if($flag){
-            $event = new Event($nombre);
-            $this->dao->delete($event);
-        }
-        else{
-            throw new \Exception ('Ha ocurrido un error'); 
+    public function delete($id){
+        $event = $this->getById($id);
+        if($event){
+            $this->dao->delete($event->getId());
+            $indexController = new IndexController();
+            $indexController->index();
         }
     }
 
@@ -235,6 +232,8 @@ class EventController{
         $eventList = $this->dao->retrideById($id);
         return $eventList;
     }
+
+    
 }
 
 ?>

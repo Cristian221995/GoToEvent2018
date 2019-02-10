@@ -3,7 +3,7 @@ namespace controllers;
 use daos\databases\ArtistDB as Artista;
 //use daos\lists\ArtistDao as Artista;
 use models\Artist as Artist;
-use controllers\IndexController as IndexController;
+use controllers\LoginController as LoginController;
 
 class ArtistController
 {
@@ -23,12 +23,12 @@ class ArtistController
         $flag = $this->dao->retrideByName($nombre);
         if(!$flag){
             $this->dao->insert($nombre);
-            $indexController = new IndexController();
-            $indexController->index();
+            $alertSuccess = "El artista se guardó con exito";
         }
         else{
-            throw new \Exception ('El artista ya existe');
+            $alertError = "El artista ya exíste";
         }
+        include(ROOT. "views/artistForm.php");
     }
 
     /*public function delete($nombre)

@@ -93,6 +93,24 @@ class EventPlaceDB extends SingletonDao implements IDao{
         }
     }
 
+    public function retrideByName($name){
+        $query = "SELECT * FROM event_places WHERE event_place_name = '$name'";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
     public function getIdByName($name){
 
         $query = "SELECT id_event_place FROM event_places WHERE event_place_name = :event_place_name";

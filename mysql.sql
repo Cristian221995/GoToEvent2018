@@ -39,7 +39,7 @@ create table calendars(
     id_event int,
     id_event_place int,
     constraint pk_id_calendar primary key (id_calendar),
-    constraint fk_id_event foreign key (id_event) references events (id_event),
+    constraint fk_id_event foreign key (id_event) references events (id_event) on delete cascade,
     constraint fk_id_event_place foreign key (id_event_place) references event_places (id_event_place)
 );
 
@@ -49,7 +49,7 @@ create table artists_x_calendar(
     id_calendar int,
     constraint pk_artists_x_calendar primary key (id_artists_x_calendar),
     constraint fk_id_artist foreign key (id_artist) references artists (id_artist),
-    constraint fk_id_calendar foreign key (id_calendar) references calendars (id_calendar)
+    constraint fk_id_calendar foreign key (id_calendar) references calendars (id_calendar) on delete cascade
 );
 
 create table users(
@@ -78,11 +78,11 @@ create table place_types_x_event(
     quantity int,
     remainder int,
     constraint pk_id_place_type_x_event primary key (id_place_type_x_event),
-    constraint fk_id_event_place_types_x_event foreign key (id_event) references events (id_event),
+    constraint fk_id_event_place_types_x_event foreign key (id_event) references events (id_event) on delete cascade,
     constraint fk_id_place_type_place_types_x_event foreign key (id_place_type) references place_types (id_place_type)
 );
 
-insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');
+insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaqueño Palavecino'),('Paulo Londra'),('Ed Sheeran');
 insert into categories (category_name) values ('Obra Teatral'),('Recital'),('Festival'),('Deportivo'),('Entretenimiento General'),('Lectura'),('Informatica'),('Gastronomica');
 insert into event_places (event_place_name, capacity) values ('Gran Rex', '3262'),('Luna Park', '9290'),('Jose Amalfitani', '49540'),('La Rural','950'),('Teatro Opera','2500');
 insert into users (user_email, user_name, user_pass, user_role) values ('admin@admin.com', 'admin', 'admin123', 'admin');

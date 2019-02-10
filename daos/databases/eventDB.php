@@ -29,17 +29,17 @@ class EventDB extends SingletonDao implements IDao{
         }
     }
 
-    public function delete($event){
+    public function delete($eventId){
         
-        /*$query = 'DELETE FROM events WHERE event_name = :name';
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $eventList = $event->getName();
-        $command->bindParam(':name',$eventList);
-        $resultDelete = $command->execute();
-
-        return $resultDelete;*/
+        $query = "DELETE FROM events WHERE id_event = '$eventId'";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
     }
 
     public function update($dato, $datoNuevo){

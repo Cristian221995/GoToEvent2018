@@ -15,7 +15,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/form.css">
+    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/formStyle.css">
     <title>Crear evento</title>
 </head>
 
@@ -26,8 +26,8 @@
             <a class="scrollto"><img src="<?=FRONT_ROOT?>img/logo3.png" alt="GoToEvent" title=""></a>
         </div class="btn-group">
     <div class="container">
-        <div class="login-form">
-            <div class="main-div">
+        <div class="login-form-all">
+            <div class="main-div-all">
                 <div class="panel">
                     <h2>Artistas por día</h2>
                 </div>
@@ -80,7 +80,7 @@
 
 
 
-                   <button type="submit" class="btn btn-primary">Crear Evento</button>
+                   <button type="submit" class="btn btn-danger btn-block">Crear Evento</button>
 
                 </form>
             </div>

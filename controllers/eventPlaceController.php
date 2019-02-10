@@ -21,15 +21,16 @@ class EventPlaceController{
 
    public function store($nombre, $capacidad)
     {
-        $flag = $this->searchInDatabase($nombre);
+        $flag = $this->dao->retrideByName($nombre);
         if(!$flag){
-            $eventPlace = new EventPlace($nombre, $capacidad);
+            $eventPlace = new EventPlace('',$nombre, $capacidad);
             $this->dao->insert($eventPlace);
-            header("Location:".HOME);
+            $alertSuccess = "El lugar de evento se guardó con exito";
         }
         else{
-            throw new \Exception ('El lugar de evento ya existe');
+            $alertError = "El lugar de evento ya exíste";
         }
+        include(ROOT. "views/createEventPlaceForm.php");
     }
 
     public function delete($nombre)

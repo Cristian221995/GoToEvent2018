@@ -19,12 +19,13 @@ class PlaceTypeController{
 
         $flag = $this->searchInDatabase($name);
         if(!$flag){
-            $ultimoID=$this->dao->insert($name);
-            header("Location:".HOME);
+            $this->dao->insert($name);
+            $alertSuccess = "La plaza se guardó con exito";
         }
         else{
-            throw new \Exception ('El tipo de plaza ya existe');
+            $alertError = "La plaza ya exíste";
         }
+        include(ROOT. "views/placeTypeForm.php");
     }
 
     public function retride(){
