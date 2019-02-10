@@ -236,10 +236,14 @@ class EventController{
             else{
                 $eventList = $list;
             }
-            $categoryController = new CategoryController();
-            $categoryList = $categoryController->retride();
-            include(ROOT. "views/mainMenu.php");
         }
+        else{
+            $alertError = "No se han encontrado resultados para: '".$eventName."'";
+            $eventList = $this->getAll();
+        }
+        $categoryController = new CategoryController();
+        $categoryList = $categoryController->retride();
+        include(ROOT. "views/mainMenu.php");
     }
 
     public function searchByName($nombre){

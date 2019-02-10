@@ -95,6 +95,19 @@
           <p>Aqui estan todos nuestros eventos:</p>
         </div>
 
+        <?php if(isset($alertSuccess)){ ?>
+                 <div class="alert alert-success">
+                    <strong>MENSAJE:</strong> <?= $alertSuccess ?>
+                </div>
+            <?php } 
+            else{
+              if(isset($alertError)){ ?>
+                    <div class="alert alert-danger">
+                        <strong>ERROR:</strong> <?= $alertError ?>
+                    </div>
+               <?php }
+          } ?>
+
         <div class="row">
           <?php if(isset($eventsFilter)){ ?>
               <?php foreach($eventsFilter as $key => $value){ 
