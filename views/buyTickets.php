@@ -21,13 +21,19 @@
 </script>
 
 <body id="LoginForm">
-    <header>
-        <div id="logo" class="pull-left">
-            <!-- Uncomment below if you prefer to use a text logo -->
-            <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-            <a href="<?= FRONT_ROOT ?>index" class="scrollto"><img src="<?= FRONT_ROOT ?>img/logo3.png" alt="GoToEvent" title=""></a>
-        </div>
-    </header>
+<?php
+    if(isset($_SESSION["user"])){
+            if($_SESSION["user"]->getRole()==="user"){
+                include(ROOT . "views/headerUser.php");
+            }
+            else{
+                include(ROOT . "views/headerAdmin.php");
+            }
+        }
+        else{
+            include(ROOT . "views/headerNotLogued.php");
+        }
+    ?><br><br><br>
 
     <div class="container">
         <div class="login-form-all">

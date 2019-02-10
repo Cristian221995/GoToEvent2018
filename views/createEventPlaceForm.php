@@ -9,6 +9,31 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/formStyle.css">
     <title>Crear lugar de evento</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<?=FRONT_ROOT?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<?=FRONT_ROOT?>css/shop-item.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="<?=FRONT_ROOT?>images/icons/favicon.ico" rel="icon">
+    <link href="<?=FRONT_ROOT?>img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="<?=FRONT_ROOT?>lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="<?=FRONT_ROOT?>lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?=FRONT_ROOT?>lib/animate/animate.min.css" rel="stylesheet">
+    <link href="<?=FRONT_ROOT?>lib/venobox/venobox.css" rel="stylesheet">
+    <link href="<?=FRONT_ROOT?>lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="<?=FRONT_ROOT?>css/style.css" rel="stylesheet">
 </head>
 <body id="LoginForm">
 <?php
