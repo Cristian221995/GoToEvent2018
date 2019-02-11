@@ -3,6 +3,7 @@
 use models\CartLine as CartLine;
 use daos\lists\CartList as CartList;
 use controllers\BuyController as BuyController;
+use daos\databases\PlaceDB as PlaceDB;
 
 class CartController{
 
@@ -19,18 +20,20 @@ class CartController{
     }
 
     public function agregar($placeName, $price, $quantity){
+        
+        $eventId = $_SESSION['idEvent'];
 
         settype($price,"integer");
         settype($quantity,"integer");
         $finalPrice = $price * $quantity;
 
         $placedb = new PlaceDB();
-        $place = $placedb->
+        $placedb->updateRemainder($placeName,$quantity,$eventId);
 
         $cartLine = new CartLine($placeName, $quantity, $finalPrice);
         $this->dao->add($cartLine);
 
-        $eventId = $_SESSION['idEvent'];
+        
         $buyController = new BuyController();
         $buyController->index($eventId);
     }

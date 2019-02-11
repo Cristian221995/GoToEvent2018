@@ -102,9 +102,14 @@ class PlaceDB{
         }
     }
 
-    public function updateRemainder(){
+   public function updateRemainder($placeName,$quantity,$eventId){
         
-         $query "UPDATE place_types_x_event SET remainder =  "
+        $placeTypeDB = new PlaceTypeDB();
+        $idPlace = $placeTypeDB->retrideByName($placeName);
+
+         $query "UPDATE place_types_x_event SET remainder = remainder-$quantity WHERE id_place_type = $idPlace AND id_event = $eventId"
+        
+
     }
 
     protected function mapear($value) {
