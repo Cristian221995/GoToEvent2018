@@ -67,6 +67,28 @@ class PlaceDB{
     public function retrideByPlaceType($idPlaceType){
 
         $query = "SELECT * FROM place_types_x_event WHERE id_place_type = '$idPlaceType'";
+<<<<<<< HEAD
+=======
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function retrideByIdEvent($idEvent){
+
+        $query = "SELECT * FROM place_types_x_event WHERE id_event = '$idEvent'";
+>>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();

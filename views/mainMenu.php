@@ -24,7 +24,7 @@
   <link href="<?=FRONT_ROOT?>lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="<?=FRONT_ROOT?>css/style.css" rel="stylesheet">
+  <link href="<?=FRONT_ROOT?>css/mainMenu.css" rel="stylesheet">
 
 </head>
 
@@ -70,6 +70,20 @@
         </div>
       </div>
     </section>
+    <br><br>
+    <div class="section-header">
+          <h2>Buscador</h2>
+          <p>¡Busca aquí tus eventos o artistas favoritos!</p>
+    </div>
+
+    <section class="search-section">
+      <div class="search-bar">
+        <form action="<?= FRONT_ROOT ?>Event/getEventsByName" method="post">
+          <input type="text" name="search" placeholder="Ingrese evento o artista a buscar:" class="search-txt" required>
+          <button type="submit" class="search-btn"></button>
+        </form>
+      </div>
+    </section>
 
     <!--==========================
       Events Section
@@ -80,6 +94,19 @@
           <h2>Eventos</h2>
           <p>Aqui estan todos nuestros eventos:</p>
         </div>
+
+        <?php if(isset($alertSuccess)){ ?>
+                 <div class="alert alert-success">
+                    <strong>MENSAJE:</strong> <?= $alertSuccess ?>
+                </div>
+            <?php } 
+            else{
+              if(isset($alertError)){ ?>
+                    <div class="alert alert-danger">
+                        <strong>ERROR:</strong> <?= $alertError ?>
+                    </div>
+               <?php }
+          } ?>
 
         <div class="row">
           <?php if(isset($eventsFilter)){ ?>

@@ -26,6 +26,14 @@ class LoginController
                 $indexController = new IndexController();
                 $indexController->index();
             }
+            else{
+                $alertError = "Contraseña incorrecta. Intente nuevamente";
+                include(ROOT. "views/login.php");
+            }
+        }
+        else{
+            $alertError = "Nombre de usuario incorrecto. Intente nuevamente";
+            include(ROOT. "views/login.php");
         }
     }
 

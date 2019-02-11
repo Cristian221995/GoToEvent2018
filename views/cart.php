@@ -7,9 +7,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/formStyle.css">
-    <title>Crear categoria</title>
-
+    <link rel="stylesheet" href="<?= FRONT_ROOT ?>css/cart.css">
     <!-- Bootstrap core CSS -->
     <link href="<?=FRONT_ROOT?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,10 +32,16 @@
 
     <!-- Main Stylesheet File -->
     <link href="<?=FRONT_ROOT?>css/style.css" rel="stylesheet">
+    <title>Cart</title>
+    <style>
+        body{
+            background-image: url("https://previews.123rf.com/images/davidfranklinstudioworks/davidfranklinstudioworks1603/davidfranklinstudioworks160300042/54149988-admit-one-cinema-tickets-background-with-one-unique-blue-ticket.jpg");)
+        }
+    </style>
 </head>
-<body id="LoginForm">
-<?php
-  if(isset($_SESSION["user"])){
+<body>
+    <?php
+    if(isset($_SESSION["user"])){
             if($_SESSION["user"]->getRole()==="user"){
                 include(ROOT . "views/headerUser.php");
             }
@@ -48,35 +52,23 @@
         else{
             include(ROOT . "views/headerNotLogued.php");
         }
-?><br><br>
+    ?><br><br>
     <div class="container">
-        <div class="login-form-all">
-            <div class="main-div-all">
-            <?php if(isset($alertSuccess)){ ?>
-                <div class="alert alert-success">
-                    <strong>MENSAJE:</strong> <?= $alertSuccess ?>
-                </div>
-            <?php } 
-                else{
-                    if(isset($alertError)){ ?>
-                        <div class="alert alert-danger">
-                            <strong>ERROR:</strong> <?= $alertError ?>
-                        </div>
-                <?php }
-                }?>
-                <div class="panel">
-                    <h2>Nueva Categoría</h2>
-                    <p>Ingrese el nombre de la categoria:</p>
-                </div>
-                <form action="<?= FRONT_ROOT ?>Category/store" method="POST">
-
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Nombre de la categoria" required>
-                    </div>
-
-                    <button type="submit" name="button" class="btn btn-danger btn-block">Crear Categoría</button>
-                    <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
-
+        <h2 class="title">Carrito</h2>
+        <div class="box">
+            <div class="cart-item">
+                <strong>Título de evento: </strong><p>Hola</p><br>
+                <strong>Nombre de plaza: </strong><p>Algo</p>
+                <strong>Cantidad: </strong><p>3</p><br>
+                <strong>Precio: </strong><p>$300</p>
+                <form action="" method="post">
+                    <button type="submit" name="button" class="btn btn-danger btn-block">Eliminar</button>
+                </form>
+            </div>
+            <div class="cart-item">
+                <strong>Precio final: </strong><p>$1000</p><br>
+                <form action="" method="post">
+                    <button type="submit" name="button" class="btn btn-danger btn-block">Finalizar compra</button>
                 </form>
             </div>
         </div>

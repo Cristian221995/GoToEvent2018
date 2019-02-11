@@ -29,17 +29,17 @@ class EventDB extends SingletonDao implements IDao{
         }
     }
 
-    public function delete($event){
+    public function delete($eventId){
         
-        /*$query = 'DELETE FROM events WHERE event_name = :name';
-        $pdo = new Connection();
-        $connection = $pdo->Connect();
-        $command = $connection->prepare($query);
-        $eventList = $event->getName();
-        $command->bindParam(':name',$eventList);
-        $resultDelete = $command->execute();
-
-        return $resultDelete;*/
+        $query = "DELETE FROM events WHERE id_event = '$eventId'";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($query);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
     }
 
     public function update($dato, $datoNuevo){
@@ -154,6 +154,32 @@ class EventDB extends SingletonDao implements IDao{
         e.img_path,
         c.id_category,
         c.category_name  FROM  events e inner join categories c on e.id_category = c.id_category WHERE e.event_name = '$name'";
+<<<<<<< HEAD
+=======
+        try {
+            $this->connection = Connection::getInstance();
+            $this->connection->connect();
+            $result = $this->connection->execute($query);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($result)){
+            return $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getByNameLike($name){
+
+        $query = "SELECT e.id_event,
+        e.event_name,
+        e.img_path,
+        c.id_category,
+        c.category_name  FROM  events e inner join categories c on e.id_category = c.id_category WHERE e.event_name LIKE '%$name%'";
+>>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();

@@ -58,11 +58,36 @@ class EventController{
     }
 
     public function index2(){
+<<<<<<< HEAD
 
         $artistController = new ArtistController();
         $listArtist = $artistController->retride();
     
         include "views/artistsPerDay.php";
+=======
+        $_POST['name'] = ucwords(strtolower($_POST['name']));
+        $_SESSION['eventData'] = $_POST;
+        if($_SESSION['eventData']['eventDateFinish']<$_SESSION['eventData']['eventDateStart']){
+
+            $categoryController = new CategoryController();
+            $listCategory = $categoryController->retride();
+
+            $eventPlaceController = new EventPlaceController();
+            $listEventPlace = $eventPlaceController->retride();
+
+            $placeTypeController = new PlaceTypeController();
+            $listPlaceType = $placeTypeController->retride();
+
+            $alertError = "La fecha de final del evento es anterior a la de comienzo del mismo";
+
+            include(ROOT. "views/createEventForm.php");
+        }
+        else{
+            $artistController = new ArtistController();
+            $listArtist = $artistController->retride();
+            include "views/artistsPerDay.php";
+        }
+>>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
     }
 
     public function setEventPlaces(){
@@ -129,15 +154,12 @@ class EventController{
         }
     }
 
-    public function delete($nombre)
-    {
-        $flag = $this->searchInDatabase($nombre);
-        if($flag){
-            $event = new Event($nombre);
-            $this->dao->delete($event);
-        }
-        else{
-            throw new \Exception ('Ha ocurrido un error'); 
+    public function delete($id){
+        $event = $this->getById($id);
+        if($event){
+            $this->dao->delete($event->getId());
+            $indexController = new IndexController();
+            $indexController->index();
         }
     }
 
@@ -159,8 +181,8 @@ class EventController{
     }
 
     public function getByName($name){
-        $id = $this->dao->getByName($name);
-        return $id;
+        $list = $this->dao->getByName($name);
+        return $list;
     }
 
     public function searchInDatabase($nombre){
@@ -213,6 +235,28 @@ class EventController{
         include(ROOT. "views/mainMenu.php");
     }
 
+<<<<<<< HEAD
+=======
+    public function getEventsByName($eventName){
+        $list = $this->dao->getByNameLike($eventName);
+        if($list){
+            if(!is_array($list)){
+                $eventList[] = $list; 
+            }
+            else{
+                $eventList = $list;
+            }
+        }
+        else{
+            $alertError = "No se han encontrado resultados para: '".$eventName."'";
+            $eventList = $this->getAll();
+        }
+        $categoryController = new CategoryController();
+        $categoryList = $categoryController->retride();
+        include(ROOT. "views/mainMenu.php");
+    }
+
+>>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
     public function searchByName($nombre){
         $event = $this->dao->searchByName($nombre);
         return $event;
@@ -235,6 +279,11 @@ class EventController{
         $eventList = $this->dao->retrideById($id);
         return $eventList;
     }
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
 }
 
 ?>
