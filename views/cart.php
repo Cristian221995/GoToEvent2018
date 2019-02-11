@@ -77,7 +77,7 @@
 
             <div class="cart-item">
                 <strong>Precio final: </strong><p>AR$ <?= $sum?></p><br>
-                <form action="" method="post">
+                <form action="<?=FRONT_ROOT?>Checkout" method="post">
                     <button type="submit" name="button" class="btn btn-danger btn-block">Finalizar compra</button>
                 </form>
             </div>

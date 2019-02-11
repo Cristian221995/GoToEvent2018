@@ -1,8 +1,8 @@
 <?php
 namespace daos\databases;
-use daos\daoList\Singleton as SingletonDao;
+use daos\SingletonDao as SingletonDao;
 use daos\databases\Connection as Connection;
-use daos\daoList\idao as idao;
+use interfaces\idao as idao;
 use models\Ticket as Ticket;
 class TicketsDB extends SingletonDao implements idao {
     private $connection;
@@ -70,4 +70,14 @@ class TicketsDB extends SingletonDao implements idao {
         if (!empty($resultSet)) return $resultSet[0]["id"];
         else return false;
     }
+
+    public function insert($dato){
+
+    }
+
+    public function retride(){
+
+    }
+
+    
 }
