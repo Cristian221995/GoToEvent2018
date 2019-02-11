@@ -4,6 +4,8 @@ use models\CartLine as CartLine;
 use daos\lists\CartList as CartList;
 use controllers\BuyController as BuyController;
 use daos\databases\PlaceDB as PlaceDB;
+use daos\databases\EventDB as EventDB;
+use controllers\IndexController as IndexController;
 
 class CartController{
 
@@ -16,21 +18,16 @@ class CartController{
 
     public function index(){
 
-        include(ROOT. "views/cartView.php");
+        include(ROOT. "views/cart.php");
     }
 
-    public function agregar($placeName, $price, $quantity){
+    public function agregar($quantity, $finalPrice, $placeName){
         
         $eventId = $_SESSION['idEvent'];
+        $eventDB = new EventDB();
+        $event = $eventDB->retrideById($eventId);
 
-        settype($price,"integer");
-        settype($quantity,"integer");
-        $finalPrice = $price * $quantity;
-
-        $placedb = new PlaceDB();
-        $placedb->updateRemainder($placeName,$quantity,$eventId);
-
-        $cartLine = new CartLine($placeName, $quantity, $finalPrice);
+        $cartLine = new CartLine($placeName, $quantity, $finalPrice, $event);
         $this->dao->add($cartLine);
 
         
@@ -38,10 +35,10 @@ class CartController{
         $buyController->index($eventId);
     }
 
-    public function eliminar($objectCartLine){
+    public function eliminar($key){
 
-        $this->dao->delete($objectCartLine);
-
+        $this->dao->delete($key);
+        $this->index();
 
     }
 

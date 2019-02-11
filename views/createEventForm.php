@@ -123,18 +123,6 @@
                         if($listPlaceType){
                             foreach ($listPlaceType as $key => $value) { ?>
                                 <?php if($value){ ?>
-<<<<<<< HEAD
-                                    <?=$value->getName()?> <input type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
-                               <?php }
-                             }
-                        } ?>
-                        
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Siguiente</button>
-                    
-                </form>
-=======
                                     <?=$value->getName()?> <input onClick="checkboxPlace()" type="checkbox" name="place[]" value="<?=$value->getName()?>"> <br>
                                <?php }
                              }
@@ -142,7 +130,6 @@
                     </div>  
                     <!-- Div en el que se va a insertar el codigo con Js -->
                     <div id="toComplete">
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
 
                     </div>
 

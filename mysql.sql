@@ -78,10 +78,6 @@ create table place_types_x_event(
     quantity int,
     remainder int,
     constraint pk_id_place_type_x_event primary key (id_place_type_x_event),
-<<<<<<< HEAD
-    constraint fk_id_event_place_types_x_event foreign key (id_event) references events (id_event),
-    constraint fk_id_place_type_place_types_x_event foreign key (id_place_type) references place_types (id_place_type)
-=======
     constraint fk_id_event_place_types_x_event foreign key (id_event) references events (id_event) on delete cascade,
     constraint fk_id_place_type_place_types_x_event foreign key (id_place_type) references place_types (id_place_type)
 );
@@ -93,7 +89,6 @@ create table tickets(
     constraint pk_id_ticket primary key (id_ticket),
     constraint unq_number_ticket unique (number_ticket),
     constraint unq_qr unique (qr)
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
 );
 
 insert into artists (artist_name) values ('Ricardo Montaner'),('Shakira'),('Maluma'),('Chaquenio Palavecino'),('Paulo Londra'),('Ed Sheeran');

@@ -106,11 +106,7 @@
 
 
 
-<<<<<<< HEAD
-                   <button type="submit" class="btn btn-primary">Crear Evento</button>
-=======
                    <button type="submit" class="btn btn-danger btn-block">Crear Evento</button>
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
 
                 </form>
             </div>

@@ -58,13 +58,6 @@ class EventController{
     }
 
     public function index2(){
-<<<<<<< HEAD
-
-        $artistController = new ArtistController();
-        $listArtist = $artistController->retride();
-    
-        include "views/artistsPerDay.php";
-=======
         $_POST['name'] = ucwords(strtolower($_POST['name']));
         $_SESSION['eventData'] = $_POST;
         if($_SESSION['eventData']['eventDateFinish']<$_SESSION['eventData']['eventDateStart']){
@@ -87,7 +80,6 @@ class EventController{
             $listArtist = $artistController->retride();
             include "views/artistsPerDay.php";
         }
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
     }
 
     public function setEventPlaces(){
@@ -235,8 +227,6 @@ class EventController{
         include(ROOT. "views/mainMenu.php");
     }
 
-<<<<<<< HEAD
-=======
     public function getEventsByName($eventName){
         $list = $this->dao->getByNameLike($eventName);
         if($list){
@@ -256,7 +246,6 @@ class EventController{
         include(ROOT. "views/mainMenu.php");
     }
 
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
     public function searchByName($nombre){
         $event = $this->dao->searchByName($nombre);
         return $event;
@@ -279,11 +268,8 @@ class EventController{
         $eventList = $this->dao->retrideById($id);
         return $eventList;
     }
-<<<<<<< HEAD
-=======
 
     
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
 }
 
 ?>

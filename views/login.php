@@ -81,7 +81,7 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								<a href="User" class="login100-form-btn" role="button" aria-pressed="true">Registrate Aquí</a>
+								<a href="<?= FRONT_ROOT ?>User" class="login100-form-btn" role="button" aria-pressed="true">Registrate Aquí</a>
 							</button>
 						</div>
 					</div>

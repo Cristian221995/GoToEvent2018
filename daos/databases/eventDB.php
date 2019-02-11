@@ -154,8 +154,6 @@ class EventDB extends SingletonDao implements IDao{
         e.img_path,
         c.id_category,
         c.category_name  FROM  events e inner join categories c on e.id_category = c.id_category WHERE e.event_name = '$name'";
-<<<<<<< HEAD
-=======
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();
@@ -179,7 +177,6 @@ class EventDB extends SingletonDao implements IDao{
         e.img_path,
         c.id_category,
         c.category_name  FROM  events e inner join categories c on e.id_category = c.id_category WHERE e.event_name LIKE '%$name%'";
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
         try {
             $this->connection = Connection::getInstance();
             $this->connection->connect();

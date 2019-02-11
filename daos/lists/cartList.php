@@ -31,14 +31,19 @@ class CartList extends SingletonDao implements IDao
 
     }
 
-    public function delete($objectCart) {
-        $arrayCart = $this->getSessionCart();
-        foreach ($arrayCart as $key => $value) {
-            if($i == $value){
+    public function delete($key) {
+        /*foreach ($arrayCart as $key => $value) {
+            if($objectCart === $value){
                 unset($arrayCart[$key]);
                 $this->setSessionCart($arrayCart);
             }
+        }*/
+        if($key == 0){
+            unset($_SESSION['CartList'][0]);
+        }else{
+            unset($_SESSION['CartList'][$key]);
         }
+
     }
     public function update($dato, $datonuevo) {
         // TODO: Implement updateArtist() method.

@@ -67,28 +67,6 @@ class PlaceDB{
     public function retrideByPlaceType($idPlaceType){
 
         $query = "SELECT * FROM place_types_x_event WHERE id_place_type = '$idPlaceType'";
-<<<<<<< HEAD
-=======
-        try{
-            $pdo = Connection::getInstance();
-            $pdo->connect();
-            $result = $pdo->execute($query);
-        }
-        catch(Exception $ex) {
-            throw $ex;
-        }
-        if (!empty($result)){
-            return $this->mapear($result);
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function retrideByIdEvent($idEvent){
-
-        $query = "SELECT * FROM place_types_x_event WHERE id_event = '$idEvent'";
->>>>>>> f3ffacc1341a9fa0dbbb414624eb0b1df7ad4ebd
         try{
             $pdo = Connection::getInstance();
             $pdo->connect();
@@ -124,7 +102,7 @@ class PlaceDB{
         }
     }
 
-   public function updateRemainder($placeName,$quantity,$eventId){
+  /* public function updateRemainder($placeName,$quantity,$eventId){
         
         $placeTypeDB = new PlaceTypeDB();
         $idPlace = $placeTypeDB->retrideByName($placeName);
@@ -132,7 +110,7 @@ class PlaceDB{
          $query "UPDATE place_types_x_event SET remainder = remainder-$quantity WHERE id_place_type = $idPlace AND id_event = $eventId"
         
 
-    }
+    }*/
 
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];

@@ -7,6 +7,8 @@ define('FRONT_ROOT', '/GoToEvent2018/');
 
 define('HOME', 'http://localhost/GoToEvent2018/');
 
+define('CART', 'http://localhost/GoToEvent2018/Cart');
+
 $base=explode($_SERVER['DOCUMENT_ROOT'],ROOT);
   define("BASE",$base[1]);
 

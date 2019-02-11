@@ -25,12 +25,12 @@ class CheckoutController {
                     $event = $_SESSION['CarritoList'][$i]['title_event'];
                     $place = $_SESSION['CarritoList'][$i]['name_place'];
                      $qr->text("Gracias por la compra en TicketMaster
-    Numero de ticket: $nro_ticket
-    Fecha de compra: $fechanow
-    Evento: $event
-    Plaza: $place
-    Nombre: $name
-    Email: $email");
+                                Numero de ticket: $nro_ticket
+                                Fecha de compra: $fechanow
+                                Evento: $event
+                                Plaza: $place
+                                Nombre: $name
+                                Email: $email");
             $imageDirectory = ROOT . "photos/qr" . '/';
             if (!file_exists($imageDirectory)) {
                 mkdir($imageDirectory);

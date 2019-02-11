@@ -56,17 +56,24 @@
     <div class="container">
         <h2 class="title">Carrito</h2>
         <div class="box">
+        <?php $sum = 0; ?>
+        <?php foreach ($_SESSION['CartList'] as $key => $value) { ?>
+                        <div class="cart-item">
+                        <strong>Título de evento: </strong><p><?= $value->getEvent()->getName();?></p><br>
+                        <strong>Nombre de plaza: </strong><p><?= $value->getPlaceName();?></p>
+                        <strong>Cantidad: </strong><p><?= $value->getQuantity(); ?></p><br>
+                        <strong>Precio: </strong><p><?= $value->getFinalPrice();?></p>
+                        <?php   $price = $value->getFinalPrice();
+                                $fPrice = explode(" ",$price); 
+                                $sum = $sum + $fPrice[1]; ?>
+                        <form action="<?=FRONT_ROOT?>Cart/eliminar/<?=$key?>" method="post">
+                            <button type="submit" name="button" class="btn btn-danger btn-block">Eliminar</button>
+                        </form>
+                    </div>
+        <?php } ?>
+
             <div class="cart-item">
-                <strong>Título de evento: </strong><p>Hola</p><br>
-                <strong>Nombre de plaza: </strong><p>Algo</p>
-                <strong>Cantidad: </strong><p>3</p><br>
-                <strong>Precio: </strong><p>$300</p>
-                <form action="" method="post">
-                    <button type="submit" name="button" class="btn btn-danger btn-block">Eliminar</button>
-                </form>
-            </div>
-            <div class="cart-item">
-                <strong>Precio final: </strong><p>$1000</p><br>
+                <strong>Precio final: </strong><p>AR$ <?= $sum?></p><br>
                 <form action="" method="post">
                     <button type="submit" name="button" class="btn btn-danger btn-block">Finalizar compra</button>
                 </form>

@@ -37,7 +37,7 @@
             <a class="nav-link"> Bienvenido, <?=$_SESSION["user"]->getUserName()?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Carrito</a>
+            <a class="nav-link" href="<?=FRONT_ROOT?>Cart">Carrito</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=FRONT_ROOT?>Login/logout">Cerrar Sesion</a>
