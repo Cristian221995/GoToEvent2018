@@ -26,6 +26,8 @@ class BuyController{
         }
         include(ROOT."views/buyTickets.php");
     }
+
+    
 }
 
 ?>

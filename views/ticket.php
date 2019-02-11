@@ -72,7 +72,7 @@
             
             <img class="card-img-top img-fluid" src="" alt=""> <!--Aca va el Qr-->
             <div class="card-body">
-              <h3 class="card-title"><?=$data[0]->getEvent()->getName()?></h2>
+              <h3 class="card-title"></h2>
             </div>
           </div>
           <!-- /.card -->
@@ -86,7 +86,7 @@
                     <p>Email:  </p>
                     <p>Precio Total:  </p>
             </div>
-            <p>Muchas gracias por su compra</p>
+            <p>Muchas gracias por su compra!</p>
            
           </div>
           <!-- /.card -->
@@ -100,14 +100,6 @@
 
     
     <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; GoToEvent 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="<?=FRONT_ROOT?>vendor/jquery/jquery.min.js"></script>

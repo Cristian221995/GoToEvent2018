@@ -9,6 +9,7 @@ class TicketsController {
         $this->dao = dao::getInstance();
     }
     public function index() {
+        include(ROOT."views/ticket.php");
     }
     public function insert($number,$qr) {
         try {
