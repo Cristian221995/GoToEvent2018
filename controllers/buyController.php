@@ -17,6 +17,7 @@ class BuyController{
 
         $placedb = new PlaceDB();
         $placeAux = $placedb->retrideByIdEvent($id);
+        $_SESSION['idEvent'] = $id;
         if(!is_array($placeAux)){
             $place[] = $placeAux;
         }

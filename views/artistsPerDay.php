@@ -94,7 +94,7 @@
                     <div class="form-group">
                         <label> Ingresar una imagen para el evento: </label>
                         <input type="file" class="form-control-file" name="eventIMG" required>
-                    </div> 
+                    </div>   
 
                     <?php foreach ($_SESSION["eventData"]["place"] as $key => $value) { ?>
                         <label for="">Nombre: <?=$value?></label><br>

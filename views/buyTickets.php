@@ -38,12 +38,21 @@
 
 <script>
     function calcularTotal(){
-        var num1 = document.form.entrance.value;
+        var separador = ",";
+        var limite = "3";
+        arraySubstring = document.getElementById("entrance").value.split(separador,limite);
+        var num1 = arraySubstring[0];
         var num2 = document.form.quantity.value;
-        var dato = document.form.entrance.id;
+        var place = arraySubstring[1];
         var resultado = parseInt(num1)*parseInt(num2);
         document.form.finalPrice.value="AR$ "+resultado;
-        document.form.name.value=dato;
+        document.form.placeName.value = place;
+    }
+</script>
+<script>
+    function capturName(){
+        var place = document.form.place.value;
+        document.form.placeName.value=place;
     }
 </script>
 
@@ -61,32 +70,36 @@
             include(ROOT . "views/headerNotLogued.php");
         }
     ?><br><br><br>
-
+    <?php var_dump($_SESSION['CartList'])?>
     <div class="container">
         <div class="login-form-all">
             <div class="main-div-all">
                 <div class="panel">
-                <?php
-    var_dump($_POST);
-    ?>
-                    <form action="" method="post" id="form" name="form">
+                    <form action="<?= FRONT_ROOT ?>Cart/agregar" method="post" id="form" name="form">
                         <h2>Comprar Tickets</h2>
                         <p>Precio de las entradas: </p>
+                        
                         <?php foreach ($place as $key => $value) { ?>
                             - <strong><?=$value->getPlaceType()->getName()?>: AR$ <?=$value->getPrice()?></strong><br>
                         <?php } ?>
-                        <br>
+                        <br><select class="custom-select my-1 mr-sm-2" id="entrance" required OnKeyUp="calcularTotal()">
+                                <option disabled selected value="">Seleccione entrada a comprar: </option>
                                 <?php
                                 foreach ($place as $key => $value) { ?>
-                                    <input type="radio" name="entrance" value="<?=$value->getPrice()?>" OnKeyUp="calcularTotal()" id="aaa"> <?=$value->getPlaceType()->getName()?>
+                                    <option value="<?= $value->getPrice() . "," . $value->getPlaceType()->getName(); ?>"><?= $value->getPlaceType()->getName() . " / Entradas Restantes: " . $value->getRemainder()?></option>
                                 <?php } ?>
                 
 
                         <br><br><label for="">Ingrese cantidad de entradas a comprar: </label><br>
                         <input type="text" name="quantity" required OnKeyUp="calcularTotal()"><br><br>
                         <label for=""><strong>Precio Final: </strong></label>
+<<<<<<< HEAD
                         <input type="text" name="finalPrice" disabled >
                         <input type="text" name="name" disabled OnKeyUp="calcularTotal()"><br><br>
+=======
+                        <input type="text" name="finalPrice" value="" readonly><br><br>
+                        <input type="text" name="placeName" value=""><br><br>
+>>>>>>> 547d2a60363640a9297e6f1703c32cd0b5e89533
                         <button type="submit" class="btn btn-danger btn-block">Agregar al carrito</button>
                         <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
                     </form>
