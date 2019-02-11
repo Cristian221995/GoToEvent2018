@@ -22,12 +22,12 @@ class CheckoutController {
                     var_dump($_SESSION['CartList']);
                     $event = $_SESSION['CartList'][$i]->getEvent()->getName();
                     $place = $_SESSION['CartList'][$i]->getPlaceName();
-                     $qr->text("Gracias por la compra en TicketMaster
-                                Numero de ticket: $nro_ticket
-                                Fecha de compra: $fechanow
-                                Evento: $event
-                                Plaza: $place
-                                Nombre: $name
+                     $qr->text("Gracias por la compra en GoToEvent!
+                                Numero de ticket: $nro_ticket --
+                                Fecha de compra: $fechanow --
+                                Evento: $event --
+                                Plaza: $place --
+                                Nombre: $name --
                                 Email: $email");
             $imageDirectory = ROOT . "img/qr" . '/';
             if (!file_exists($imageDirectory)) {
@@ -60,11 +60,9 @@ class CheckoutController {
             $file = $imageDirectory . $namear . ".png";
             $qr->qrCode(300, $file);
             $ticketController->insert($nro_ticket,$ruta);
-            
-        unset($_SESSION['CartList']);  
+              
         }
-        $url = URl;
-        echo "<script type=\"text/javascript\">alert('Muchas gracias por tu compra!');</script>";
+        unset($_SESSION['CartList']);
 
         //$this->ticketController->index();
         
