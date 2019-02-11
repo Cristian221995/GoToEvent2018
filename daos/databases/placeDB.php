@@ -102,15 +102,75 @@ class PlaceDB{
         }
     }
 
-  /* public function updateRemainder($placeName,$quantity,$eventId){
+     public function updateRemainder($placeName,$quantity,$eventId){
         
         $placeTypeDB = new PlaceTypeDB();
-        $idPlace = $placeTypeDB->retrideByName($placeName);
+        $placeId = $placeTypeDB->retrideByName($placeName)->getId();
+      
+        $queryRemainder = "SELECT * FROM place_types_x_event WHERE id_place_type = '$placeId' AND id_event = '$eventId'";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($queryRemainder);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
 
-         $query "UPDATE place_types_x_event SET remainder = remainder-$quantity WHERE id_place_type = $idPlace AND id_event = $eventId"
+        if (!empty($result)){
+            $result = $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+        $newRemainder = $result->getRemainder() - $quantity;
+
+        $query = "UPDATE place_types_x_event SET remainder = '$newRemainder' WHERE id_place_type = '$placeId' AND id_event = '$eventId'";
+
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $pdo->executeNonQuery($query);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
+
+    public function updateRemainderPlus($placeName,$quantity,$eventId){
         
+        $placeTypeDB = new PlaceTypeDB();
+        $placeId = $placeTypeDB->retrideByName($placeName)->getId();
+      
+        $queryRemainder = "SELECT * FROM place_types_x_event WHERE id_place_type = '$placeId' AND id_event = '$eventId'";
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $result = $pdo->execute($queryRemainder);
+        }
+        catch(Exception $ex) {
+            throw $ex;
+        }
 
-    }*/
+        if (!empty($result)){
+            $result = $this->mapear($result);
+        }
+        else{
+            return false;
+        }
+        $newRemainder = $result->getRemainder() + $quantity;
+
+        $query = "UPDATE place_types_x_event SET remainder = '$newRemainder' WHERE id_place_type = '$placeId' AND id_event = '$eventId'";
+
+        try{
+            $pdo = Connection::getInstance();
+            $pdo->connect();
+            $pdo->executeNonQuery($query);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
 
     protected function mapear($value) {
         $value = is_array($value) ? $value : [];
@@ -121,6 +181,7 @@ class PlaceDB{
         }, $value);
         return count($resp) > 1 ? $resp : $resp['0'];
     }
+
 }
 
 ?>

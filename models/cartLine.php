@@ -1,7 +1,7 @@
 <?php namespace models;
 
 class CartLine {
-    
+
     private $placeName;
     private $quantity;
     private $finalPrice;
@@ -29,6 +29,17 @@ class CartLine {
 
     public function getEvent(){
         return $this->event;
+    }
+
+    public function sumQuantity($quantityPlus){
+        $this->quantity +=  $quantityPlus;
+    }
+    public function sumFinalPrice($finalPricePlus){
+        $price = $this->finalPrice;
+        $fPrice = explode(" ",$price); 
+        $fPrice2 = explode(" ",$finalPricePlus); 
+        $this->finalPrice =  $fPrice[1] + $fPrice2[1];
+        $this->finalPrice = "AR$" . " " .  $this->getFinalPrice();
     }
 
 }

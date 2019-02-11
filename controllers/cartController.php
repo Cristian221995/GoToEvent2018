@@ -29,17 +29,24 @@ class CartController{
 
         $cartLine = new CartLine($placeName, $quantity, $finalPrice, $event);
         $this->dao->add($cartLine);
-
+        
+        $placeDB = new PlaceDB();
+        $placeDB->updateRemainder($placeName,$quantity,$eventId);
         
         $buyController = new BuyController();
         $buyController->index($eventId);
     }
 
     public function eliminar($key){
+        $carrito = $this->dao->getSessionCart();
+        $placeName = $carrito[$key]->getPlaceName();
+        $quantity = $carrito[$key]->getQuantity();
+        $eventId = $carrito[$key]->getEvent()->getId();
 
-        echo "Key: ".$key;
+        $placeDB = new PlaceDB();
+        $placeDB->updateRemainderPlus($placeName,$quantity,$eventId);
         $this->dao->delete($key);
-        //$this->index();
+        $this->index();
 
     }
 

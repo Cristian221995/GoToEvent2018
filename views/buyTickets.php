@@ -70,7 +70,6 @@
             include(ROOT . "views/headerNotLogued.php");
         }
     ?><br><br><br>
-    
     <div class="container">
         <div class="login-form-all">
             <div class="main-div-all">
@@ -94,7 +93,7 @@
                         <input type="text" name="quantity" required OnKeyUp="calcularTotal()"><br><br>
                         <label for=""><strong>Precio Final: </strong></label>
                         <input type="text" name="finalPrice" value="" readonly><br><br>
-                        <input type="text" name="placeName" value=""  hidden><br><br>
+                        <input type="text" name="placeName" value="" readonly><br><br>
                         <button type="submit" class="btn btn-danger btn-block">Agregar al carrito</button>
                         <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
                     </form>

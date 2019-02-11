@@ -66,10 +66,13 @@
                         <strong>Nombre de plaza: </strong><p><?= $value->getPlaceName();?></p>
                         <strong>Cantidad: </strong><p><?= $value->getQuantity(); ?></p><br>
                         <strong>Precio: </strong><p><?= $value->getFinalPrice();?></p>
-                        <?php   $price = $value->getFinalPrice();
-                                $fPrice = explode(" ",$price); 
-                                $sum = $sum + $fPrice[1]; ?>
-                        <form action="<?=FRONT_ROOT?>Cart/eliminar/<?=$key?>" method="post">
+                        <?php  
+                                $price = $value->getFinalPrice();
+                                 $fPrice = explode(" ",$price); 
+                                $sum = $sum + $fPrice[1];
+                                 ?>
+                        <form action="<?=FRONT_ROOT?>Cart/eliminar" method="post">
+                            <input type= hidden name="keyList" value="<?=$key?>">
                             <button type="submit" name="button" class="btn btn-danger btn-block">Eliminar</button>
                         </form>
                     </div>
