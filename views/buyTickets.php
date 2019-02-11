@@ -40,8 +40,10 @@
     function calcularTotal(){
         var num1 = document.form.entrance.value;
         var num2 = document.form.quantity.value;
+        var dato = document.form.entrance.id;
         var resultado = parseInt(num1)*parseInt(num2);
         document.form.finalPrice.value="AR$ "+resultado;
+        document.form.name.value=dato;
     }
 </script>
 
@@ -64,23 +66,27 @@
         <div class="login-form-all">
             <div class="main-div-all">
                 <div class="panel">
+                <?php
+    var_dump($_POST);
+    ?>
                     <form action="" method="post" id="form" name="form">
                         <h2>Comprar Tickets</h2>
                         <p>Precio de las entradas: </p>
                         <?php foreach ($place as $key => $value) { ?>
                             - <strong><?=$value->getPlaceType()->getName()?>: AR$ <?=$value->getPrice()?></strong><br>
                         <?php } ?>
-                        <br><select class="custom-select my-1 mr-sm-2" name="entrance" required OnKeyUp="calcularTotal()">
-                                <option disabled selected value="">Seleccione entrada a comprar: </option>
+                        <br>
                                 <?php
                                 foreach ($place as $key => $value) { ?>
-                                    <option value="<?= $value->getPrice(); ?>"><?= $value->getPlaceType()->getName() . " / Entradas Restantes: " . $value->getRemainder()?></option>
+                                    <input type="radio" name="entrance" value="<?=$value->getPrice()?>" OnKeyUp="calcularTotal()" id="aaa"> <?=$value->getPlaceType()->getName()?>
                                 <?php } ?>
-                        </select>
+                
+
                         <br><br><label for="">Ingrese cantidad de entradas a comprar: </label><br>
                         <input type="text" name="quantity" required OnKeyUp="calcularTotal()"><br><br>
                         <label for=""><strong>Precio Final: </strong></label>
-                        <input type="text" name="finalPrice" disabled ><br><br>
+                        <input type="text" name="finalPrice" disabled >
+                        <input type="text" name="name" disabled OnKeyUp="calcularTotal()"><br><br>
                         <button type="submit" class="btn btn-danger btn-block">Agregar al carrito</button>
                         <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
                     </form>

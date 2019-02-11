@@ -36,6 +36,9 @@
     <style>
         body{
             background-image: url("https://previews.123rf.com/images/davidfranklinstudioworks/davidfranklinstudioworks1603/davidfranklinstudioworks160300042/54149988-admit-one-cinema-tickets-background-with-one-unique-blue-ticket.jpg");)
+            background-repeat:no-repeat; 
+            background-position:center; 
+            background-size:cover;
         }
     </style>
 </head>
@@ -62,7 +65,7 @@
                 <strong>Cantidad: </strong><p>3</p><br>
                 <strong>Precio: </strong><p>$300</p>
                 <form action="" method="post">
-                    <button type="submit" name="button" class="btn btn-danger btn-block">Eliminar</button>
+                    <button type="submit" name="button" class="btn btn-danger">Eliminar</button>
                 </form>
             </div>
             <div class="cart-item">
