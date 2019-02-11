@@ -37,8 +37,9 @@ class CartController{
 
     public function eliminar($key){
 
+        echo "Key: ".$key;
         $this->dao->delete($key);
-        $this->index();
+        //$this->index();
 
     }
 

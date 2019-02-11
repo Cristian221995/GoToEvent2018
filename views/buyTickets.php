@@ -93,13 +93,8 @@
                         <br><br><label for="">Ingrese cantidad de entradas a comprar: </label><br>
                         <input type="text" name="quantity" required OnKeyUp="calcularTotal()"><br><br>
                         <label for=""><strong>Precio Final: </strong></label>
-<<<<<<< HEAD
-                        <input type="text" name="finalPrice" disabled >
-                        <input type="text" name="name" disabled OnKeyUp="calcularTotal()"><br><br>
-=======
                         <input type="text" name="finalPrice" value="" readonly><br><br>
                         <input type="text" name="placeName" value=""><br><br>
->>>>>>> 547d2a60363640a9297e6f1703c32cd0b5e89533
                         <button type="submit" class="btn btn-danger btn-block">Agregar al carrito</button>
                         <a href="<?= FRONT_ROOT ?>index" class="btn btn-danger btn-block" role="button" aria-pressed="true">Volver al menú principal</a>
                     </form>
