@@ -73,13 +73,13 @@
     <br><br>
     <div class="section-header">
           <h2>Buscador</h2>
-          <p>¡Busca aquí tus eventos o artistas favoritos!</p>
+          <p>¡Busca aquí tus eventos favoritos!</p>
     </div>
 
     <section class="search-section">
       <div class="search-bar">
         <form action="<?= FRONT_ROOT ?>Event/getEventsByName" method="post">
-          <input type="text" name="search" placeholder="Ingrese evento o artista a buscar:" class="search-txt" required>
+          <input type="text" name="search" placeholder="Ingrese evento a buscar:" class="search-txt" required>
           <button type="submit" class="search-btn"></button>
         </form>
       </div>
@@ -109,19 +109,21 @@
           } ?>
 
         <div class="row">
-          <?php if(isset($eventsFilter)){ ?>
-              <?php foreach($eventsFilter as $key => $value){ 
-                  if($value){ ?>
-                    <div class="col-lg-4 col-md-6">
-                          <div class="speaker">
-                            <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
-                            <div class="details">
-                              <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
-                              <p><?=$value->getCategory()->getName()?></p>
-                            </div>
+          <?php if(isset($eventsFilter)){ 
+            if($eventsFilter){
+              foreach($eventsFilter as $key => $value){ 
+                if($value){ ?>
+                  <div class="col-lg-4 col-md-6">
+                        <div class="speaker">
+                          <img src="<?=FRONT_ROOT . $value->getImg() ?>" class="img-fluid">
+                          <div class="details">
+                            <h3><a href="<?=FRONT_ROOT?>Event/getAllEventData/<?=$value->getId();?>"><?=$value->getName();?></a></h3>
+                            <p><?=$value->getCategory()->getName()?></p>
                           </div>
                         </div>
-                 <?php }
+                      </div>
+               <?php }
+                   }
                 }
               }
                 else{

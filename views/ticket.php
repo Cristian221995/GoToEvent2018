@@ -34,6 +34,7 @@
 
     <!-- Main Stylesheet File -->
     <link href="<?=FRONT_ROOT?>css/style.css" rel="stylesheet">
+    <link href="<?=FRONT_ROOT?>css/qrStyle.css" rel="stylesheet">
 
   </head>
 
@@ -59,7 +60,7 @@
     <div class="container">
 
       <div class="row">
-
+      <?php foreach ($_SESSION['CartList'] as $key => $value) { ?>
         <div class="col-lg-3">
           <h1 class="my-4">Ticket de Compra:</h1>
           
@@ -70,7 +71,7 @@
 
           <div class="card mt-4">
             
-            <img class="card-img-top img-fluid" src="" alt=""> <!--Aca va el Qr-->
+            <img class="card-img-top img-fluid" src="<?=$_SESSION["auxData"]["qr"][$key]?>" alt="QR-Image"> <!--Aca va el Qr-->
             <div class="card-body">
               <h3 class="card-title"></h2>
             </div>
@@ -78,21 +79,26 @@
           <!-- /.card -->
 
           <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-                    <p>Numero de Ticket:  </p>
-                    <p>Fecha de Compra:  </p>
-                    <p>Evento/s:  </p>
-                    <p>Nombre:  </p>
-                    <p>Email:  </p>
-                    <p>Precio Total:  </p>
-            </div>
-            <p>Muchas gracias por su compra!</p>
+            
+              <div class="card-header">
+                    <p>Numero de Ticket:  <?=$_SESSION["auxData"]["nroTicket"][$key]?></p>
+                    <p>Fecha de Compra:  <?=$fechanow?></p>
+                    <p>Evento:  <?=$value->getEvent()->getName();?></p>
+                    <p>Plaza: <?=$value->getPlaceName()?></p>
+                    <p>Cantidad: <?=$value->getQuantity()?></p>
+                    <p>Nombre:  <?=$name?></p>
+                    <p>Email:  <?=$email?></p>
+              </div><br>
+            
+            <strong>Muchas gracias por su compra!</strong>
            
           </div>
           <!-- /.card -->
 
         </div>
         <!-- /.col-lg-9 -->
+
+        <?php } ?>
 
       </div>
 

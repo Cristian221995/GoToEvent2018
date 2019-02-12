@@ -24,14 +24,16 @@
 	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/util.css">
-	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/main.css">
+	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/login.css">
+	<link rel="stylesheet" type="text/css" href="<?= FRONT_ROOT ?>css/formStyle.css">
+
 <!--===============================================================================================-->
 </head>
 <body>
 
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('<?= FRONT_ROOT ?>images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('http://www.thejeffersonchronicle.com/wp-content/uploads/2018/06/raffle-tickets-1024x683.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 			<?php if(isset($alertSuccess)){ ?>
                 <div class="alert alert-success">

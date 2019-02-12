@@ -1,0 +1,31 @@
+.img-fluid{
+    max-width: 60%;
+    height: 500px;
+    margin-left: 180px;
+    margin-top: 40px;
+}
+
+body{
+    background-image:url("https://previews.123rf.com/images/davidfranklinstudioworks/davidfranklinstudioworks1603/davidfranklinstudioworks160300042/54149988-admit-one-cinema-tickets-background-with-one-unique-blue-ticket.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;
+}
+
+h1{
+    background-color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+}
+
+p{
+    border: 1px solid #000;
+    text-align: center;
+    color: #000;
+}
+
+strong{
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}

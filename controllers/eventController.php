@@ -222,6 +222,10 @@ class EventController{
     public function getEventsByCategoryName($categoryName){
 
         $eventsFilter = $this->retrideByCategory($categoryName);
+        if(!$eventsFilter){
+            $alertError = "No se han encontrado resultados para: '".$categoryName."'";
+            $eventList = $this->getAll();
+        }
         $categoryController = new CategoryController();
         $categoryList = $categoryController->retride();
         include(ROOT. "views/mainMenu.php");
@@ -261,6 +265,7 @@ class EventController{
             $eventListAux = $eventList;
         }
         return $eventListAux;
+
     }
 
     public function getById($id){
