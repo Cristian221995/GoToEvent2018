@@ -18,6 +18,14 @@ class CartController{
 
     public function index(){
 
+        if(isset($_SESSION['CartList'])){
+            if(empty($_SESSION['CartList'])){
+                $alertError = "¡Su carrito está vacio!";
+            }
+        }
+        else{
+            $alertError = "¡Su carrito está vacio!";
+        }
         include(ROOT. "views/cart.php");
     }
 

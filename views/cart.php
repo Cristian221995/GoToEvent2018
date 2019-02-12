@@ -82,10 +82,25 @@
 
 
             <div class="cart-item">
-                <strong>Precio final: </strong><p>AR$ <?= $sum?></p><br>
-                <form action="<?=FRONT_ROOT?>Checkout" method="post">
-                    <button type="submit" name="button" class="btn btn-danger btn-block">Finalizar compra</button>
-                </form>
+            <?php if(isset($alertSuccess)){ ?>
+                <div class="alert alert-success">
+                    <strong>MENSAJE:</strong> <?= $alertSuccess ?>
+                </div>
+            <?php } 
+                else{
+                    if(isset($alertError)){ ?>
+                        <div class="alert alert-danger">
+                            <?= $alertError ?>
+                        </div>
+                <?php }
+                    else{ ?>
+                        <strong>Precio final: </strong><p>AR$ <?= $sum?></p><br>
+                        <form action="<?=FRONT_ROOT?>Checkout" method="post">
+                            <button type="submit" name="button" class="btn btn-danger btn-block">Finalizar compra</button>
+                        </form>
+                    <?php }
+                } ?>
+                
             </div>
         </div>
     </div>
