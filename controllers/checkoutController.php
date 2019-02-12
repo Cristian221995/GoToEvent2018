@@ -61,9 +61,9 @@ class CheckoutController {
             $qr->qrCode(300, $file);
             $ticketController->insert($nro_ticket,$ruta);
             
-        unset($_SESSION['CartList']);  
+        
         }
-        $url = URl;
+        unset($_SESSION['CartList']);  
         echo "<script type=\"text/javascript\">alert('Muchas gracias por tu compra!');</script>";
 
         //$this->ticketController->index();
