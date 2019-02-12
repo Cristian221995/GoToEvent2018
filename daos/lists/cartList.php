@@ -46,9 +46,11 @@ class CartList extends SingletonDao implements IDao
     public function delete($key) {
         if($key == 0){
             unset($_SESSION['CartList'][0]);
+
         }else{
             unset($_SESSION['CartList'][$key]);
         }
+        sort($_SESSION['CartList']);
 
     }
     public function update($dato, $datonuevo) {
