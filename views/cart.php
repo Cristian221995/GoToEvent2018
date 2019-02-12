@@ -60,7 +60,8 @@
         <h2 class="title">Carrito</h2>
         <div class="box">
         <?php $sum = 0; ?>
-        <?php foreach ($_SESSION['CartList'] as $key => $value) { ?>
+        <?php if (isset($_SESSION['CartList'])) { ?>
+                    <?php foreach ($_SESSION['CartList'] as $key => $value) { ?>
                         <div class="cart-item">
                         <strong>Título de evento: </strong><p><?= $value->getEvent()->getName();?></p><br>
                         <strong>Nombre de plaza: </strong><p><?= $value->getPlaceName();?></p>
@@ -77,6 +78,8 @@
                         </form>
                     </div>
         <?php } ?>
+       <?php }?>
+
 
             <div class="cart-item">
                 <strong>Precio final: </strong><p>AR$ <?= $sum?></p><br>
