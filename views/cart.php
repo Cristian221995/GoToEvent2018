@@ -67,6 +67,7 @@
                         <strong>Nombre de plaza: </strong><p><?= $value->getPlaceName();?></p>
                         <strong>Cantidad: </strong><p><?= $value->getQuantity(); ?></p><br>
                         <strong>Precio: </strong><p><?= $value->getFinalPrice();?></p>
+                        <?php $_SESSION["auxData"]["price"][$key] = $value->getFinalPrice();?>
                         <?php  
                                 $price = $value->getFinalPrice();
                                  $fPrice = explode(" ",$price); 

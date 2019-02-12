@@ -21,6 +21,7 @@ class CheckoutController {
                     if(isset($_SESSION['CartList'][$i])){
                         $nro_ticket = rand(0,999999999);
                         $_SESSION["auxData"]["nroTicket"][$i] = $nro_ticket;
+                        $price = $_SESSION["auxData"]["price"][$i];
                         $event = $_SESSION['CartList'][$i]->getEvent()->getName();
                         $place = $_SESSION['CartList'][$i]->getPlaceName();
                         $quantity = $_SESSION['CartList'][$i]->getQuantity();
@@ -31,7 +32,8 @@ class CheckoutController {
                                     Plaza: $place --
                                     Cantidad: $quantity --
                                     Nombre: $name --
-                                    Email: $email");
+                                    Email: $email
+                                    Precio de ticket: $price");
                 $imageDirectory = ROOT . "img/qr" . '/';
                 if (!file_exists($imageDirectory)) {
                     mkdir($imageDirectory);
@@ -46,8 +48,9 @@ class CheckoutController {
                     $i++;
                  }
             } else {
-                $nro_ticket = rand(0,999999999);
+                        $nro_ticket = rand(0,999999999);
                         $_SESSION["auxData"]["nroTicket"][$i] = $nro_ticket;
+                        $price = $_SESSION["auxData"]["price"][$i];
                         $event = $_SESSION['CartList'][$i]->getEvent()->getName();
                         $place = $_SESSION['CartList'][$i]->getPlaceName();
                         $quantity = $_SESSION['CartList'][$i]->getQuantity();
@@ -58,7 +61,8 @@ class CheckoutController {
                                     Plaza: $place --
                                     Cantidad: $quantity --
                                     Nombre: $name --
-                                    Email: $email");
+                                    Email: $email
+                                    Precio de ticket: $price");
                 $imageDirectory = ROOT . "img/qr" . '/';
                 if (!file_exists($imageDirectory)) {
                     mkdir($imageDirectory);
@@ -72,7 +76,7 @@ class CheckoutController {
         }
         include(ROOT."views/ticket.php");
         unset($_SESSION['CartList']);
-        
+        unset($_SESSION["auxData"]);
     }
 }
 }

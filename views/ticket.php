@@ -88,6 +88,7 @@
                     <p>Cantidad: <?=$value->getQuantity()?></p>
                     <p>Nombre:  <?=$name?></p>
                     <p>Email:  <?=$email?></p>
+                    <p>Precio de ticket: <?=$_SESSION["auxData"]["price"][$key]?></p>
               </div><br>
             
             <strong>Muchas gracias por su compra!</strong>
